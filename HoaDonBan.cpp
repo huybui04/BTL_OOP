@@ -104,8 +104,7 @@ double HoaDonBan::tinhTongTien() const
 
 void HoaDonBan::hienThi() const
 {
-    cout << MaHDB << " " << NgayBan << " " << MaNV << " " << MaKH << " " << MaBan << endl
-         << endl;
+
     std::cout << "Ma Hoa Don: " << MaHDB << std::endl;
     std::cout << "Ngay Ban: " << NgayBan << std::endl;
     std::cout << "Nhan Vien: " << MaNV << std::endl;

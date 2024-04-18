@@ -142,35 +142,35 @@ public:
 	// 	getline(cin, mban);
 	// 	cout << "Nhap ngay ban: ";
 	// 	getline(cin, ngayban);
-	// for (int i = 0; i < soLuongMua; i++)
-	// {
-	// 	cout << "Nhap ma san pham thu " << i + 1 << ": ";
-	// 	getline(cin, msp);
-	// 	cout << "Nhap so luong san pham thu " << i + 1 << ": ";
-	// 	cin >> soluong;
-	// 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-	// 	SanPham cthdb_sp;
-	// 	cthdb_sp.setMaSP(msp);
-
-	// 	for (auto sp : this->dssp.getDSSP())
+	// 	for (int i = 0; i < soLuongMua; i++)
 	// 	{
-	// 		if (sp.getMaSP() == cthdb_sp.getMaSP())
+	// 		cout << "Nhap ma san pham thu " << i + 1 << ": ";
+	// 		getline(cin, msp);
+	// 		cout << "Nhap so luong san pham thu " << i + 1 << ": ";
+	// 		cin >> soluong;
+	// 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+	// 		SanPham cthdb_sp;
+	// 		cthdb_sp.setMaSP(msp);
+
+	// 		for (auto sp : this->dssp.getDSSP())
 	// 		{
-	// 			cthdb_sp.setTenSP(sp.getTenSP());
-	// 			cthdb_sp.setGia(sp.getGia());
+	// 			if (sp.getMaSP() == cthdb_sp.getMaSP())
+	// 			{
+	// 				cthdb_sp.setTenSP(sp.getTenSP());
+	// 				cthdb_sp.setGia(sp.getGia());
+	// 			}
 	// 		}
+
+	// 		ChiTietHoaDonBan cthd(mhdb, msp, soluong, cthdb_sp);
+	// 		ds.push_back(cthd);
 	// 	}
 
-	// 	ChiTietHoaDonBan cthd(mhdb, msp, soluong, cthdb_sp);
-	// 	ds.push_back(cthd);
-	// }
-
-	// 	HoaDonBan hdb(mhdb, mnv, mkh, mban, ngayban, ds);
+	// 	HoaDonBan hdb(mhdb, ngayban, mnv, mkh, mban, ds);
 	// 	hdb.hienThi();
 	// }
 
-	void taoChiTietHoaDon(string billId, string staffId, string customerId, string tableId, string date)
+	void taoChiTietHoaDon(string billId, string date, string staffId, string customerId, string tableId)
 	{
 		int n_product;
 		string productId;
@@ -204,6 +204,7 @@ public:
 			ChiTietHoaDonBan cthd(billId, productId, quantity, p);
 			ds.push_back(cthd);
 		}
+
 		cout << "\n======================================================\n";
 		cout << "Chi tiet hoa don mua hang:\n";
 		HoaDonBan hdb(billId, date, staffId, customerId, tableId, ds);
