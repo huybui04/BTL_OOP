@@ -6,7 +6,8 @@
 #include <fstream>
 #include <vector>
 
-class DSBan {
+class DSBan
+{
 private:
     std::vector<Ban> danhSachBan;
 
@@ -18,7 +19,7 @@ public:
     void suaBan(const std::string &maBan, const Ban &ban);
     void xoaBan(const std::string &maBan);
     void luuVaoFile(const std::string &tenTep);
+    Ban *timKiemTheoMa(const string &maBan);
 };
 
 #endif /* DSBAN_H */
-

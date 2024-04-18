@@ -3,37 +3,36 @@
 
 #include <iostream>
 
-class ChiTietHoaDonBan {
+class ChiTietHoaDonBan
+{
 private:
 	std::string MaHDB;
 	std::string MaSP;
-    int SoLuong;
+	int SoLuong;
 	SanPham SP;
 
 public:
-	
-    ChiTietHoaDonBan();
-    
-    ChiTietHoaDonBan(const std::string &MaHDB, const std::string &MaSP, const int &soLuong);
-    
+	ChiTietHoaDonBan();
+
+	ChiTietHoaDonBan(const std::string &MaHDB, const std::string &MaSP, const int &soLuong);
+
 	ChiTietHoaDonBan(const std::string &MaHDB, const std::string &MaSP, const int &soLuong, const SanPham &sp);
-	
+
 	std::string getMaHDB() const;
 	void setMaHDB(const std::string &MaHDB);
-	
+
 	std::string getMaSP() const;
 	void setMaSP(const std::string &MaSP);
-	   
-	SanPham  getSP() const;
+
+	SanPham getSP() const;
 	void setSP(const SanPham &sp);
-	   
-    int getSoLuong() const;
-    void setSoLuong(int soLuong);
-    
+
+	int getSoLuong() const;
+	void setSoLuong(int soLuong);
+
 	void xuat() const;
 
-    double tinhThanhTien() const;
+	double tinhThanhTien() const;
 };
 
 #endif /* CHITIETHOADONBAN_H */
-

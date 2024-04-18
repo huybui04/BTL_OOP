@@ -1,15 +1,20 @@
 #include "DSKhachHang.h"
-#include <algorithm>
+#include <bits/stdc++.h>
+using namespace std;
 
-void DSKhachHang::themKhachHang(const KhachHang &khachHang) {
+void DSKhachHang::themKhachHang(const KhachHang &khachHang)
+{
     danhSachKhachHang.push_back(khachHang);
 }
 
-void DSKhachHang::docTuFile(const std::string &tenFile) {
+void DSKhachHang::docTuFile(const std::string &tenFile)
+{
     std::ifstream file(tenFile);
-    if (file.is_open()) {
+    if (file.is_open())
+    {
         std::string line;
-        while (std::getline(file, line)) {
+        while (std::getline(file, line))
+        {
             std::stringstream ss(line);
             std::string maKH, tenKH, sdt;
             std::getline(ss, maKH, ',');
@@ -20,57 +25,87 @@ void DSKhachHang::docTuFile(const std::string &tenFile) {
             themKhachHang(kh);
         }
         file.close();
-    } else {
+    }
+    else
+    {
         std::cout << "Khong mo duoc file " << tenFile << " de doc!" << std::endl;
     }
 }
 
-void DSKhachHang::hienThiDanhSach() const {
-    for (const auto &kh : danhSachKhachHang) {
+void DSKhachHang::hienThiDanhSach() const
+{
+    for (const auto &kh : danhSachKhachHang)
+    {
         kh.xuat();
         std::cout << std::endl;
     }
 }
 
-void DSKhachHang::suaKhachHang(const std::string &maKH, const KhachHang &khachHang) {
+void DSKhachHang::suaKhachHang(const std::string &maKH, const KhachHang &khachHang)
+{
     bool timThay = false;
-    for (auto &kh : danhSachKhachHang) {
-        if (kh.getMaKH() == maKH) {
+    for (auto &kh : danhSachKhachHang)
+    {
+        if (kh.getMaKH() == maKH)
+        {
             kh = khachHang;
             timThay = true;
             break;
         }
     }
 
-    if (!timThay) {
+    if (!timThay)
+    {
         std::cout << "Khong tim thay khach hang co MaKH: " << maKH << std::endl;
     }
 }
 
-void DSKhachHang::xoaKhachHang(const std::string &maKH) {
-    auto it = std::find_if(danhSachKhachHang.begin(), danhSachKhachHang.end(), [&maKH](const KhachHang &kh) {
-        return kh.getMaKH() == maKH;
-    });
+void DSKhachHang::xoaKhachHang(const std::string &maKH)
+{
+    auto it = std::find_if(danhSachKhachHang.begin(), danhSachKhachHang.end(), [&maKH](const KhachHang &kh)
+                           { return kh.getMaKH() == maKH; });
 
-    if (it != danhSachKhachHang.end()) {
+    if (it != danhSachKhachHang.end())
+    {
         danhSachKhachHang.erase(it);
         std::cout << "Da xoa khach hang co MaKH: " << maKH << std::endl;
-    } else {
+    }
+    else
+    {
         std::cout << "Khong tim thay khach hang co MaKH: " << maKH << std::endl;
     }
 }
 
-void DSKhachHang::luuVaoFile(const std::string &tenTep) const {
+void DSKhachHang::luuVaoFile(const std::string &tenTep) const
+{
     std::ofstream file(tenTep);
-    if (!file.is_open()) {
+    if (!file.is_open())
+    {
         std::cout << "Khong mo duoc file " << tenTep << "de ghi" << std::endl;
         return;
     }
 
-    for (const auto &kh : danhSachKhachHang) {
+    for (const auto &kh : danhSachKhachHang)
+    {
         kh.luuVaoFile(file);
     }
 
     file.close();
 }
 
+std::vector<KhachHang> DSKhachHang::getDanhSachKhachHang() const
+{
+    return danhSachKhachHang;
+}
+
+KhachHang *DSKhachHang::timKiemTheoMa(const string &maKH)
+{
+    for (auto &kh : danhSachKhachHang)
+    {
+        if (kh.getMaKH() == maKH)
+        {
+            return &kh;
+        }
+    }
+    return nullptr;
+}
