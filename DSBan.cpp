@@ -19,7 +19,7 @@ void DSBan::docDuLieuTuFile(const std::string &tenTep) {
     std::ifstream file(tenTep);
 
     if (!file.is_open()) {
-        std::cout << "Khong mo duoc file" << std::endl;
+        std::cout << "Khong mo duoc file " << tenTep << " de doc!" << std::endl;
         return;
     }
 
@@ -73,7 +73,7 @@ void DSBan::xoaBan(const std::string &maBan) {
 void DSBan::luuVaoFile(const std::string &tenTep) {
     std::ofstream file(tenTep);
     if (!file.is_open()) {
-        std::cout << "Khong mo duoc file" << std::endl;
+        std::cout << "Khong mo duoc file " << tenTep << "de ghi" << std::endl;
         return;
     }
 

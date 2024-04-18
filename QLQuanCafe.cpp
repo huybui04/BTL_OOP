@@ -1,14 +1,3 @@
-//#include "DSNhanVien_1.cpp"
-//#include "DSKhachHang_1.cpp"
-//#include "DSNhaCungCap_1.cpp"
-//#include "DSSanPham_1.cpp"
-//#include "DSNguyenLieu_1.cpp"
-//#include "DSBan_1.cpp"
-//#include "DSHoaDonBan_1.cpp"
-//#include "DSChiTietHoaDonBan_1.cpp"
-//#include "DSHoaDonBan_1.cpp"
-//#include "DSChiTietHoaDonNhap_1.cpp"
-
 #include "NhanVien.h"
 #include "DSNhanVien.h"
 #include "NhanVien.cpp"
@@ -72,16 +61,27 @@ class QLQuanCafe {
 		DSChiTietHoaDonBan dscthdb;
 		DSHoaDonNhap dshdn;
 		DSChiTietHoaDonNhap dscthdn;
+		
+		const string tenFileDSNhanVien = "nhanvien.txt";
+		const string tenFileDSKhachHang = "khachhang.txt";
+		const string tenFileDSNhaCungCap = "nhacungcap.txt";
+		const string tenFileDSSanPham = "sanpham.txt";
+		const string tenFileDSNguyenLieu = "nguyenlieu.txt";
+		const string tenFileDSBan = "ban.txt";
+		const string tenFileDSHoaDonBan = "hoadonban.txt";
+		const string tenFileDSChiTietHoaDonBan = "chitiethoadonban.txt";
+		const string tenFileDSHoaDonNhap = "hoadonnhap.txt";
+		const string tenFileDSChiTietHoaDonNhap = "chitiethoadonnhap.txt";
 	public:
 		QLQuanCafe() {}
 		void tao() {
-			dsnv.docDuLieuTuFile("nhanvien.txt");
-			dskh.docTuFile("khachhang.txt");
-			dsncc.docDuLieuTuFile("nhacungcap.txt");
-			dssp.docDuLieuTuFile("sanpham.txt");
-			dsnl.docDuLieuTuFile("nguyenlieu.txt");
-			dsban.docDuLieuTuFile("ban.txt");
-			dscthdb.docDuLieuTuFile("chitiethoadonban.txt");
+			dsnv.docDuLieuTuFile();
+			dskh.docTuFile();
+			dsncc.docDuLieuTuFile();
+			dssp.docDuLieuTuFile();
+			dsnl.docDuLieuTuFile();
+			dsban.docDuLieuTuFile();
+			dscthdb.docDuLieuTuFile();
 			
 		}
 		void hienThiDSNV() {
@@ -106,20 +106,51 @@ class QLQuanCafe {
 			dscthdb.hienThiDanhSach();
 		}
 		void taoHoaDonBan() {
-			std::string mhdb = "HDB01";
-			std::string mnv = "MaNV01";
-			std::string mkh = "MaKH01";
-			std::string mban = "MaBan01";
-			std::string ngayban = "1/1/2020";
-			vector<ChiTietHoaDonBan> ds_1 = dscthdb.getDSCTHDB();
-			vector<SanPham> ds_2 = dssp.getDSSP();
-			for (auto ct : ds_1) {
-				ct.setDSSP(ds_2);
-			}
+			int soLuongMua ;
+			std::string mhdb;
+			std::string mnv;
+			std::string mkh;
+			std::string mban;
+			std::string ngayban;
+			std::string msp;
+			int soluong;
+			vector<ChiTietHoaDonBan> ds;
 			
-			HoaDonBan hdb(mhdb,mnv,mkh,mban,ngayban,ds_1);
+			std::cout << "Nhap so loai san pham muon mua: "; std::cin >> soLuongMua;
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cout << "Nhap ma hoa don ban: ";
+			std::getline(std::cin, mhdb);
+			std::cout << "Nhap ma ma nhan vien: ";
+			std::getline(std::cin, mnv);
+			std::cout << "Nhap ma khach hang: ";
+			std::getline(std::cin, mkh);
+			std::cout << "Nhap ma ma ban: ";
+			std::getline(std::cin, mban);
+			std::cout << "Nhap ngay ban: ";
+			std::getline(std::cin, ngayban);
+			for(int i = 0; i < soLuongMua; i++) {
+				std::cout << "Nhap ma san pham thu " << i + 1 << ": ";
+				std::getline(std::cin, msp);
+				std::cout << "Nhap so luong thu " << i + 1 << ": ";
+				std::cin >> soluong;
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				
+				SanPham cthdb_sp;
+				cthdb_sp.setMaSP(msp);
+				
+				for(auto sp : this->dssp.getDSSP()) {
+					if(sp.getMaSP() == cthdb_sp.getMaSP()) {
+						cthdb_sp.setTenSP(sp.getTenSP());
+						cthdb_sp.setGia(sp.getGia());
+					}
+				}
+				
+				ChiTietHoaDonBan cthd(mhdb, msp, soluong, cthdb_sp);
+				ds.push_back(cthd);
+			}		
+			
+			HoaDonBan hdb(mhdb,mnv,mkh,mban,ngayban,ds);
 			hdb.hienThi();
-
 		}
 		void hienThiDSHoaDonBan() {
 			

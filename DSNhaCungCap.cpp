@@ -11,7 +11,7 @@ void DSNhaCungCap::docDuLieuTuFile(const std::string &tenTep) {
     std::ifstream file(tenTep);
 
     if (!file.is_open()) {
-        std::cerr << "Khong mo duoc file" << std::endl;
+        std::cout << "Khong mo duoc file " << tenTep << " de doc!" << std::endl;
         return;
     }
 
@@ -72,7 +72,7 @@ void DSNhaCungCap::xoaNhaCungCap(const std::string &maNCC) {
 void DSNhaCungCap::luuVaoFile(const std::string &tenTep) const {
     std::ofstream file(tenTep);
     if (!file.is_open()) {
-        std::cerr << "Khong mo duoc file" << std::endl;
+        std::cout << "Khong mo duoc file " << tenTep << "de ghi" << std::endl;
         return;
     }
 

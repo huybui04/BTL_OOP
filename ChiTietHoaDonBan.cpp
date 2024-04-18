@@ -2,21 +2,12 @@
 
 ChiTietHoaDonBan::ChiTietHoaDonBan() {}
 
-ChiTietHoaDonBan::ChiTietHoaDonBan(const std::vector<SanPham> &dssp) {
-	this->dssp = dssp;
+ChiTietHoaDonBan::ChiTietHoaDonBan(const std::string &MaHDB, const std::string &MaSP, const int &soLuong)
+    : MaHDB(MaHDB), MaSP(MaSP), SoLuong(soLuong) { 
 }
 
-ChiTietHoaDonBan::ChiTietHoaDonBan(const std::string &MaHDB, const std::string &MaSP, int soLuong)
-    : MaHDB(MaHDB), MaSP(MaSP), SoLuong(soLuong){ 	
-}
-
-ChiTietHoaDonBan::ChiTietHoaDonBan(const std::string &MaHDB, const std::string &MaSP, int soLuong, const std::vector<SanPham> &dssp)
-    : MaHDB(MaHDB), MaSP(MaSP), SoLuong(soLuong){ 
-	for(auto sp : dssp) {
-		if(sp.getMaSP()==this->MaSP){
-			this->dssp.push_back(sp);
-		}
-	}	
+ChiTietHoaDonBan::ChiTietHoaDonBan(const std::string &MaHDB, const std::string &MaSP, const int &soLuong, const SanPham &sp)
+    : MaHDB(MaHDB), MaSP(MaSP), SoLuong(soLuong), SP(sp) { 
 }
 
 std::string ChiTietHoaDonBan::getMaHDB() const {
@@ -34,11 +25,11 @@ void ChiTietHoaDonBan::setMaSP(const std::string &MaSP) {
 	this->MaSP = MaSP;
 }
 
-std::vector<SanPham> ChiTietHoaDonBan::getDSSP() const {
-	return dssp;
+SanPham ChiTietHoaDonBan::getSP() const {
+	return SP;
 };
-void ChiTietHoaDonBan::setDSSP(const std::vector<SanPham> &dssp) {
-	this->dssp = dssp;
+void ChiTietHoaDonBan::setSP(const SanPham &sp) {
+	this->SP = sp;
 };
 
 int ChiTietHoaDonBan::getSoLuong() const {
@@ -55,11 +46,7 @@ void ChiTietHoaDonBan::xuat() const {
     std::cout << "So Luong Ban: " << SoLuong << std::endl;
 }
 
-
 double ChiTietHoaDonBan::tinhThanhTien() const {
-	for(auto sp : dssp) {
-		if(MaSP == sp.getMaSP())
-		return SoLuong * sp.getGia();
-	}
+	return SoLuong * SP.getGia();
 }
 

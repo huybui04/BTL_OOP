@@ -19,7 +19,7 @@ void DSNguyenLieu::docDuLieuTuFile(const std::string &tenTep) {
     std::ifstream file(tenTep);
 
     if (!file.is_open()) {
-        std::cout << "Khong mo duoc file" << std::endl;
+        std::cout << "Khong mo duoc file " << tenTep << " de doc!" << std::endl;
         return;
     }
 
@@ -76,7 +76,7 @@ void DSNguyenLieu::xoaNguyenLieu(const std::string &maNL) {
 void DSNguyenLieu::luuVaoFile(const std::string &tenTep) {
     std::ofstream file(tenTep);
     if (!file.is_open()) {
-        std::cout << "Khong mo duoc file" << std::endl;
+        std::cout << "Khong mo duoc file " << tenTep << "de ghi" << std::endl;
         return;
     }
 

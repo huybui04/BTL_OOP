@@ -1,1 +1,2 @@
-SP01, TenSP, 15000
+SP01, Tra dao, 25000
+SP02, Ca phe sua, 30000

@@ -42,7 +42,7 @@ void DSHoaDonBan::docDuLieuTuFile(const std::string &tenFile) {
         // Ð?c d? li?u t? file và thêm vào danh sách
         file.close();
     } else {
-        std::cout << "Khong mo duoc file!" << std::endl;
+        std::cout << "Khong mo duoc file " << tenFile << " de doc!" << std::endl;
     }
 }
 
@@ -54,7 +54,7 @@ void DSHoaDonBan::ghiDuLieuVaoFile(const std::string &tenFile) {
 	    }
         file.close();
     } else {
-        std::cout << "Khong mo duoc file!" << std::endl;
+        std::cout << "Khong mo duoc file " << tenFile << "de ghi" << std::endl;
     }
     
 }

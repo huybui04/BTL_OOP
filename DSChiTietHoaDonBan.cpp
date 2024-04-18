@@ -49,7 +49,7 @@ void DSChiTietHoaDonBan::docDuLieuTuFile(const std::string &tenFile) {
     std::ifstream file(tenFile);
 
     if (!file.is_open()) {
-        std::cout << "Khong mo duoc file" << std::endl;
+        std::cout << "Khong mo duoc file " << tenFile << " de doc!" << std::endl;
         return;
     }
 
@@ -57,12 +57,11 @@ void DSChiTietHoaDonBan::docDuLieuTuFile(const std::string &tenFile) {
     while (std::getline(file, line)) {
         std::stringstream ss(line);
         std::string mahdb, masp, SoLuong;
-		;
 
         std::getline(ss, mahdb, ',');
         std::getline(ss, masp, ',');
         std::getline(ss, SoLuong);
-		int SL = stoi(SoLuong);
+		int SL = std::stoi(SoLuong);
 
         ChiTietHoaDonBan cthdb(mahdb, masp, SL);
         themChiTiet(cthdb);
@@ -80,7 +79,7 @@ void DSChiTietHoaDonBan::ghiDuLieuVaoFile(const std::string &tenFile) {
         }
         file.close();
     } else {
-        std::cout << "Khong mo duoc file!" << std::endl;
+        std::cout << "Khong mo duoc file " << tenFile << "de ghi" << std::endl;
     }
 }
 

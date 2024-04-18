@@ -1,8 +1,6 @@
 #ifndef DSHOADONBAN_H
 #define DSHOADONBAN_H
 
-//#include <iostream>
-//#include <vector>
 #include "HoaDonBan.h"
 
 class DSHoaDonBan {
