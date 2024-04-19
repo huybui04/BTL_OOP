@@ -29,7 +29,7 @@ public:
     void setNgaySinh(std::string ngaySinh);
     void nhap();
     void xuat() const;
-    void luuVaoFile(std::ofstream &file) const;
+    void luuVaoFile(const std::string &tenFile) const;
 };
 
 #endif /* NHANVIEN_H */

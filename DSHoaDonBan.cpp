@@ -36,27 +36,53 @@ HoaDonBan DSHoaDonBan::timKiemHoaDon(const std::string &maHDB) {
     return HoaDonBan();
 }
 
+void DSHoaDonBan::hienThiDanhSach() const
+{
+    for (const auto &hdb : danhSachHoaDon)
+    {
+        hdb.xuat();
+        std::cout << std::endl;
+    }
+}
+
 void DSHoaDonBan::docDuLieuTuFile(const std::string &tenFile) {
     std::ifstream file(tenFile);
-    if (file.is_open()) {
-        // Ð?c d? li?u t? file và thêm vào danh sách
-        file.close();
-    } else {
+
+    if (!file.is_open())
+    {
         std::cout << "Khong mo duoc file " << tenFile << " de doc!" << std::endl;
+        return;
     }
+
+    std::string line;
+    while (std::getline(file, line))
+    {
+        std::stringstream ss(line);
+        std::string mahdb, ngayban, manv, makh, maban;
+
+        std::getline(ss, mahdb, ',');
+        std::getline(ss, ngayban, ',');
+        std::getline(ss, manv, ',');
+        std::getline(ss, makh, ',');
+        std::getline(ss, maban);
+
+        HoaDonBan hdb(mahdb, ngayban, manv, makh, maban);
+        themHoaDon(hdb);
+    }
+
+    file.close();
 }
 
 void DSHoaDonBan::ghiDuLieuVaoFile(const std::string &tenFile) {
     std::ofstream file(tenFile);
     if (file.is_open()) {
         for (auto hdb : danhSachHoaDon) {
-	        hdb.luuVaoFile(file);
+	        hdb.luuVaoFile(tenFile);
 	    }
         file.close();
     } else {
         std::cout << "Khong mo duoc file " << tenFile << "de ghi" << std::endl;
     }
-    
 }
 
 

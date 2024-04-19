@@ -88,7 +88,15 @@ void NhanVien::xuat() const {
     std::cout << "Ngay Sinh: " << NgaySinh << std::endl;
 }
 
-void NhanVien::luuVaoFile(std::ofstream &file) const {
-    file << MaNV << "," << TenNV << "," << SDT << "," << GioiTinh << "," << DiaChi << "," << ChucVu << "," << NgaySinh << std::endl;
+void NhanVien::luuVaoFile(const std::string &tenFile) const {
+	std::ofstream file(tenFile, std::ios_base::app);
+    if (!file.is_open()) {
+        std::cout << "Khong mo duoc file " << tenFile << "de ghi" << std::endl;
+        return;
+    }
+
+    file << MaNV << ", " << TenNV << ", " << SDT << ", " << GioiTinh << ", " << DiaChi << ", " << ChucVu << ", " << NgaySinh << std::endl;
+    file.close();
+    
 }
 

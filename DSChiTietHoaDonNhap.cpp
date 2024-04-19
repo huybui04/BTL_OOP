@@ -1,24 +1,29 @@
 #include "DSChiTietHoaDonNhap.h"
 #include <fstream>
 
-std::vector<ChiTietHoaDonNhap> DSChiTietHoaDonNhap::getCTHDN() const {
+std::vector<ChiTietHoaDonNhap> DSChiTietHoaDonNhap::getDSCTHDN() const 
+{
     return danhSachChiTietHoaDonNhap;
 }
 
-void DSChiTietHoaDonNhap::themChiTiet(const ChiTietHoaDonNhap &chiTiet) {
+void DSChiTietHoaDonNhap::themChiTiet(const ChiTietHoaDonNhap &chiTiet) 
+{
     danhSachChiTietHoaDonNhap.push_back(chiTiet);
 }
 
-void DSChiTietHoaDonNhap::suaChiTiet(const std::string &maHDN, const ChiTietHoaDonNhap &chiTietMoi) {
+void DSChiTietHoaDonNhap::suaChiTiet(const std::string &maHDN, const ChiTietHoaDonNhap &chiTietMoi) 
+{
     for (auto &chiTiet : danhSachChiTietHoaDonNhap) {
-        if (chiTiet.getMaHDN() == maHDN) {
+        if (chiTiet.getMaHDN() == maHDN) 
+		{
             chiTiet = chiTietMoi;
             break;
         }
     }
 }
 
-void DSChiTietHoaDonNhap::xoaChiTiet(const std::string &maHDN) {
+void DSChiTietHoaDonNhap::xoaChiTiet(const std::string &maHDN) 
+{
     for (auto it = danhSachChiTietHoaDonNhap.begin(); it != danhSachChiTietHoaDonNhap.end(); ++it) {
         if (it->getMaHDN() == maHDN) {
             danhSachChiTietHoaDonNhap.erase(it);
@@ -27,7 +32,8 @@ void DSChiTietHoaDonNhap::xoaChiTiet(const std::string &maHDN) {
     }
 }
 
-ChiTietHoaDonNhap DSChiTietHoaDonNhap::timKiemChiTiet(const std::string &maHDN) {
+ChiTietHoaDonNhap DSChiTietHoaDonNhap::timKiemChiTiet(const std::string &maHDN) 
+{
     for (auto chiTiet : danhSachChiTietHoaDonNhap) {
         if (chiTiet.getMaHDN() == maHDN) {
             return chiTiet;
@@ -36,11 +42,49 @@ ChiTietHoaDonNhap DSChiTietHoaDonNhap::timKiemChiTiet(const std::string &maHDN) 
     return ChiTietHoaDonNhap();
 }
 
-void DSChiTietHoaDonNhap::ghiDuLieuVaoFile(std::string tenFile) {
-    std::ofstream file(tenFile);
+void DSChiTietHoaDonNhap::hienThiDanhSach() const
+{
+    for (const auto &cthdn : danhSachChiTietHoaDonNhap)
+    {
+        cthdn.xuat();
+        std::cout << std::endl;
+    }
+}
+
+void DSChiTietHoaDonNhap::docDuLieuTuFile(const std::string &tenFile)
+{
+    std::ifstream file(tenFile);
+
+    if (!file.is_open())
+    {
+        std::cout << "Khong mo duoc file " << tenFile << " de doc!" << std::endl;
+        return;
+    }
+
+    std::string line;
+    while (std::getline(file, line))
+    {
+        std::stringstream ss(line);
+        std::string mahdn, manl, SoLuongNhap;
+
+        std::getline(ss, mahdn, ',');
+        std::getline(ss, manl, ',');
+        std::getline(ss, SoLuongNhap);
+        int SL = std::stoi(SoLuongNhap);
+
+        ChiTietHoaDonNhap cthdn(mahdn, manl, SL);
+        themChiTiet(cthdn);
+    }
+
+    file.close();
+}
+
+
+void DSChiTietHoaDonNhap::ghiDuLieuVaoFile(const std::string &tenFile) {
+    std::ofstream file(tenFile, std::ios_base::app);
     if (file.is_open()) {
-        for (auto chiTiet : danhSachChiTietHoaDonNhap) {
-            file << chiTiet.getMaHDN() << " " << chiTiet.getMaNL() << " " << chiTiet.getSoLuongNhap() << std::endl;
+        for (auto cthdn : danhSachChiTietHoaDonNhap) {
+            cthdn.luuVaoFile(tenFile);
         }
         file.close();
     } else {

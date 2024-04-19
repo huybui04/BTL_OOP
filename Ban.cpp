@@ -44,7 +44,14 @@ void Ban::xuat() const {
     std::cout << "Trang Thai: " << TrangThai << std::endl;
 }
 
-void Ban::luuVaoFile(std::ofstream &file) const {
+void Ban::luuVaoFile(const std::string &tenFile) const {
+	std::ofstream file(tenFile, std::ios_base::app);
+    if (!file.is_open()) {
+        std::cout << "Khong mo duoc file " << tenFile << "de ghi" << std::endl;
+        return;
+    }
+
     file << MaBan << "," << TenBan << "," << TrangThai << std::endl;
+    file.close();   
 }
 

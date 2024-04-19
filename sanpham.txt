@@ -1,2 +1,9 @@
 SP01, Tra dao, 25000
 SP02, Ca phe sua, 30000
+SP03, Soda chanh, 20000
+SP04, Nuoc cam, 35000
+SP05, Nuoc ep trai cay, 40000
+SP06, Sinh to dua, 45000
+SP07, Nuoc chanh leo, 35000
+SP08, Tra sua tran chau, 50000
+SP09, Ca phe den, 25000

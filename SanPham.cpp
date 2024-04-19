@@ -5,31 +5,38 @@ SanPham::SanPham() : Gia(0.0) {}
 SanPham::SanPham(const std::string &MaSP, const std::string &TenSP, double Gia)
     : MaSP(MaSP), TenSP(TenSP), Gia(Gia) {}
 
-std::string SanPham::getMaSP() const {
+std::string SanPham::getMaSP() const
+{
     return MaSP;
 }
 
-void SanPham::setMaSP(const std::string &maSP) {
+void SanPham::setMaSP(const std::string &maSP)
+{
     MaSP = maSP;
 }
 
-std::string SanPham::getTenSP() const {
+std::string SanPham::getTenSP() const
+{
     return TenSP;
 }
 
-void SanPham::setTenSP(const std::string &tenSP) {
+void SanPham::setTenSP(const std::string &tenSP)
+{
     TenSP = tenSP;
 }
 
-double SanPham::getGia() const {
+double SanPham::getGia() const
+{
     return Gia;
 }
 
-void SanPham::setGia(double gia) {
+void SanPham::setGia(double gia)
+{
     Gia = gia;
 }
 
-void SanPham::nhap() {
+void SanPham::nhap()
+{
     std::cout << "Nhap Ma SP: ";
     std::cin >> MaSP;
     std::cout << "Nhap Ten SP: ";
@@ -39,13 +46,22 @@ void SanPham::nhap() {
     std::cin >> Gia;
 }
 
-void SanPham::xuat() const {
+void SanPham::xuat() const
+{
     std::cout << "Ma SP: " << MaSP << std::endl;
     std::cout << "Ten SP: " << TenSP << std::endl;
-    std::cout << "Gia: " << Gia << std::endl;
+    std::cout << "Gia: " << Gia << " VND" << std::endl;
 }
 
-void SanPham::luuVaoFile(std::ofstream &file) const {
-    file << MaSP << "," << TenSP << "," << Gia << std::endl;
-}
+void SanPham::luuVaoFile(const std::string &tenFile) const
+{
+	std::ofstream file(tenFile, std::ios_base::app);
+    if (!file.is_open()) {
+        std::cout << "Khong mo duoc file " << tenFile << "de ghi" << std::endl;
+        return;
+    }
 
+    file << MaSP << ", " << TenSP << ", " << Gia << std::endl;
+    file.close();
+    
+}

@@ -8,15 +8,17 @@
 #include "Ban.h"
 #include "ChiTietHoaDonBan.h"
 
-class HoaDonBan {
+class HoaDonBan
+{
 private:
-    std::string MaHDB,MaNV,MaKH,MaBan;
+    std::string MaHDB, MaNV, MaKH, MaBan;
     std::string NgayBan;
     std::vector<ChiTietHoaDonBan> dsCTHDB;
 
 public:
-	HoaDonBan();
+    HoaDonBan();
     HoaDonBan(const std::vector<ChiTietHoaDonBan> &ds);
+    HoaDonBan(const std::string &maHDB, const std::string &ngayBan, const std::string &manv, const std::string &makh, const std::string &maban);
     HoaDonBan(const std::string &maHDB, const std::string &ngayBan, const std::string &manv, const std::string &makh, const std::string &maban, const std::vector<ChiTietHoaDonBan> &dscthdb);
 
     void setMaHDB(const std::string &maHDB);
@@ -33,16 +35,13 @@ public:
     std::vector<ChiTietHoaDonBan> getDsCTHDB() const;
 
     void themChiTietHoaDon(const ChiTietHoaDonBan &chiTiet);
-    double tinhTongTien() const;
+    
+    void nhap() const;
+	void xuat() const;
     void hienThi() const;
     void luuVaoFile(const std::string &tenFile) const;
+    
+    double tinhTongTien() const;
 };
 
 #endif /* HOADONBAN_H */
-
-
-
-
-
-
-

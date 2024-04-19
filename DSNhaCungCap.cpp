@@ -70,14 +70,14 @@ void DSNhaCungCap::xoaNhaCungCap(const std::string &maNCC) {
 }
 
 void DSNhaCungCap::luuVaoFile(const std::string &tenTep) const {
-    std::ofstream file(tenTep);
+    std::ofstream file(tenTep, std::ios_base::app);
     if (!file.is_open()) {
         std::cout << "Khong mo duoc file " << tenTep << "de ghi" << std::endl;
         return;
     }
 
     for (const auto &ncc : danhSachNhaCungCap) {
-        ncc.luuVaoFile(file);
+        ncc.luuVaoFile(tenTep);
     }
 
     file.close();

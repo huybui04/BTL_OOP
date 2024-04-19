@@ -1,13 +1,15 @@
 #ifndef DSNHANVIEN_H
 #define DSNHANVIEN_H
 
-//#include <iostream>
-//#include <fstream>
-//#include <sstream>
+// #include <iostream>
+// #include <fstream>
+// #include <sstream>
 #include <vector>
 #include "NhanVien.h"
+using namespace std;
 
-class DSNhanVien {
+class DSNhanVien
+{
 private:
     std::vector<NhanVien> danhSachNhanVien;
 
@@ -20,7 +22,7 @@ public:
     void xoaNhanVien(const std::string &maNV);
     NhanVien timKiemNhanVien(const std::string &maNV) const;
     void luuVaoFile(const std::string &tenTep) const;
+    NhanVien *timKiemTheoMa(const std::string &maNV);
 };
 
 #endif /* DSNHANVIEN_H */
-

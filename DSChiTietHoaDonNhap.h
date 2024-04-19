@@ -9,12 +9,15 @@ private:
     std::vector<ChiTietHoaDonNhap> danhSachChiTietHoaDonNhap;
 
 public:
-    std::vector<ChiTietHoaDonNhap> getCTHDN() const;
+    std::vector<ChiTietHoaDonNhap> getDSCTHDN() const;
     void themChiTiet(const ChiTietHoaDonNhap &chiTiet);
     void suaChiTiet(const std::string &maHDN, const ChiTietHoaDonNhap &chiTietMoi); 
     void xoaChiTiet(const std::string &maHDN);
+    void hienThiDanhSach() const;
     ChiTietHoaDonNhap timKiemChiTiet(const std::string &maHDN);
-    void ghiDuLieuVaoFile(std::string tenFile);
+    
+    void docDuLieuTuFile(const std::string &tenFile);
+    void ghiDuLieuVaoFile(const std::string &tenFile);
 };
 
 #endif /* DSCHITIETHOADONNHAP_H */

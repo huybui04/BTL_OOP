@@ -45,7 +45,15 @@ void KhachHang::xuat() const {
     std::cout << "SDT: " << SDT << std::endl;
 }
 
-void KhachHang::luuVaoFile(std::ofstream &file) const {
-    file << MaKH << "," << TenKH << "," << SDT << std::endl;
+void KhachHang::luuVaoFile(const std::string &tenFile) const {
+	std::ofstream file(tenFile, std::ios_base::app);
+    if (!file.is_open()) {
+        std::cout << "Khong mo duoc file " << tenFile << "de ghi" << std::endl;
+        return;
+    }
+
+     file << MaKH << ", " << TenKH << ", " << SDT << std::endl;
+    file.close();
+   
 }
 

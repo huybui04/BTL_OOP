@@ -23,7 +23,7 @@ public:
 
     void nhap();
     void xuat() const;
-    void luuVaoFile(std::ofstream &file) const;
+    void luuVaoFile(const std::string &tenFile) const;
 };
 
 #endif /* SANPHAM_H */

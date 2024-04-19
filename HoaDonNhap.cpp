@@ -2,8 +2,22 @@
 
 HoaDonNhap::HoaDonNhap() {}
 
-HoaDonNhap::HoaDonNhap(std::string maHDN, std::string ngayNhap, const std::string &maNV, const std::string &maNCC)
-    : MaHDN(maHDN), NgayNhap(ngayNhap), MaNV(maNV), MaNCC(maNCC) {}
+HoaDonNhap::HoaDonNhap(const std::string &maHDN,const std::string &ngayNhap, const std::string &maNV, const std::string &maNCC)
+    : MaHDN(maHDN), NgayNhap(ngayNhap), MaNV(maNV), MaNCC(maNCC) 
+{
+	
+}
+
+HoaDonNhap::HoaDonNhap(const std::string &maHDN,const std::string &ngayNhap, const std::string &maNV, const std::string &maNCC, const std::vector<ChiTietHoaDonNhap> &dscthdn)
+    : MaHDN(maHDN), NgayNhap(ngayNhap), MaNV(maNV), MaNCC(maNCC) 
+{
+    for (auto ct : dscthdn)
+    {
+        if (ct.getMaHDN() == this->MaHDN)
+            dsCTHDN.push_back(ct);
+    }	
+}
+
 
 void HoaDonNhap::setMaHDN(std::string maHDN) {
     MaHDN = maHDN;
@@ -45,13 +59,33 @@ std::vector<ChiTietHoaDonNhap> HoaDonNhap::getDsCTHDN() const {
     return dsCTHDN;
 }
 
+void HoaDonNhap::xuat() const
+{
+    std::cout << "Ma HDN: " << MaHDN << std::endl;
+    std::cout << "Ngay nhap: " << NgayNhap << std::endl;
+    std::cout << "Ma NV: " << MaNV << std::endl;
+    std::cout << "Ma NCC " << MaNCC << std::endl;
+}
+
 void HoaDonNhap::themChiTietHoaDon(const ChiTietHoaDonNhap &chiTiet) {
     dsCTHDN.push_back(chiTiet);
 }
 
+void HoaDonNhap::luuVaoFile(const std::string &tenFile) const {
+	std::ofstream file(tenFile, std::ios_base::app);
+    if (!file.is_open()) {
+        std::cout << "Khong mo duoc file " << tenFile << "de ghi" << std::endl;
+        return;
+    }
+
+    file << MaHDN << ", " << NgayNhap << ", " << MaNV << ", " << MaNCC  << std::endl;
+    file.close();
+}
+
 double HoaDonNhap::tinhTongTien() const {
     double tongTien = 0.0;
-    for (auto ct : dsCTHDN) {
+    for (auto ct : dsCTHDN) 
+	{
         if (ct.getMaHDN() == this->MaHDN)
             tongTien += ct.tinhThanhTien();
     }
@@ -68,6 +102,7 @@ void HoaDonNhap::hienThi() const {
         if (ct.getMaHDN() == this->MaHDN)
             std::cout << "   + " << ct.getMaHDN() << " - So Luong: " << ct.getSoLuongNhap() << " - Thanh Tien: " << ct.tinhThanhTien() << std::endl;
     }
-    std::cout << "Tong Tien: " << tinhTongTien() << std::endl;
+    std::cout << "Tong Tien: " << tinhTongTien() << " VND" << std::endl;
 }
+
 

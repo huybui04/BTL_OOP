@@ -55,7 +55,15 @@ void NhaCungCap::xuat() const {
     std::cout << "SDT: " << SDT << std::endl;
 }
 
-void NhaCungCap::luuVaoFile(std::ofstream &file) const {
-    file << MaNCC << "," << TenNCC << "," << DiaChi << "," << SDT << std::endl;
+void NhaCungCap::luuVaoFile(const std::string &tenFile) const {
+	std::ofstream file(tenFile, std::ios_base::app);
+    if (!file.is_open()) {
+        std::cout << "Khong mo duoc file " << tenFile << "de ghi" << std::endl;
+        return;
+    }
+
+    file << MaNCC << ", " << TenNCC << ", " << DiaChi << ", " << SDT << std::endl;
+    file.close();
+    
 }
 

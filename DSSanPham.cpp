@@ -73,14 +73,14 @@ void DSSanPham::xoaSanPham(const std::string &maSP) {
 }
 
 void DSSanPham::luuVaoFile(const std::string &tenTep) const {
-    std::ofstream file(tenTep);
+    std::ofstream file(tenTep, std::ios_base::app);
     if (!file.is_open()) {
         std::cout << "Khong mo duoc file " << tenTep << "de ghi" << std::endl;
         return;
     }
 
     for (const auto &sp : danhSachSanPham) {
-        sp.luuVaoFile(file);
+        sp.luuVaoFile(tenTep);
     }
 
     file.close();
