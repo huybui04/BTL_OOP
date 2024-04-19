@@ -69,8 +69,15 @@ void HoaDonBan::themChiTietHoaDon(const ChiTietHoaDonBan &chiTiet) {
     dsCTHDB.push_back(chiTiet);
 }
 
-void HoaDonBan::luuVaoFile(std::ofstream &file) const {
-    file << MaHDB << "," << NgayBan << "," << MaNV << "," << MaKH  << "," << MaBan << std::endl;
+void HoaDonBan::luuVaoFile(const std::string &tenFile) const {
+	std::ofstream file(tenFile);
+	if (file.is_open()) {
+        file << MaHDB << ", " << NgayBan << ", " << MaNV << ", " << MaKH  << ", " << MaBan << std::endl;
+        file.close();
+    } else {
+        std::cout << "Khong mo duoc file " << tenFile << " de ghi!" << std::endl;
+    }
+    
 }
 
 double HoaDonBan::tinhTongTien() const {
@@ -83,11 +90,11 @@ double HoaDonBan::tinhTongTien() const {
 }
 
 void HoaDonBan::hienThi() const {
-    std::cout << "Ma Hoa Don: " << MaHDB << std::endl;
-    std::cout << "Ngay Ban: " << NgayBan << std::endl;
-    std::cout << "Nhan Vien: " << MaNV << std::endl;
-    std::cout << "Khach Hang: " << MaKH << std::endl;
-    std::cout << "Ban: " << MaBan << std::endl;
+    std::cout << "Ma Hoa Don: " << this->MaHDB << std::endl;
+    std::cout << "Ngay Ban: " << this->NgayBan << std::endl;
+    std::cout << "Nhan Vien: " << this->MaNV << std::endl;
+    std::cout << "Khach Hang: " << this->MaKH << std::endl;
+    std::cout << "Ban: " << this->MaBan << std::endl;
     std::cout << "Danh Sach Chi Tiet Hoa Don Ban:" << std::endl;
     for (auto ct : dsCTHDB) {
             std::cout << "   + " << ct.getMaSP() << " - So Luong: " << ct.getSoLuong() << " - Thanh Tien: " << ct.tinhThanhTien() << std::endl;

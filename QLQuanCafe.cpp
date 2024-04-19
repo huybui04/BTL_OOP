@@ -75,13 +75,13 @@ class QLQuanCafe {
 	public:
 		QLQuanCafe() {}
 		void tao() {
-			dsnv.docDuLieuTuFile();
-			dskh.docTuFile();
-			dsncc.docDuLieuTuFile();
-			dssp.docDuLieuTuFile();
-			dsnl.docDuLieuTuFile();
-			dsban.docDuLieuTuFile();
-			dscthdb.docDuLieuTuFile();
+			dsnv.docDuLieuTuFile(tenFileDSNhanVien);
+			dskh.docTuFile(tenFileDSKhachHang);
+			dsncc.docDuLieuTuFile(tenFileDSNhaCungCap);
+			dssp.docDuLieuTuFile(tenFileDSSanPham);
+			dsnl.docDuLieuTuFile(tenFileDSNguyenLieu);
+			dsban.docDuLieuTuFile(tenFileDSBan);
+			dscthdb.docDuLieuTuFile(tenFileDSChiTietHoaDonBan);
 			
 		}
 		void hienThiDSNV() {
@@ -149,8 +149,10 @@ class QLQuanCafe {
 				ds.push_back(cthd);
 			}		
 			
-			HoaDonBan hdb(mhdb,mnv,mkh,mban,ngayban,ds);
+			HoaDonBan hdb(mhdb,ngayban,mnv,mkh,mban,ds);
 			hdb.hienThi();
+			
+			hdb.luuVaoFile(tenFileDSHoaDonBan);
 		}
 		void hienThiDSHoaDonBan() {
 			

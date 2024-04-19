@@ -35,7 +35,7 @@ public:
     void themChiTietHoaDon(const ChiTietHoaDonBan &chiTiet);
     double tinhTongTien() const;
     void hienThi() const;
-    void luuVaoFile(std::ofstream &file) const;
+    void luuVaoFile(const std::string &tenFile) const;
 };
 
 #endif /* HOADONBAN_H */
