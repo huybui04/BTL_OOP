@@ -2,8 +2,8 @@
 #define CHITIETSANPHAM_H
 
 #include <iostream>
-#include "NguyenLieu.h"
-#include "SanPham.h"
+#include "../QLNguyenLieu/NguyenLieu.h"
+#include "../QLSanPham/SanPham.h"
 
 class ChiTietSanPham
 {

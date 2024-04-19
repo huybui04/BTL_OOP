@@ -3,10 +3,10 @@
 
 #include <iostream>
 #include <vector>
-#include "NhanVien.h"
-#include "KhachHang.h"
-#include "Ban.h"
-#include "ChiTietHoaDonBan.h"
+#include "../QLNhanVien/NhanVien.h"
+#include "../QLKhachHang/KhachHang.h"
+#include "../QLBan/Ban.h"
+#include "../QLChiTietHoaDonBan/ChiTietHoaDonBan.h"
 
 class HoaDonBan
 {

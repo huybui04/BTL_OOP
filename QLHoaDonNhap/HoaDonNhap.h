@@ -3,9 +3,9 @@
 
 #include <iostream>
 #include <vector>
-#include "NhanVien.h"
-#include "NhaCungCap.h"
-#include "ChiTietHoaDonNhap.h"
+#include "../QLNhanVien/NhanVien.h"
+#include "../QLNhaCungCap/NhaCungCap.h"
+#include "../QLChiTietHoaDonNhap/ChiTietHoaDonNhap.h"
 
 class HoaDonNhap 
 {

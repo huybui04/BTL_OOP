@@ -1,7 +1,7 @@
 #ifndef CHITIETHOADONNHAP_H
 #define CHITIETHOADONNHAP_H
 
-#include "NguyenLieu.h"
+#include "../QLNguyenLieu/NguyenLieu.h"
 
 class ChiTietHoaDonNhap {
 private:

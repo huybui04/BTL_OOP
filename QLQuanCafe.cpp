@@ -1,59 +1,60 @@
-#include "NhanVien.h"
-#include "DSNhanVien.h"
-#include "NhanVien.cpp"
-#include "DSNhanVien.cpp"
+#include "QLNhanVien/NhanVien.h"
+#include "QLNhanVien/DSNhanVien.h"
+#include "QLNhanVien/NhanVien.cpp"
+#include "QLNhanVien/DSNhanVien.cpp"
 
-#include "KhachHang.h"
-#include "DSKhachHang.h"
-#include "KhachHang.cpp"
-#include "DSKhachHang.cpp"
+#include "QLKhachHang/KhachHang.h"
+#include "QLKhachHang/DSKhachHang.h"
+#include "QLKhachHang/KhachHang.cpp"
+#include "QLKhachHang/DSKhachHang.cpp"
 
-#include "NhaCungCap.h"
-#include "DSNhaCungCap.h"
-#include "NhaCungCap.cpp"
-#include "DSNhaCungCap.cpp"
+#include "QLNhaCungCap/NhaCungCap.h"
+#include "QLNhaCungCap/DSNhaCungCap.h"
+#include "QLNhaCungCap/NhaCungCap.cpp"
+#include "QLNhaCungCap/DSNhaCungCap.cpp"
 
-#include "SanPham.h"
-#include "DSSanPham.h"
-#include "SanPham.cpp"
-#include "DSSanPham.cpp"
+#include "QLSanPham/SanPham.h"
+#include "QLSanPham/DSSanPham.h"
+#include "QLSanPham/SanPham.cpp"
+#include "QLSanPham/DSSanPham.cpp"
 
-#include "NguyenLieu.h"
-#include "DSNguyenLieu.h"
-#include "NguyenLieu.cpp"
-#include "DSNguyenLieu.cpp"
+#include "QLNguyenLieu/NguyenLieu.h"
+#include "QLNguyenLieu/DSNguyenLieu.h"
+#include "QLNguyenLieu/NguyenLieu.cpp"
+#include "QlNguyenLieu/DSNguyenLieu.cpp"
 
-#include "Ban.h"
-#include "DSBan.h"
-#include "Ban.cpp"
-#include "DSBan.cpp"
+#include "QLBan/Ban.h"
+#include "QLBan/DSBan.h"
+#include "QLBan/Ban.cpp"
+#include "QLBan/DSBan.cpp"
 
-#include "HoaDonBan.h"
-#include "DSHoaDonBan.h"
-#include "HoaDonBan.cpp"
-#include "DSHoaDonBan.cpp"
+#include "QLHoaDonBan/HoaDonBan.h"
+#include "QLHoaDonBan/DSHoaDonBan.h"
+#include "QLHoaDonBan/HoaDonBan.cpp"
+#include "QLHoaDonBan/DSHoaDonBan.cpp"
 
-#include "ChiTietHoaDonBan.h"
-#include "DSChiTietHoaDonBan.h"
-#include "ChiTietHoaDonBan.cpp"
-#include "DSChiTietHoaDonBan.cpp"
+#include "QLChiTietHoaDonBan/ChiTietHoaDonBan.h"
+#include "QLChiTietHoaDonBan/DSChiTietHoaDonBan.h"
+#include "QLChiTietHoaDonBan/ChiTietHoaDonBan.cpp"
+#include "QLChiTietHoaDonBan/DSChiTietHoaDonBan.cpp"
 
-#include "HoaDonNhap.h"
-#include "DSHoaDonNhap.h"
-#include "HoaDonNhap.cpp"
-#include "DSHoaDonNhap.cpp"
+#include "QLHoaDonNhap/HoaDonNhap.h"
+#include "QLHoaDonNhap/DSHoaDonNhap.h"
+#include "QLHoaDonNhap/HoaDonNhap.cpp"
+#include "QLHoaDonNhap/DSHoaDonNhap.cpp"
 
-#include "ChiTietHoaDonNhap.h"
-#include "DSChiTietHoaDonNhap.h"
-#include "ChiTietHoaDonNhap.cpp"
-#include "DSChiTietHoaDonNhap.cpp"
+#include "QLChiTietHoaDonNhap/ChiTietHoaDonNhap.h"
+#include "QLChiTietHoaDonNhap/DSChiTietHoaDonNhap.h"
+#include "QLChiTietHoaDonNhap/ChiTietHoaDonNhap.cpp"
+#include "QLChiTietHoaDonNhap/DSChiTietHoaDonNhap.cpp"
 
-#include "ChiTietSanPham.h"
-#include "DSChiTietSanPham.h"
-#include "ChiTietSanPham.cpp"
-#include "DSChiTietSanPham.cpp"
+#include "QLChiTietSanPham/ChiTietSanPham.h"
+#include "QLChiTietSanPham/DSChiTietSanPham.h"
+#include "QLChiTietSanPham/ChiTietSanPham.cpp"
+#include "QLChiTietSanPham/DSChiTietSanPham.cpp"
 
 #include <bits/stdc++.h>
+using namespace std;
 
 std::string trim(const std::string& str) {
     size_t first = str.find_first_not_of(" \t\n\r");
@@ -62,8 +63,6 @@ std::string trim(const std::string& str) {
         return "";
     return str.substr(first, last - first + 1);
 }
-
-using namespace std;
 
 class QLQuanCafe {
 	private:
@@ -79,17 +78,17 @@ class QLQuanCafe {
 		DSChiTietHoaDonNhap dscthdn;
 		DSChiTietSanPham dsctsp;
 		
-		const string tenFileDSNhanVien = "nhanvien.txt";
-		const string tenFileDSKhachHang = "khachhang.txt";
-		const string tenFileDSNhaCungCap = "nhacungcap.txt";
-		const string tenFileDSSanPham = "sanpham.txt";
-		const string tenFileDSNguyenLieu = "nguyenlieu.txt";
-		const string tenFileDSBan = "ban.txt";
-		const string tenFileDSHoaDonBan = "hoadonban.txt";
-		const string tenFileDSChiTietHoaDonBan = "chitiethoadonban.txt";
-		const string tenFileDSHoaDonNhap = "hoadonnhap.txt";
-		const string tenFileDSChiTietHoaDonNhap = "chitiethoadonnhap.txt";
-		const string tenFileDSChiTietSanPham = "chitietsanpham.txt";
+		const string tenFileDSNhanVien = "QLNhanVien/nhanvien.txt";
+		const string tenFileDSKhachHang = "QLKhachHang/khachhang.txt";
+		const string tenFileDSNhaCungCap = "QLNhaCungCap/nhacungcap.txt";
+		const string tenFileDSSanPham = "QLSanPham/sanpham.txt";
+		const string tenFileDSNguyenLieu = "QLNguyenLieu/nguyenlieu.txt";
+		const string tenFileDSBan = "QLBan/ban.txt";
+		const string tenFileDSHoaDonBan = "QLHoaDonBan/hoadonban.txt";
+		const string tenFileDSChiTietHoaDonBan = "QLChiTietHoaDonBan/chitiethoadonban.txt";
+		const string tenFileDSHoaDonNhap = "QLHoaDonNhap/hoadonnhap.txt";
+		const string tenFileDSChiTietHoaDonNhap = "QLChiTietHoaDonNhap/chitiethoadonnhap.txt";
+		const string tenFileDSChiTietSanPham = "QLChiTietSanPham/chitietsanpham.txt";
 	public:
 		QLQuanCafe() {}
 		void tao() {
