@@ -48,6 +48,16 @@
 #include "ChiTietHoaDonNhap.cpp"
 #include "DSChiTietHoaDonNhap.cpp"
 
+#include "CaLamViec.h"
+#include "DSCaLamViec.h"
+#include "CaLamViec.cpp"
+#include "DSCaLamViec.cpp"
+
+#include "ChiTietLuong.h"
+#include "DSChiTietLuong.h"
+#include "ChiTietLuong.cpp"
+#include "DSChiTietLuong.cpp"
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -64,6 +74,8 @@ private:
 	DSChiTietHoaDonBan dscthdb;
 	DSHoaDonNhap dshdn;
 	DSChiTietHoaDonNhap dscthdn;
+
+	DSChiTietLuong dsctl;
 
 	const string tenFileDSNhanVien = "nhanvien.txt";
 	const string tenFileDSKhachHang = "khachhang.txt";
@@ -116,59 +128,11 @@ public:
 	{
 		dscthdb.hienThiDanhSach();
 	}
-	// void taoHoaDonBan()
-	// {
-	// 	int soLuongMua;
-	// 	string mhdb;
-	// 	string mnv;
-	// 	string mkh;
-	// 	string mban;
-	// 	string ngayban;
 
-	// 	string msp;
-	// 	int soluong;
-	// 	vector<ChiTietHoaDonBan> ds;
-
-	// 	cout << "Nhap so loai san pham muon mua: ";
-	// 	cin >> soLuongMua;
-	// 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	// 	cout << "Nhap ma hoa don ban: ";
-	// 	getline(cin, mhdb);
-	// 	cout << "Nhap ma nhan vien: ";
-	// 	getline(cin, mnv);
-	// 	cout << "Nhap ma khach hang: ";
-	// 	getline(cin, mkh);
-	// 	cout << "Nhap ma ban: ";
-	// 	getline(cin, mban);
-	// 	cout << "Nhap ngay ban: ";
-	// 	getline(cin, ngayban);
-	// 	for (int i = 0; i < soLuongMua; i++)
-	// 	{
-	// 		cout << "Nhap ma san pham thu " << i + 1 << ": ";
-	// 		getline(cin, msp);
-	// 		cout << "Nhap so luong san pham thu " << i + 1 << ": ";
-	// 		cin >> soluong;
-	// 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-	// 		SanPham cthdb_sp;
-	// 		cthdb_sp.setMaSP(msp);
-
-	// 		for (auto sp : this->dssp.getDSSP())
-	// 		{
-	// 			if (sp.getMaSP() == cthdb_sp.getMaSP())
-	// 			{
-	// 				cthdb_sp.setTenSP(sp.getTenSP());
-	// 				cthdb_sp.setGia(sp.getGia());
-	// 			}
-	// 		}
-
-	// 		ChiTietHoaDonBan cthd(mhdb, msp, soluong, cthdb_sp);
-	// 		ds.push_back(cthd);
-	// 	}
-
-	// 	HoaDonBan hdb(mhdb, ngayban, mnv, mkh, mban, ds);
-	// 	hdb.hienThi();
-	// }
+	void hienThiDSChiTietLuong()
+	{
+		dsctl.hienThiDanhSach();
+	}
 
 	void taoChiTietHoaDon(string billId, string date, string staffId, string customerId, string tableId)
 	{
@@ -287,21 +251,43 @@ int main()
 {
 	QLQuanCafe qlcf;
 
-	qlcf.tao(); // Doc du lieu tu file
-	cout << "\n\t\tDanh sach nhan vien\n\n";
-	qlcf.hienThiDSNV();
-	cout << "\n\t\tDanh sach khach hang\n\n";
-	qlcf.hienThiDSKH();
-	cout << "\n\t\tDanh sach nha cung cap\n\n";
-	qlcf.hienThiDSNCC();
-	cout << "\n\t\tDanh sach san pham\n\n";
-	qlcf.hienThiDSSP();
-	cout << "\n\t\tDanh sach nguyen lieu\n\n";
-	qlcf.hienThiDSNL();
-	cout << "\n\t\tDanh sach ban\n\n";
-	qlcf.hienThiDSBan();
-	cout << "\n\t\tDanh sach chi tiet hoa don ban\n\n";
-	qlcf.hienThiDSChiTietHoaDonBan();
-	cout << "\n\t\tTao hoa don ban\n\n";
-	qlcf.taoHoaDonBan();
+	// qlcf.tao(); // Doc du lieu tu file
+	// cout << "\n\t\tDanh sach nhan vien\n\n";
+	// qlcf.hienThiDSNV();
+	// cout << "\n\t\tDanh sach khach hang\n\n";
+	// qlcf.hienThiDSKH();
+	// cout << "\n\t\tDanh sach nha cung cap\n\n";
+	// qlcf.hienThiDSNCC();
+	// cout << "\n\t\tDanh sach san pham\n\n";
+	// qlcf.hienThiDSSP();
+	// cout << "\n\t\tDanh sach nguyen lieu\n\n";
+	// qlcf.hienThiDSNL();
+	// cout << "\n\t\tDanh sach ban\n\n";
+	// qlcf.hienThiDSBan();
+	// cout << "\n\t\tDanh sach chi tiet hoa don ban\n\n";
+	// qlcf.hienThiDSChiTietHoaDonBan();
+	// cout << "\n\t\tTao hoa don ban\n\n";
+	// qlcf.taoHoaDonBan();
+
+	cout << "\n\t\tDanh sach chi tiet luong\n\n";
+	qlcf.hienThiDSChiTietLuong();
+
+	string tenfile = "chitietluong.txt";
+	DSChiTietLuong dsctl;
+	ChiTietLuong ctl;
+	ChiTietLuong ctl1("NV02", "Ca01", 10, 1);
+	ChiTietLuong ctl2("NV03", "Ca02", 20, 2);
+
+	// ChiTietLuong ctl4("NV04", "Ca02", 10, 1);
+	// ChiTietLuong ctl5("NV05", "Ca03", 20, 2);
+
+	dsctl.themChiTietLuong(ctl1);
+	dsctl.themChiTietLuong(ctl2);
+
+	// dsctl.themChiTietLuong(ctl4);
+	// dsctl.themChiTietLuong(ctl5);
+	dsctl.ghiDuLieuVaoFile(tenfile);
+	// ctl.nhap();
+	// dsctl.themChiTietLuong(ctl);
+	// dsctl.ghiDuLieuVaoFile(tenfile);
 }
