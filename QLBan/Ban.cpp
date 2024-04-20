@@ -51,7 +51,7 @@ void Ban::luuVaoFile(const std::string &tenFile) const {
         return;
     }
 
-    file << MaBan << "," << TenBan << "," << TrangThai << std::endl;
+    file << MaBan << ", " << TenBan << ", " << TrangThai << std::endl;
     file.close();   
 }
 

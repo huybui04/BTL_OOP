@@ -28,6 +28,11 @@
 #include "QLBan/Ban.cpp"
 #include "QLBan/DSBan.cpp"
 
+#include "QLCaLamViec/CaLamViec.h"
+#include "QLCaLamViec/DSCaLamViec.h"
+#include "QLCaLamViec/CaLamViec.cpp"
+#include "QLCaLamViec/DSCaLamViec.cpp"
+
 #include "QLHoaDonBan/HoaDonBan.h"
 #include "QLHoaDonBan/DSHoaDonBan.h"
 #include "QLHoaDonBan/HoaDonBan.cpp"
@@ -72,6 +77,8 @@ class QLQuanCafe {
 		DSSanPham dssp;
 		DSNguyenLieu dsnl;
 		DSBan dsban;
+		DSCaLamViec dsclv;
+		
 		DSHoaDonBan dshdb;
 		DSChiTietHoaDonBan dscthdb;
 		DSHoaDonNhap dshdn;
@@ -84,6 +91,8 @@ class QLQuanCafe {
 		const string tenFileDSSanPham = "QLSanPham/sanpham.txt";
 		const string tenFileDSNguyenLieu = "QLNguyenLieu/nguyenlieu.txt";
 		const string tenFileDSBan = "QLBan/ban.txt";
+		const string tenFileDSCaLamViec = "QLCaLamViec/calamviec.txt";
+		
 		const string tenFileDSHoaDonBan = "QLHoaDonBan/hoadonban.txt";
 		const string tenFileDSChiTietHoaDonBan = "QLChiTietHoaDonBan/chitiethoadonban.txt";
 		const string tenFileDSHoaDonNhap = "QLHoaDonNhap/hoadonnhap.txt";
@@ -98,6 +107,8 @@ class QLQuanCafe {
 			dssp.docDuLieuTuFile(tenFileDSSanPham);
 			dsnl.docDuLieuTuFile(tenFileDSNguyenLieu);
 			dsban.docDuLieuTuFile(tenFileDSBan);
+			dsclv.docDuLieuTuFile(tenFileDSCaLamViec);
+			
 			dscthdb.docDuLieuTuFile(tenFileDSChiTietHoaDonBan);
 			dshdb.docDuLieuTuFile(tenFileDSHoaDonBan);
 			dscthdn.docDuLieuTuFile(tenFileDSChiTietHoaDonNhap);
@@ -120,6 +131,9 @@ class QLQuanCafe {
 		}
 		void hienThiDSBan() {
 			dsban.hienThiDanhSach();	
+		}
+		void hienThiDSCaLamViec() {
+			dsclv.hienThiDanhSach();	
 		}
 		void hienThiDSChiTietHoaDonBan() {
 			dscthdb.hienThiDanhSach();
@@ -301,16 +315,19 @@ int main()
 	qlcf.hienThiDSNL();
 	cout << "\n\t\tDanh sach ban\n\n";
 	qlcf.hienThiDSBan();
+	cout << "\n\t\tDanh sach ca lam viec\n\n";
+	qlcf.hienThiDSCaLamViec();
 	cout << "\n\t\tDanh sach chi tiet hoa don ban\n\n";
 	qlcf.hienThiDSChiTietHoaDonBan();
 	cout << "\n\t\tDanh sach chi tiet hoa don nhap\n\n";
 	qlcf.hienThiDSChiTietHoaDonNhap();
 	
-	cout << "\n\t\tTao hoa don nhap\n\n";
-	qlcf.taoHoaDonNhap();
-	cout << "\n\t\tTao hoa don ban\n\n";
-	qlcf.taoHoaDonBan();
 	
-	cout << qlcf.tinhTongSoNguyenLieuTonKho();
+//	cout << "\n\t\tTao hoa don nhap\n\n";
+//	qlcf.taoHoaDonNhap();
+//	cout << "\n\t\tTao hoa don ban\n\n";
+//	qlcf.taoHoaDonBan();
+//	
+//	cout << qlcf.tinhTongSoNguyenLieuTonKho();
 
 }
