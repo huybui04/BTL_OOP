@@ -1,5 +1,6 @@
 #include "DSChiTietLuong.h"
 #include "ChiTietLuong.h"
+#include "DSCaLamViec.h"
 
 vector<ChiTietLuong> DSChiTietLuong::getDSChiTietLuong() const { return DSChiTietLuong; }
 
@@ -27,7 +28,7 @@ void DSChiTietLuong::suaChiTietLuong(const string &MaNV, const string &MaCa)
     }
 }
 
-void DSChiTietLuong::xoaChiTietLuong(const string &MaNV, const string &MaCa)
+void DSChiTietLuong::xoaChiTietLuongTheoMa(const string &MaNV, const string &MaCa)
 {
     for (auto it = DSChiTietLuong.begin(); it != DSChiTietLuong.end(); it++)
     {
@@ -45,6 +46,12 @@ void DSChiTietLuong::xoaChiTietLuong(const string &MaNV, const string &MaCa)
         else
             cout << "Khong tim thay chi tiet luong cua nhan vien " << MaNV << " ca " << MaCa << endl;
     }
+}
+
+void DSChiTietLuong::xoaChiTietLuong(const ChiTietLuong &ctl)
+{
+    auto new_end = remove(DSChiTietLuong.begin(), DSChiTietLuong.end(), ctl);
+    DSChiTietLuong.erase(new_end, DSChiTietLuong.end());
 }
 
 void DSChiTietLuong::hienThiDanhSach() const
@@ -68,6 +75,56 @@ ChiTietLuong *DSChiTietLuong::timChiTietLuongTheoMa(const string &MaNV, const st
     return nullptr;
 }
 
+double DSChiTietLuong::tinhLuongTheoMaNVVaThang(const string &MaNV, const int &thangLamViec) const
+{
+    double tongLuong = 0;
+    for (auto &ctl : DSChiTietLuong)
+    {
+        if (ctl.getMaNV() == MaNV && ctl.getThangLamViec() == thangLamViec)
+        {
+            tongLuong += ctl.tinhLuong();
+        }
+    }
+    return tongLuong;
+}
+
+void DSChiTietLuong::hienThiDanhSachLuongTheoThang() const
+{
+
+    map<int, vector<ChiTietLuong>> countCTL;
+    for (auto &ctl : DSChiTietLuong)
+    {
+        countCTL[ctl.getThangLamViec()].push_back(ctl); // them chi tiet luong vao vector cua thang do
+    }
+    for (auto &thang : countCTL)
+    {
+        cout << "Thang " << thang.first << ":" << endl;
+        for (auto &ctl : thang.second)
+        {
+            ctl.xuat();
+            cout << endl;
+        }
+    }
+}
+
+void DSChiTietLuong::tinhLuongTungThangCuaMoiNhanVien() const
+{
+    // double tongLuong = 0;
+    map<int, vector<ChiTietLuong>> mapCTL;
+    for (auto &ctl : DSChiTietLuong)
+    {
+        mapCTL[ctl.getThangLamViec()].push_back(ctl);
+    }
+    for (auto &ctl : mapCTL)
+    {
+        cout << "Thang " << ctl.first << ":" << endl;
+        for (auto &ct : ctl.second)
+        {
+            cout << "Nhan vien " << ct.getMaNV() << " co tong luong trong thang = " << ct.tinhLuong() << " VND" << endl;
+        }
+    }
+}
+
 void DSChiTietLuong::docDuLieuTuFile(const string &tenFile)
 {
     ifstream fileIn(tenFile);
@@ -76,13 +133,21 @@ void DSChiTietLuong::docDuLieuTuFile(const string &tenFile)
         cout << "Khong mo duoc file " << tenFile << " de doc" << endl;
         return;
     }
-    while (!fileIn.eof())
+    string line;
+    while (getline(fileIn, line))
     {
+        stringstream ss(line);
         string MaNV, MaCa;
         int tongSoCa, thangLamViec;
-        fileIn >> MaNV >> MaCa >> tongSoCa >> thangLamViec;
+
+        getline(ss, MaNV, ',');
+        getline(ss, MaCa, ',');
+        ss >> tongSoCa;
+        ss.ignore();
+        ss >> thangLamViec;
         ChiTietLuong ctl(MaNV, MaCa, tongSoCa, thangLamViec);
-        themChiTietLuong(ctl);
+        // themChiTietLuong(ctl);
+        DSChiTietLuong.push_back(ctl);
     }
     fileIn.close();
 }

@@ -5,8 +5,10 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <sstream>
 
-class DSNguyenLieu {
+class DSNguyenLieu
+{
 private:
     std::vector<NguyenLieu> danhSachNguyenLieu;
 
@@ -21,4 +23,3 @@ public:
 };
 
 #endif /* DSNguyenLieu_H */
-

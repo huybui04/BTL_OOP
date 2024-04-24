@@ -5,63 +5,78 @@ NhanVien::NhanVien() {}
 NhanVien::NhanVien(std::string MaNV, std::string TenNV, std::string SDT, std::string GioiTinh, std::string DiaChi, std::string ChucVu, std::string NgaySinh)
     : MaNV(MaNV), TenNV(TenNV), SDT(SDT), GioiTinh(GioiTinh), DiaChi(DiaChi), ChucVu(ChucVu), NgaySinh(NgaySinh) {}
 
-std::string NhanVien::getMaNV() const {
+std::string NhanVien::getMaNV() const
+{
     return MaNV;
 }
 
-void NhanVien::setMaNV(std::string maNV) {
+void NhanVien::setMaNV(std::string maNV)
+{
     MaNV = maNV;
 }
 
-std::string NhanVien::getTenNV() const {
+std::string NhanVien::getTenNV() const
+{
     return TenNV;
 }
 
-void NhanVien::setTenNV(std::string tenNV) {
+void NhanVien::setTenNV(std::string tenNV)
+{
     TenNV = tenNV;
 }
 
-std::string NhanVien::getSDT() const {
+std::string NhanVien::getSDT() const
+{
     return SDT;
 }
 
-void NhanVien::setSDT(std::string sdt) {
+void NhanVien::setSDT(std::string sdt)
+{
     SDT = sdt;
 }
 
-std::string NhanVien::getGioiTinh() const {
+std::string NhanVien::getGioiTinh() const
+{
     return GioiTinh;
 }
 
-void NhanVien::setGioiTinh(std::string gioiTinh) {
+void NhanVien::setGioiTinh(std::string gioiTinh)
+{
     GioiTinh = gioiTinh;
 }
 
-std::string NhanVien::getDiaChi() const {
+std::string NhanVien::getDiaChi() const
+{
     return DiaChi;
 }
 
-void NhanVien::setDiaChi(std::string diaChi) {
+void NhanVien::setDiaChi(std::string diaChi)
+{
     DiaChi = diaChi;
 }
 
-std::string NhanVien::getChucVu() const {
+std::string NhanVien::getChucVu() const
+{
     return ChucVu;
 }
 
-void NhanVien::setChucVu(std::string chucVu) {
+void NhanVien::setChucVu(std::string chucVu)
+{
     ChucVu = chucVu;
 }
 
-std::string NhanVien::getNgaySinh() const {
+std::string NhanVien::getNgaySinh() const
+{
     return NgaySinh;
 }
 
-void NhanVien::setNgaySinh(std::string ngaySinh) {
+void NhanVien::setNgaySinh(std::string ngaySinh)
+{
     NgaySinh = ngaySinh;
 }
 
-void NhanVien::nhap() {
+void NhanVien::nhap()
+{
     std::cout << "Nhap Ma NV: ";
     std::getline(std::cin, MaNV);
     std::cout << "Nhap Ten NV: ";
@@ -78,7 +93,8 @@ void NhanVien::nhap() {
     std::getline(std::cin, NgaySinh);
 }
 
-void NhanVien::xuat() const {
+void NhanVien::xuat() const
+{
     std::cout << "Ma NV: " << MaNV << std::endl;
     std::cout << "Ten NV: " << TenNV << std::endl;
     std::cout << "SDT: " << SDT << std::endl;
@@ -88,7 +104,7 @@ void NhanVien::xuat() const {
     std::cout << "Ngay Sinh: " << NgaySinh << std::endl;
 }
 
-void NhanVien::luuVaoFile(std::ofstream &file) const {
+void NhanVien::luuVaoFile(std::ofstream &file) const
+{
     file << MaNV << "," << TenNV << "," << SDT << "," << GioiTinh << "," << DiaChi << "," << ChucVu << "," << NgaySinh << std::endl;
 }
-

@@ -75,6 +75,7 @@ private:
 	DSHoaDonNhap dshdn;
 	DSChiTietHoaDonNhap dscthdn;
 
+	DSCaLamViec dsclv;
 	DSChiTietLuong dsctl;
 
 	const string tenFileDSNhanVien = "nhanvien.txt";
@@ -87,6 +88,8 @@ private:
 	const string tenFileDSChiTietHoaDonBan = "chitiethoadonban.txt";
 	const string tenFileDSHoaDonNhap = "hoadonnhap.txt";
 	const string tenFileDSChiTietHoaDonNhap = "chitiethoadonnhap.txt";
+	const string tenFileDSCaLamViec = "calamviec.txt";
+	const string tenFileDSChiTietLuong = "chitietluong.txt";
 
 public:
 	QLQuanCafe() {}
@@ -99,6 +102,8 @@ public:
 		dsnl.docDuLieuTuFile(tenFileDSNguyenLieu);
 		dsban.docDuLieuTuFile(tenFileDSBan);
 		dscthdb.docDuLieuTuFile(tenFileDSChiTietHoaDonBan);
+		dsclv.docDuLieuTuFile(tenFileDSCaLamViec);
+		dsctl.docDuLieuTuFile(tenFileDSChiTietLuong);
 	}
 	void hienThiDSNV()
 	{
@@ -127,6 +132,11 @@ public:
 	void hienThiDSChiTietHoaDonBan()
 	{
 		dscthdb.hienThiDanhSach();
+	}
+
+	void hienThiDSCaLamViec()
+	{
+		dsclv.hienThiDanhSach();
 	}
 
 	void hienThiDSChiTietLuong()
@@ -245,13 +255,118 @@ public:
 	void hienThiDSHoaDonBan()
 	{
 	}
+
+	void hienThiDSChiTietLuongTheoThang()
+	{
+		dsctl.tinhLuongTungThangCuaMoiNhanVien();
+	}
+	void themThongTinDSChiTietLuong()
+	{
+		int soLuong;
+		cout << "Nhap vao so thong tin chi tiet luong muon them: ";
+		cin >> soLuong;
+		cin.ignore();
+		int tmp = soLuong + 1;
+
+		while (soLuong--)
+		{
+			cout << "Nhap thong tin chi tiet luong:\n";
+			bool check = false;
+
+			string maNV, maCa;
+			int tongCa, thang;
+			CaLamViec ca;
+
+			do
+			{
+				cout << "Nhap ma nhan vien: ";
+				getline(cin, maNV);
+				if (!dsnv.timKiemTheoMa(maNV))
+				{
+					cout << "Khong tim thay nhan vien co ma " << maNV << endl;
+				}
+				else
+				{
+					check = true;
+					cout << "tim thay nhan vien\n";
+				}
+			} while (!check);
+
+			check = false;
+
+			// nhap ma ca
+			do
+			{
+				cout << "Nhap ma ca lam viec: ";
+				getline(cin, maCa);
+				if (!dsclv.timKiemTheoMa(maCa))
+				{
+					cout << "Khong tim thay ca lam viec co ma " << maCa << endl;
+				}
+				else
+				{
+					check = true;
+				}
+			} while (!check);
+			check = false;
+
+			// nhap thang
+			do
+			{
+				cout << "Nhap thang lam viec: ";
+				cin >> thang;
+				if (thang < 1 || thang > 12)
+				{
+					cout << thang << " khong phai la thang hop le.\nNhap lai: ";
+					cin >> thang;
+				}
+				else
+				{
+					check = true;
+				}
+			} while (!check);
+			cout << "Nhap tong so ca co ma " << maCa << " nhan vien " << maNV << " da lam trong thang " << thang << ": ";
+			cin >> tongCa;
+			cin.ignore();
+
+			for (auto &clv : dsclv.getDSCaLamViec())
+			{
+				if (clv.getMaCa() == maCa)
+				{
+					ca = clv;
+				}
+			}
+			ChiTietLuong ctl(maNV, maCa, tongCa, thang, ca);
+
+			dsctl.themChiTietLuong(ctl);
+		}
+	}
+
+	void tinhLuongTheoThang()
+	{
+		for (auto &ctl : dsctl.getDSChiTietLuong())
+		{
+			for (auto &clv : dsclv.getDSCaLamViec())
+			{
+				if (ctl.getMaCa() == clv.getMaCa())
+				{
+					ctl.setCa(clv);
+					dsctl.xoaChiTietLuong(ctl);
+					cout << "Set ca thanh cong\n";
+
+					dsctl.themChiTietLuong(ctl);
+				}
+			}
+		}
+		dsctl.tinhLuongTungThangCuaMoiNhanVien();
+	}
 };
 
 int main()
 {
 	QLQuanCafe qlcf;
 
-	// qlcf.tao(); // Doc du lieu tu file
+	qlcf.tao(); // Doc du lieu tu file
 	// cout << "\n\t\tDanh sach nhan vien\n\n";
 	// qlcf.hienThiDSNV();
 	// cout << "\n\t\tDanh sach khach hang\n\n";
@@ -269,25 +384,58 @@ int main()
 	// cout << "\n\t\tTao hoa don ban\n\n";
 	// qlcf.taoHoaDonBan();
 
-	cout << "\n\t\tDanh sach chi tiet luong\n\n";
-	qlcf.hienThiDSChiTietLuong();
+	// cout << "\n\t\tDanh sach chi tiet luong\n\n";
+	// qlcf.hienThiDSChiTietLuong();
 
-	string tenfile = "chitietluong.txt";
-	DSChiTietLuong dsctl;
-	ChiTietLuong ctl;
-	ChiTietLuong ctl1("NV02", "Ca01", 10, 1);
-	ChiTietLuong ctl2("NV03", "Ca02", 20, 2);
+	// ChiTietLuong ctl;
+	// ChiTietLuong ctl1("NV02", "Ca01", 10, 1);
+	// ChiTietLuong ctl2("NV03", "Ca02", 20, 2);
 
 	// ChiTietLuong ctl4("NV04", "Ca02", 10, 1);
 	// ChiTietLuong ctl5("NV05", "Ca03", 20, 2);
 
-	dsctl.themChiTietLuong(ctl1);
-	dsctl.themChiTietLuong(ctl2);
+	// dsctl.themChiTietLuong(ctl1);
+	// dsctl.themChiTietLuong(ctl2);
 
 	// dsctl.themChiTietLuong(ctl4);
 	// dsctl.themChiTietLuong(ctl5);
-	dsctl.ghiDuLieuVaoFile(tenfile);
+	// dsctl.ghiDuLieuVaoFile(tenfile);
 	// ctl.nhap();
 	// dsctl.themChiTietLuong(ctl);
 	// dsctl.ghiDuLieuVaoFile(tenfile);
+
+	// cout << "\n\t\tDanh sach chi tiet luong\n\n";
+	// dsctl.hienThiDanhSach();
+
+	cout << fixed << setprecision(2);
+
+	// string fileDSCALAMVIEC = "calamviec.txt";
+	// DSCaLamViec dscalamviec;
+	// dscalamviec.docDuLieuTuFile(fileDSCALAMVIEC);
+	// dscalamviec.hienThiDanhSach();
+
+	// dsctl.hienThiDanhSachLuongTheoThang();
+	// dsctl.tinhLuongTungThangCuaMoiNhanVien();
+
+	// DSChiTietLuong dsctl;
+	// dsctl.docDuLieuTuFile("chitietluong.txt");
+
+	// DSCaLamViec dscalamviec;
+	// dscalamviec.docDuLieuTuFile("calamviec.txt");
+	// // dscalamviec.timCaTheoMa("Ca01").xuat();
+	// // dscalamviec.timKiemCaLamViec("Ca01").xuat();
+
+	// // dsctl.tinhLuongTheoMaNVVaThang("NV02", 1);
+	// for (auto ctl : dsctl.getDSChiTietLuong())
+	// {
+	// 	cout << ctl.tinhLuong() << endl;
+	// }
+	// dsctl.hienThiDanhSach();
+	// qlcf.hienThiDSCaLamViec();
+	// qlcf.hienThiDSChiTietLuongTheoThang();
+	// qlcf.themThongTinDSChiTietLuong();
+	// cout << "\n\t\tDanh sach chi tiet luong\n\n";
+	// qlcf.hienThiDSChiTietLuong();
+
+	qlcf.tinhLuongTheoThang();
 }

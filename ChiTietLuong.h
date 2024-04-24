@@ -3,6 +3,7 @@
 
 // #include <CaLamViec.h>
 #include "CaLamViec.h"
+#include "DSCaLamViec.h"
 using namespace std;
 
 class ChiTietLuong
@@ -14,6 +15,7 @@ private:
     int tongSoCa;
     int thangLamViec;
     CaLamViec ca;
+    DSCaLamViec dsCaLamViec;
 
 public:
     ChiTietLuong();
@@ -37,6 +39,8 @@ public:
     void nhap();
     void xuat() const;
     void luuDuLieuVaoFile(const string &tenFile);
+
+    void in() const;
 };
 
 #endif /* CHITIETLUONG_H */

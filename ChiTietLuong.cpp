@@ -20,7 +20,10 @@ void ChiTietLuong::setTongSoCa(const int &tongSoCa) { this->tongSoCa = tongSoCa;
 void ChiTietLuong::setThangLamViec(const int &thangLamViec) { this->thangLamViec = thangLamViec; }
 void ChiTietLuong::setCa(const CaLamViec &ca) { this->ca = ca; }
 
-double ChiTietLuong::tinhLuong() const { return tongSoCa * ca.getLuong(); }
+double ChiTietLuong::tinhLuong() const
+{
+    return ca.getLuong() * getTongSoCa();
+}
 
 void ChiTietLuong::nhap()
 {
@@ -34,6 +37,7 @@ void ChiTietLuong::nhap()
     cin >> thangLamViec;
     // ca.nhap();
 }
+
 void ChiTietLuong::xuat() const
 {
     cout << "Ma nhan vien: " << MaNV << endl;
