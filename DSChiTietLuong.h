@@ -22,7 +22,6 @@ public:
     void themChiTietLuong(const ChiTietLuong &chitietluong);
     void suaChiTietLuong(const string &MaNV, const string &MaCa);
     void xoaChiTietLuongTheoMa(const string &MaNV, const string &MaCa);
-    void xoaChiTietLuong(const ChiTietLuong &ctl);
     void hienThiDanhSach() const;
     ChiTietLuong *timChiTietLuongTheoMa(const string &MaNV, const string &MaCa);
 

@@ -15,7 +15,7 @@ private:
     int tongSoCa;
     int thangLamViec;
     CaLamViec ca;
-    DSCaLamViec dsCaLamViec;
+    // DSCaLamViec dsCaLamViec;
 
 public:
     ChiTietLuong();

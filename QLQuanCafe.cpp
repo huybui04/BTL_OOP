@@ -258,7 +258,7 @@ public:
 
 	void hienThiDSChiTietLuongTheoThang()
 	{
-		dsctl.tinhLuongTungThangCuaMoiNhanVien();
+		dsctl.hienThiDanhSach();
 	}
 	void themThongTinDSChiTietLuong()
 	{
@@ -342,22 +342,8 @@ public:
 		}
 	}
 
-	void tinhLuongTheoThang()
+	void thongKeLuongNVTheoThang()
 	{
-		for (auto &ctl : dsctl.getDSChiTietLuong())
-		{
-			for (auto &clv : dsclv.getDSCaLamViec())
-			{
-				if (ctl.getMaCa() == clv.getMaCa())
-				{
-					ctl.setCa(clv);
-					dsctl.xoaChiTietLuong(ctl);
-					cout << "Set ca thanh cong\n";
-
-					dsctl.themChiTietLuong(ctl);
-				}
-			}
-		}
 		dsctl.tinhLuongTungThangCuaMoiNhanVien();
 	}
 };
@@ -387,55 +373,8 @@ int main()
 	// cout << "\n\t\tDanh sach chi tiet luong\n\n";
 	// qlcf.hienThiDSChiTietLuong();
 
-	// ChiTietLuong ctl;
-	// ChiTietLuong ctl1("NV02", "Ca01", 10, 1);
-	// ChiTietLuong ctl2("NV03", "Ca02", 20, 2);
-
-	// ChiTietLuong ctl4("NV04", "Ca02", 10, 1);
-	// ChiTietLuong ctl5("NV05", "Ca03", 20, 2);
-
-	// dsctl.themChiTietLuong(ctl1);
-	// dsctl.themChiTietLuong(ctl2);
-
-	// dsctl.themChiTietLuong(ctl4);
-	// dsctl.themChiTietLuong(ctl5);
-	// dsctl.ghiDuLieuVaoFile(tenfile);
-	// ctl.nhap();
-	// dsctl.themChiTietLuong(ctl);
-	// dsctl.ghiDuLieuVaoFile(tenfile);
-
-	// cout << "\n\t\tDanh sach chi tiet luong\n\n";
-	// dsctl.hienThiDanhSach();
-
 	cout << fixed << setprecision(2);
 
-	// string fileDSCALAMVIEC = "calamviec.txt";
-	// DSCaLamViec dscalamviec;
-	// dscalamviec.docDuLieuTuFile(fileDSCALAMVIEC);
-	// dscalamviec.hienThiDanhSach();
-
-	// dsctl.hienThiDanhSachLuongTheoThang();
-	// dsctl.tinhLuongTungThangCuaMoiNhanVien();
-
-	// DSChiTietLuong dsctl;
-	// dsctl.docDuLieuTuFile("chitietluong.txt");
-
-	// DSCaLamViec dscalamviec;
-	// dscalamviec.docDuLieuTuFile("calamviec.txt");
-	// // dscalamviec.timCaTheoMa("Ca01").xuat();
-	// // dscalamviec.timKiemCaLamViec("Ca01").xuat();
-
-	// // dsctl.tinhLuongTheoMaNVVaThang("NV02", 1);
-	// for (auto ctl : dsctl.getDSChiTietLuong())
-	// {
-	// 	cout << ctl.tinhLuong() << endl;
-	// }
-	// dsctl.hienThiDanhSach();
-	// qlcf.hienThiDSCaLamViec();
-	// qlcf.hienThiDSChiTietLuongTheoThang();
-	// qlcf.themThongTinDSChiTietLuong();
-	// cout << "\n\t\tDanh sach chi tiet luong\n\n";
-	// qlcf.hienThiDSChiTietLuong();
-
-	qlcf.tinhLuongTheoThang();
+	cout << "\n======================\n";
+	qlcf.thongKeLuongNVTheoThang();
 }

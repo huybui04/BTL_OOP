@@ -21,7 +21,7 @@ public:
     CaLamViec *timKiemTheoMa(const std::string &maCa);
 
     void docDuLieuTuFile(const std::string &tenFile);
-    void ghiDuLieuVaoFile(const string &tenFile);
+    void ghiDuLieuVaoFile(const std::string &tenFile);
 };
 
 #endif /* DSCALAMVIEC_H */

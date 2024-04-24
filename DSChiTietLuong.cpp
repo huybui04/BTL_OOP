@@ -1,6 +1,7 @@
 #include "DSChiTietLuong.h"
 #include "ChiTietLuong.h"
 #include "DSCaLamViec.h"
+#include <string>
 
 vector<ChiTietLuong> DSChiTietLuong::getDSChiTietLuong() const { return DSChiTietLuong; }
 
@@ -46,12 +47,6 @@ void DSChiTietLuong::xoaChiTietLuongTheoMa(const string &MaNV, const string &MaC
         else
             cout << "Khong tim thay chi tiet luong cua nhan vien " << MaNV << " ca " << MaCa << endl;
     }
-}
-
-void DSChiTietLuong::xoaChiTietLuong(const ChiTietLuong &ctl)
-{
-    auto new_end = remove(DSChiTietLuong.begin(), DSChiTietLuong.end(), ctl);
-    DSChiTietLuong.erase(new_end, DSChiTietLuong.end());
 }
 
 void DSChiTietLuong::hienThiDanhSach() const
@@ -111,16 +106,32 @@ void DSChiTietLuong::tinhLuongTungThangCuaMoiNhanVien() const
 {
     // double tongLuong = 0;
     map<int, vector<ChiTietLuong>> mapCTL;
+    map<string, double> mapLuong;
+    // chia cac chi tiet luong theo thang
     for (auto &ctl : DSChiTietLuong)
     {
         mapCTL[ctl.getThangLamViec()].push_back(ctl);
     }
+    // tinh tong luong cua moi nhan vien trong thang
+    for (auto &ctl : mapCTL)
+    {
+        for (auto &ct : ctl.second)
+        {
+            mapLuong[ct.getMaNV()] += ct.tinhLuong();
+        }
+    }
+    // in ra tong luong cua moi nhan vien rieng biet trong thang
     for (auto &ctl : mapCTL)
     {
         cout << "Thang " << ctl.first << ":" << endl;
+        set<string> maUnique;
         for (auto &ct : ctl.second)
         {
-            cout << "Nhan vien " << ct.getMaNV() << " co tong luong trong thang = " << ct.tinhLuong() << " VND" << endl;
+            if (maUnique.find(ct.getMaNV()) == maUnique.end())
+            {
+                cout << "Ma nhan vien: " << ct.getMaNV() << " tong luong: " << mapLuong[ct.getMaNV()] << " VND\n\n";
+                maUnique.insert(ct.getMaNV());
+            }
         }
     }
 }
@@ -136,6 +147,9 @@ void DSChiTietLuong::docDuLieuTuFile(const string &tenFile)
     string line;
     while (getline(fileIn, line))
     {
+        DSCaLamViec dsCaLamViec;
+        dsCaLamViec.docDuLieuTuFile("CaLamViec.txt");
+
         stringstream ss(line);
         string MaNV, MaCa;
         int tongSoCa, thangLamViec;
@@ -146,8 +160,14 @@ void DSChiTietLuong::docDuLieuTuFile(const string &tenFile)
         ss.ignore();
         ss >> thangLamViec;
         ChiTietLuong ctl(MaNV, MaCa, tongSoCa, thangLamViec);
-        // themChiTietLuong(ctl);
-        DSChiTietLuong.push_back(ctl);
+        for (auto &ca : dsCaLamViec.getDSCaLamViec())
+        {
+            if (ca.getMaCa() == MaCa)
+            {
+                ctl.setCa(ca);
+            }
+        }
+        themChiTietLuong(ctl);
     }
     fileIn.close();
 }
