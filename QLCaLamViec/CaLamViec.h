@@ -4,7 +4,8 @@
 #include <iostream>
 #include <fstream>
 
-class CaLamViec {
+class CaLamViec
+{
 private:
     std::string MaCa;
     std::string TenCa;
@@ -33,4 +34,3 @@ public:
 };
 
 #endif /* CALAMVIEC_H */
-

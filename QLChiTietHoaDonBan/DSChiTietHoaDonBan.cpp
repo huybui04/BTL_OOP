@@ -49,6 +49,7 @@ ChiTietHoaDonBan DSChiTietHoaDonBan::timKiemChiTiet(const std::string &MaHDB)
 
 void DSChiTietHoaDonBan::hienThiDanhSach() const
 {
+    cout << "\n\n\tDanh sach chi tiet hoa don ban\n\n";
     for (const auto &cthdb : danhSachChiTietHoaDonBan)
     {
         cthdb.xuat();
@@ -87,12 +88,28 @@ void DSChiTietHoaDonBan::docDuLieuTuFile(const std::string &tenFile)
 void DSChiTietHoaDonBan::ghiDuLieuVaoFile(const std::string &tenFile)
 {
     std::ofstream file(tenFile, std::ios_base::app);
-    if (file.is_open()) {
-        for (auto cthdb : danhSachChiTietHoaDonBan) {
-	        cthdb.luuVaoFile(tenFile);
-	    }
+    if (file.is_open())
+    {
+        for (auto cthdb : danhSachChiTietHoaDonBan)
+        {
+            cthdb.luuVaoFile(tenFile);
+        }
         file.close();
-    } else {
+    }
+    else
+    {
         std::cout << "Khong mo duoc file " << tenFile << "de ghi" << std::endl;
     }
+}
+
+ChiTietHoaDonBan *DSChiTietHoaDonBan::timKiemChiTietHoaDonTheoMa(const string &maHDB)
+{
+    for (auto &cthdb : danhSachChiTietHoaDonBan)
+    {
+        if (cthdb.getMaHDB() == maHDB)
+        {
+            return &cthdb;
+        }
+    }
+    return nullptr;
 }

@@ -12,6 +12,7 @@ void DSBan::themBan(const Ban &ban)
 
 void DSBan::hienThiDanhSach() const
 {
+    std::cout << "\n\n\tDanh sach ban\n\n";
     for (auto ban : danhSachBan)
     {
         ban.xuat();

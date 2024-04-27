@@ -1,63 +1,116 @@
 #include "DSHoaDonNhap.h"
 #include <fstream>
 
-std::vector<std::string> DSHoaDonNhap::getDSHDN() const {
+std::vector<HoaDonNhap> DSHoaDonNhap::getDSHDN() const
+{
     return danhSachHoaDon;
 }
 
-void DSHoaDonNhap::themHoaDon(const std::string &maHDN) {
-    danhSachHoaDon.push_back(maHDN);
+void DSHoaDonNhap::themHoaDon(const HoaDonNhap &hoaDon)
+{
+    danhSachHoaDon.push_back(hoaDon);
 }
 
-void DSHoaDonNhap::xoaHoaDon(std::string maHDN) {
-    for (auto it = danhSachHoaDon.begin(); it != danhSachHoaDon.end(); ++it) {
-        if (*it == maHDN) {
+
+void DSHoaDonNhap::xoaHoaDon(const std::string &maHDN)
+{
+    for (auto it = danhSachHoaDon.begin(); it != danhSachHoaDon.end(); ++it)
+    {
+        if (it->getMaHDN() == maHDN)
+        {
             danhSachHoaDon.erase(it);
             break;
         }
     }
 }
 
-void DSHoaDonNhap::suaHoaDon(std::string maHDN, const std::string &maHDNMoi) {
-    for (auto &maHDN : danhSachHoaDon) {
-        if (maHDN == maHDN) {
-            maHDN = maHDNMoi;
+void DSHoaDonNhap::suaHoaDon(const std::string &maHDN, const HoaDonNhap &hoaDonMoi)
+{
+    for (auto &hoaDon : danhSachHoaDon)
+    {
+        if (hoaDon.getMaHDN() == maHDN)
+        {
+            hoaDon = hoaDonMoi;
             break;
         }
     }
 }
 
-std::string DSHoaDonNhap::timKiemHoaDon(std::string maHDN) {
-    for (auto maHDN : danhSachHoaDon) {
-        if (maHDN == maHDN) {
-            return maHDN;
+HoaDonNhap DSHoaDonNhap::timKiemHoaDon(const std::string &maHDN)
+{
+    for (auto hoaDon : danhSachHoaDon)
+    {
+        if (hoaDon.getMaHDN() == maHDN)
+        {
+            return hoaDon;
         }
     }
-    return "";
+    return HoaDonNhap();
 }
 
-void DSHoaDonNhap::docDuLieuTuFile(std::string tenFile) {
+void DSHoaDonNhap::hienThiDanhSach() const
+{
+    std::cout << "\n\n\tDanh sach hoa don nhap\n\n";
+    for (const auto &hdn : danhSachHoaDon)
+    {
+        hdn.xuat();
+        std::cout << std::endl;
+    }
+}
+
+void DSHoaDonNhap::docDuLieuTuFile(const std::string &tenFile)
+{
     std::ifstream file(tenFile);
-    if (file.is_open()) {
-        std::string maHDN;
-        while (std::getline(file, maHDN)) {
-            themHoaDon(maHDN);
-        }
-        file.close();
-    } else {
+
+    if (!file.is_open())
+    {
         std::cout << "Khong mo duoc file " << tenFile << " de doc!" << std::endl;
+        return;
     }
+
+    std::string line;
+    while (std::getline(file, line))
+    {
+        std::stringstream ss(line);
+        std::string mahdn, ngaynhap, manv, mancc;
+
+        std::getline(ss, mahdn, ',');
+        std::getline(ss, ngaynhap, ',');
+        std::getline(ss, manv, ',');
+        std::getline(ss, mancc);
+        
+        HoaDonNhap hdn(mahdn, ngaynhap, manv, mancc);
+        themHoaDon(hdn);
+    }
+
+    file.close();
 }
 
-void DSHoaDonNhap::ghiDuLieuVaoFile(std::string tenFile) {
+void DSHoaDonNhap::ghiDuLieuVaoFile(const std::string &tenFile)
+{
     std::ofstream file(tenFile);
-    if (file.is_open()) {
-        for (auto maHDN : danhSachHoaDon) {
-            file << maHDN << std::endl;
+    if (file.is_open())
+    {
+        for (auto hdn : danhSachHoaDon)
+        {
+            hdn.luuVaoFile(tenFile);
         }
         file.close();
-    } else {
+    }
+    else
+    {
         std::cout << "Khong mo duoc file " << tenFile << "de ghi" << std::endl;
     }
 }
 
+HoaDonNhap *DSHoaDonNhap::timKiemHoaDonTheoMa(const string &maHDN)
+{
+    for (auto &hdn : danhSachHoaDon)
+    {
+        if (hdn.getMaHDN() == maHDN)
+        {
+            return &hdn;
+        }
+    }
+    return nullptr;
+}

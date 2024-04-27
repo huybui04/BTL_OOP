@@ -11,7 +11,6 @@ void DSChiTietSanPham::themChiTiet(const ChiTietSanPham &chiTiet)
     danhSachChiTietSanPham.push_back(chiTiet);
 }
 
-
 void DSChiTietSanPham::suaChiTiet(const std::string &MaNL, const std::string &MaSP, const ChiTietSanPham &chiTietMoi)
 {
     for (auto &chiTiet : danhSachChiTietSanPham)
@@ -50,6 +49,7 @@ ChiTietSanPham DSChiTietSanPham::timKiemChiTiet(const std::string &MaNL, const s
 
 void DSChiTietSanPham::hienThiDanhSach() const
 {
+    std::cout << "\n\n\tDanh sach chi tiet san pham\n\n";
     for (const auto &ctsp : danhSachChiTietSanPham)
     {
         ctsp.xuat();
@@ -88,13 +88,28 @@ void DSChiTietSanPham::docDuLieuTuFile(const std::string &tenFile)
 void DSChiTietSanPham::ghiDuLieuVaoFile(const std::string &tenFile)
 {
     std::ofstream file(tenFile, std::ios_base::app);
-    if (file.is_open()) {
-        for (auto ctsp : danhSachChiTietSanPham) {
+    if (file.is_open())
+    {
+        for (auto ctsp : danhSachChiTietSanPham)
+        {
             file << ctsp.getMaNL() << ", " << ctsp.getMaSP() << ", " << ctsp.getSoLuongSuDung() << std::endl;
         }
         file.close();
-    } else {
+    }
+    else
+    {
         std::cout << "Khong mo duoc file " << tenFile << "de ghi" << std::endl;
     }
 }
 
+ChiTietSanPham *DSChiTietSanPham::timKiemChiTietTheoMa(const std::string &MaNL, const std::string &MaSP)
+{
+    for (auto &chiTiet : danhSachChiTietSanPham)
+    {
+        if (chiTiet.getMaNL() == MaNL && chiTiet.getMaSP() == MaSP)
+        {
+            return &chiTiet;
+        }
+    }
+    return nullptr;
+}

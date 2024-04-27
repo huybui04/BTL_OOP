@@ -45,6 +45,7 @@ void DSNhanVien::docDuLieuTuFile(const std::string &tenTep)
 
 void DSNhanVien::hienThiDanhSach() const
 {
+    cout << "\n\n\tDanh sach nhan vien\n\n";
     for (const auto &nv : danhSachNhanVien)
     {
         nv.xuat();
@@ -61,6 +62,7 @@ void DSNhanVien::suaNhanVien(const std::string &maNV, const NhanVien &nv)
         {
             nhanVien = nv;
             timThay = true;
+            cout << "Thong tin nhan vien co maNV: " << maNV << " da duoc cap nhat" << endl;
             break;
         }
     }
@@ -96,9 +98,7 @@ NhanVien DSNhanVien::timKiemNhanVien(const std::string &maNV) const
             return nv;
         }
     }
-
-    std::cout << "Khong tim thay nhan vien co MaNV: " << maNV << std::endl;
-    return NhanVien(); // Tr? v? d?i tu?ng r?ng n?u kh�ng t�m th?y
+    return NhanVien();
 }
 
 void DSNhanVien::luuVaoFile(const std::string &tenTep) const
@@ -117,7 +117,7 @@ void DSNhanVien::luuVaoFile(const std::string &tenTep) const
 
     file.close();
 }
-
+// tim kiem nhan vien tra ve dia chi cua nhan vien tim duoc/ so sanh vowi nullptr
 NhanVien *DSNhanVien::timKiemTheoMa(const string &maNV)
 {
     for (auto &nv : danhSachNhanVien)
@@ -126,6 +126,6 @@ NhanVien *DSNhanVien::timKiemTheoMa(const string &maNV)
         {
             return &nv;
         }
-     }
+    }
     return nullptr;
 }

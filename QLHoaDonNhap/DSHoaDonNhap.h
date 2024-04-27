@@ -4,19 +4,22 @@
 #include <vector>
 #include "HoaDonNhap.h"
 
-class DSHoaDonNhap {
+class DSHoaDonNhap
+{
 private:
-    std::vector<std::string> danhSachHoaDon; 
+    std::vector<HoaDonNhap> danhSachHoaDon;
 
 public:
-    std::vector<std::string> getDSHDN() const;
-    void themHoaDon(const std::string &maHDN); 
-    void xoaHoaDon(std::string maHDN);
-    void suaHoaDon(std::string maHDN, const std::string &maHDNMoi);
-    std::string timKiemHoaDon(std::string maHDN);
-    void docDuLieuTuFile(std::string tenFile);
-    void ghiDuLieuVaoFile(std::string tenFile);
+    std::vector<HoaDonNhap> getDSHDN() const;
+    void hienThiDanhSach() const;
+    void themHoaDon(const HoaDonNhap &hoaDon);
+    void xoaHoaDon(const std::string &maHDN);
+    void suaHoaDon(const std::string &maHDN, const HoaDonNhap &hoaDonMoi);
+    HoaDonNhap timKiemHoaDon(const std::string &maHDN);
+    HoaDonNhap *timKiemHoaDonTheoMa(const std::string &maHDN);
+    
+    void docDuLieuTuFile(const std::string &tenFile);
+    void ghiDuLieuVaoFile(const std::string &tenFile);
 };
 
 #endif /* DSHOADONNHAP_H */
-

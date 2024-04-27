@@ -6,7 +6,8 @@
 #include <fstream>
 #include <vector>
 
-class DSNguyenLieu {
+class DSNguyenLieu
+{
 private:
     std::vector<NguyenLieu> danhSachNguyenLieu;
 
@@ -18,7 +19,7 @@ public:
     void suaNguyenLieu(const std::string &maNL, const NguyenLieu &nl);
     void xoaNguyenLieu(const std::string &maNL);
     void luuVaoFile(const std::string &tenTep);
+    NguyenLieu *timKiemNguyenLieu(const std::string &maNL);
 };
 
 #endif /* DSNguyenLieu_H */
-

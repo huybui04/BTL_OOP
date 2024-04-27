@@ -16,7 +16,8 @@ public:
     void xoaChiTiet(const std::string &MaHDB);
     void hienThiDanhSach() const;
     ChiTietHoaDonBan timKiemChiTiet(const std::string &MaHDB);
-
+	ChiTietHoaDonBan *timKiemChiTietHoaDonTheoMa(const std::string &MaHDB);
+	
     void docDuLieuTuFile(const std::string &tenFile);
     void ghiDuLieuVaoFile(const std::string &tenFile);
 };

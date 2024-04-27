@@ -104,5 +104,3 @@ void HoaDonNhap::hienThi() const {
     }
     std::cout << "Tong Tien: " << tinhTongTien() << " VND" << std::endl;
 }
-
-

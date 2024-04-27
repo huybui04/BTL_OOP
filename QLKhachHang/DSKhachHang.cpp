@@ -34,6 +34,7 @@ void DSKhachHang::docTuFile(const std::string &tenFile)
 
 void DSKhachHang::hienThiDanhSach() const
 {
+    cout << "\n\n\tDanh sach khach hang\n\n";
     for (const auto &kh : danhSachKhachHang)
     {
         kh.xuat();

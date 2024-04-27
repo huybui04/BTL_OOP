@@ -1,76 +1,112 @@
 #include "DSCaLamViec.h"
 #include <fstream>
 
-std::vector<CaLamViec> DSCaLamViec::getDSCaLamViec() const {
+std::vector<CaLamViec> DSCaLamViec::getDSCaLamViec() const
+{
     return danhSachCaLamViec;
 }
 
-void DSCaLamViec::themCaLamViec(const CaLamViec &caLamViec) {
+void DSCaLamViec::themCaLamViec(const CaLamViec &caLamViec)
+{
     danhSachCaLamViec.push_back(caLamViec);
 }
 
-void DSCaLamViec::xoaCaLamViec(const std::string &maCa) {
-    for (auto it = danhSachCaLamViec.begin(); it != danhSachCaLamViec.end(); ++it) {
-        if (it->getMaCa() == maCa) {
+void DSCaLamViec::xoaCaLamViec(const std::string &maCa)
+{
+    for (auto it = danhSachCaLamViec.begin(); it != danhSachCaLamViec.end(); ++it)
+    {
+        if (it->getMaCa() == maCa)
+        {
             danhSachCaLamViec.erase(it);
             break;
         }
     }
 }
 
-void DSCaLamViec::suaCaLamViec(const std::string &maCa, const CaLamViec &caLamViecMoi) {
-    for (auto &caLamViec : danhSachCaLamViec) {
-        if (caLamViec.getMaCa() == maCa) {
+void DSCaLamViec::suaCaLamViec(const std::string &maCa, const CaLamViec &caLamViecMoi)
+{
+    for (auto &caLamViec : danhSachCaLamViec)
+    {
+        if (caLamViec.getMaCa() == maCa)
+        {
             caLamViec = caLamViecMoi;
             break;
         }
     }
 }
 
-void DSCaLamViec::hienThiDanhSach() const {
-    for (const auto &caLamViec : danhSachCaLamViec) {
+void DSCaLamViec::hienThiDanhSach() const
+{
+    std::cout << "\n\n\tDanh sach ca lam viec\n\n";
+    for (const auto &caLamViec : danhSachCaLamViec)
+    {
         caLamViec.xuat();
         std::cout << std::endl;
     }
 }
 
-CaLamViec DSCaLamViec::timKiemCaLamViec(const std::string &maCa) {
-    for (const auto &caLamViec : danhSachCaLamViec) {
-        if (caLamViec.getMaCa() == maCa) {
+CaLamViec DSCaLamViec::timKiemCaLamViec(const std::string &maCa)
+{
+    for (const auto &caLamViec : danhSachCaLamViec)
+    {
+        if (caLamViec.getMaCa() == maCa)
+        {
             return caLamViec;
         }
     }
-    // Tr? v? m?t ca làm vi?c r?ng n?u không tìm th?y
+    // Tr? v? m?t ca l?m vi?c r?ng n?u kh?ng t?m th?y
     return CaLamViec();
 }
 
-void DSCaLamViec::docDuLieuTuFile(const std::string &tenFile) {
+CaLamViec *DSCaLamViec::timKiemTheoMa(const string &maCa)
+{
+    for (auto &ca : danhSachCaLamViec)
+    {
+        if (ca.getMaCa() == maCa)
+        {
+            return &ca;
+        }
+    }
+    return nullptr;
+}
+
+void DSCaLamViec::docDuLieuTuFile(const std::string &tenFile)
+{
     std::ifstream file(tenFile);
-    if (!file.is_open()) {
+    if (!file.is_open())
+    {
         std::cout << "Khong mo duoc file " << tenFile << " de doc" << std::endl;
         return;
     }
-
-    while (!file.eof()) {
-        std::string maCa, tenCa, gioBatDau, gioKetThuc;
-        double luong;
-        file >> maCa >> tenCa >> gioBatDau >> gioKetThuc >> luong;
+    std::string maCa, tenCa, gioBatDau, gioKetThuc;
+    double luong;
+    std::string line;
+    while (getline(file, line))
+    {
+        std::stringstream ss(line);
+        getline(ss, maCa, ',');
+        getline(ss, tenCa, ',');
+        getline(ss, gioBatDau, ',');
+        getline(ss, gioKetThuc, ',');
+        ss >> luong;
         CaLamViec caLamViec(maCa, tenCa, gioBatDau, gioKetThuc, luong);
         themCaLamViec(caLamViec);
     }
     file.close();
 }
 
-void DSCaLamViec::ghiDuLieuVaoFile(const std::string &tenFile) {
+void DSCaLamViec::ghiDuLieuVaoFile(const std::string &tenFile)
+{
     std::ofstream file(tenFile);
-    if (!file.is_open()) {
+    if (!file.is_open())
+    {
         std::cout << "Khong mo duoc file " << tenFile << " de ghi" << std::endl;
         return;
     }
 
-    for (const auto &caLamViec : danhSachCaLamViec) {
-        caLamViec.luuVaoFile(tenFile);;
+    for (const auto &caLamViec : danhSachCaLamViec)
+    {
+        caLamViec.luuVaoFile(tenFile);
     }
     file.close();
 }
-

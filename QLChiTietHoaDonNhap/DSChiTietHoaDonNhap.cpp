@@ -1,41 +1,46 @@
 #include "DSChiTietHoaDonNhap.h"
 #include <fstream>
 
-std::vector<ChiTietHoaDonNhap> DSChiTietHoaDonNhap::getDSCTHDN() const 
+std::vector<ChiTietHoaDonNhap> DSChiTietHoaDonNhap::getDSCTHDN() const
 {
     return danhSachChiTietHoaDonNhap;
 }
 
-void DSChiTietHoaDonNhap::themChiTiet(const ChiTietHoaDonNhap &chiTiet) 
+void DSChiTietHoaDonNhap::themChiTiet(const ChiTietHoaDonNhap &chiTiet)
 {
     danhSachChiTietHoaDonNhap.push_back(chiTiet);
 }
 
-void DSChiTietHoaDonNhap::suaChiTiet(const std::string &maHDN, const ChiTietHoaDonNhap &chiTietMoi) 
+void DSChiTietHoaDonNhap::suaChiTiet(const std::string &maHDN, const ChiTietHoaDonNhap &chiTietMoi)
 {
-    for (auto &chiTiet : danhSachChiTietHoaDonNhap) {
-        if (chiTiet.getMaHDN() == maHDN) 
-		{
+    for (auto &chiTiet : danhSachChiTietHoaDonNhap)
+    {
+        if (chiTiet.getMaHDN() == maHDN)
+        {
             chiTiet = chiTietMoi;
             break;
         }
     }
 }
 
-void DSChiTietHoaDonNhap::xoaChiTiet(const std::string &maHDN) 
+void DSChiTietHoaDonNhap::xoaChiTiet(const std::string &maHDN)
 {
-    for (auto it = danhSachChiTietHoaDonNhap.begin(); it != danhSachChiTietHoaDonNhap.end(); ++it) {
-        if (it->getMaHDN() == maHDN) {
+    for (auto it = danhSachChiTietHoaDonNhap.begin(); it != danhSachChiTietHoaDonNhap.end(); ++it)
+    {
+        if (it->getMaHDN() == maHDN)
+        {
             danhSachChiTietHoaDonNhap.erase(it);
             break;
         }
     }
 }
 
-ChiTietHoaDonNhap DSChiTietHoaDonNhap::timKiemChiTiet(const std::string &maHDN) 
+ChiTietHoaDonNhap DSChiTietHoaDonNhap::timKiemChiTiet(const std::string &maHDN)
 {
-    for (auto chiTiet : danhSachChiTietHoaDonNhap) {
-        if (chiTiet.getMaHDN() == maHDN) {
+    for (auto chiTiet : danhSachChiTietHoaDonNhap)
+    {
+        if (chiTiet.getMaHDN() == maHDN)
+        {
             return chiTiet;
         }
     }
@@ -44,6 +49,7 @@ ChiTietHoaDonNhap DSChiTietHoaDonNhap::timKiemChiTiet(const std::string &maHDN)
 
 void DSChiTietHoaDonNhap::hienThiDanhSach() const
 {
+    cout << "\n\n\tDanh sach chi tiet hoa don nhap\n\n";
     for (const auto &cthdn : danhSachChiTietHoaDonNhap)
     {
         cthdn.xuat();
@@ -79,16 +85,31 @@ void DSChiTietHoaDonNhap::docDuLieuTuFile(const std::string &tenFile)
     file.close();
 }
 
-
-void DSChiTietHoaDonNhap::ghiDuLieuVaoFile(const std::string &tenFile) {
+void DSChiTietHoaDonNhap::ghiDuLieuVaoFile(const std::string &tenFile)
+{
     std::ofstream file(tenFile, std::ios_base::app);
-    if (file.is_open()) {
-        for (auto cthdn : danhSachChiTietHoaDonNhap) {
+    if (file.is_open())
+    {
+        for (auto cthdn : danhSachChiTietHoaDonNhap)
+        {
             cthdn.luuVaoFile(tenFile);
         }
         file.close();
-    } else {
+    }
+    else
+    {
         std::cout << "Khong mo duoc file " << tenFile << " de ghi!" << std::endl;
     }
 }
 
+ChiTietHoaDonNhap *DSChiTietHoaDonNhap::timKiemChiTietHoaDonTheoMa(const string &maHDN)
+{
+    for (auto &cthdn : danhSachChiTietHoaDonNhap)
+    {
+        if (cthdn.getMaHDN() == maHDN)
+        {
+            return &cthdn;
+        }
+    }
+    return nullptr;
+}

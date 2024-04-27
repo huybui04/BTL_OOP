@@ -91,7 +91,7 @@
         "typeinfo": "cpp",
         "valarray": "cpp",
         "variant": "cpp"
-    },
-    "C_Cpp.errorSquiggles": "enabled",
-    "C_Cpp.default.compilerPath": ""
+    }
+    // "C_Cpp.errorSquiggles": "enabled",
+    // "C_Cpp.default.compilerPath": ""
 }

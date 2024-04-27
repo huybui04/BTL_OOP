@@ -3,20 +3,29 @@
 #include <fstream>
 #include <sstream>
 
-void DSNhaCungCap::themNhaCungCap(const NhaCungCap &ncc) {
+std::vector<NhaCungCap> DSNhaCungCap::getDSNCC() const
+{
+    return danhSachNhaCungCap;
+}
+
+void DSNhaCungCap::themNhaCungCap(const NhaCungCap &ncc)
+{
     danhSachNhaCungCap.push_back(ncc);
 }
 
-void DSNhaCungCap::docDuLieuTuFile(const std::string &tenTep) {
+void DSNhaCungCap::docDuLieuTuFile(const std::string &tenTep)
+{
     std::ifstream file(tenTep);
 
-    if (!file.is_open()) {
+    if (!file.is_open())
+    {
         std::cout << "Khong mo duoc file " << tenTep << " de doc!" << std::endl;
         return;
     }
 
     std::string line;
-    while (std::getline(file, line)) {
+    while (std::getline(file, line))
+    {
         std::stringstream ss(line);
         std::string maNCC, tenNCC, diaChi, sdt;
 
@@ -32,8 +41,11 @@ void DSNhaCungCap::docDuLieuTuFile(const std::string &tenTep) {
     file.close();
 }
 
-void DSNhaCungCap::hienThiDanhSach() const {
-    for (const auto &ncc : danhSachNhaCungCap) {
+void DSNhaCungCap::hienThiDanhSach() const
+{
+    cout << "\n\n\t Danh sach nha cung cap\n\n";
+    for (const auto &ncc : danhSachNhaCungCap)
+    {
         std::cout << "MaNCC: " << ncc.getMaNCC() << std::endl;
         std::cout << "TenNCC: " << ncc.getTenNCC() << std::endl;
         std::cout << "DiaChi: " << ncc.getDiaChi() << std::endl;
@@ -42,44 +54,67 @@ void DSNhaCungCap::hienThiDanhSach() const {
     }
 }
 
-void DSNhaCungCap::suaNhaCungCap(const std::string &maNCC, const NhaCungCap &ncc) {
+void DSNhaCungCap::suaNhaCungCap(const std::string &maNCC, const NhaCungCap &ncc)
+{
     bool timThay = false;
-    for (auto &nhacungcap : danhSachNhaCungCap) {
-        if (nhacungcap.getMaNCC() == maNCC) {
+    for (auto &nhacungcap : danhSachNhaCungCap)
+    {
+        if (nhacungcap.getMaNCC() == maNCC)
+        {
             nhacungcap = ncc;
             timThay = true;
             break;
         }
     }
 
-    if (!timThay) {
+    if (!timThay)
+    {
         std::cerr << "Khong tim thay nha cung cap co MaNCC: " << maNCC << std::endl;
     }
 }
 
-void DSNhaCungCap::xoaNhaCungCap(const std::string &maNCC) {
+void DSNhaCungCap::xoaNhaCungCap(const std::string &maNCC)
+{
     auto it = std::find_if(danhSachNhaCungCap.begin(), danhSachNhaCungCap.end(),
-                           [maNCC](const NhaCungCap &ncc) { return ncc.getMaNCC() == maNCC; });
+                           [maNCC](const NhaCungCap &ncc)
+                           { return ncc.getMaNCC() == maNCC; });
 
-    if (it != danhSachNhaCungCap.end()) {
+    if (it != danhSachNhaCungCap.end())
+    {
         danhSachNhaCungCap.erase(it);
         std::cout << "Da xoa nha cung cap co MaNCC: " << maNCC << std::endl;
-    } else {
+    }
+    else
+    {
         std::cerr << "Khong tim thay nha cung cap co MaNCC: " << maNCC << std::endl;
     }
 }
 
-void DSNhaCungCap::luuVaoFile(const std::string &tenTep) const {
+void DSNhaCungCap::luuVaoFile(const std::string &tenTep) const
+{
     std::ofstream file(tenTep, std::ios_base::app);
-    if (!file.is_open()) {
+    if (!file.is_open())
+    {
         std::cout << "Khong mo duoc file " << tenTep << "de ghi" << std::endl;
         return;
     }
 
-    for (const auto &ncc : danhSachNhaCungCap) {
+    for (const auto &ncc : danhSachNhaCungCap)
+    {
         ncc.luuVaoFile(tenTep);
     }
 
     file.close();
 }
 
+NhaCungCap *DSNhaCungCap::timKiemNhaCungCap(const std::string &maNCC)
+{
+    for (auto &ncc : danhSachNhaCungCap)
+    {
+        if (ncc.getMaNCC() == maNCC)
+        {
+            return &ncc;
+        }
+    }
+    return nullptr;
+}
