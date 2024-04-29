@@ -112,15 +112,38 @@ void HoaDonBan::luuVaoFile(const std::string &tenFile) const {
     file.close();
 }
 
+string trim_(const string &str)
+{
+	size_t first = str.find_first_not_of(" \t\n\r");
+	size_t last = str.find_last_not_of(" \t\n\r");
+	if (first == string::npos || last == string::npos)
+		return "";
+	return str.substr(first, last - first + 1);
+}
+
 double HoaDonBan::tinhTongTien() const
 {
     double tongTien = 0.0;
-    for (auto ct : dsCTHDB)
-    {
-        if (ct.getMaHDB() == this->MaHDB)
+    
+    DSSanPham dssp;
+    dssp.docDuLieuTuFile("QLSanPham/sanpham.txt");
+    
+    DSChiTietHoaDonBan dscthdb;
+    dscthdb.docDuLieuTuFile("QLChiTietHoaDonBan/chitiethoadonban.txt");
+    
+    for(auto sp : dssp.getDSSP()) 
+	{
+    	for(auto ct : dscthdb.getDSCTHDB())
+    	{
+    		if(trim_(sp.getMaSP()) == trim_(ct.getMaSP()))
+    		{
+    			ct.setSP(sp);
+			}
+			if (ct.getMaHDB() == this->MaHDB)
             tongTien += ct.tinhThanhTien();
-    }
-    return tongTien;
+		}
+	}
+	return tongTien;
 }
 
 void HoaDonBan::hienThi() const {

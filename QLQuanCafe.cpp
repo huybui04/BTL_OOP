@@ -73,7 +73,7 @@
 #include "QLChiTietLuong/ChiTietLuong.cpp"
 #include "QLChiTietLuong/DSChiTietLuong.cpp"
 
-// #include <bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 string trim(const string &str)
@@ -84,6 +84,15 @@ string trim(const string &str)
 		return "";
 	return str.substr(first, last - first + 1);
 }
+
+std::pair<int, int> extractMonthAndYear(const std::string& date) {
+    int day, month, year;
+    char slash; 
+    std::stringstream ss(date);
+    ss >> day >> slash >> month >> slash >> year;
+    return std::make_pair(month, year);
+}
+
 
 class QLQuanCafe
 {
@@ -241,7 +250,6 @@ public:
 		dshdn.themHoaDon(hdn);
 		hdn.hienThi();
 	}
-
 
 	void taoChiTietHoaDon(string billId, string date, string staffId, string customerId, string tableId)
 	{
@@ -1376,6 +1384,48 @@ public:
 		}
 	}
 
+	void tinhTongTienHoaDonBan() {
+		for(auto hd : dshdb.getDSHDB()) {
+			cout << "HDB " << hd.getMaHDB() << ": " << hd.tinhTongTien() << endl;
+		}
+	}
+	
+	map<pair<int, int>, double> calculateMonthlyRevenue(const DSHoaDonBan& dshdb, int year) {
+	    map<pair<int, int>, double> monthlyRevenue; 
+	    
+	    for (const auto& hoadon : dshdb.getDSHDB()) {
+	        int month, hoaDonYear; 
+	        tie(month, hoaDonYear) = extractMonthAndYear(hoadon.getNgayBan()); 
+	        cout << month << "," << year;
+	        if (hoaDonYear == year) {
+	            double totalRevenue = hoadon.tinhTongTien();
+	            monthlyRevenue[make_pair(month, year)] += totalRevenue;
+	        }
+	    }
+	    
+	    return monthlyRevenue;
+	}
+	
+	void printMonthlyRevenue(const map<pair<int, int>, double>& monthlyRevenue) {
+	    cout << "Doanh thu theo tung thang cua nam:" << endl;
+	    for (const auto& entry : monthlyRevenue) {
+	        int month, year; 
+	        tie(month, year) = entry.first; 
+	        double revenue = entry.second;
+	        cout << "Thang " << setw(2) << setfill('0') << month << "/" << year << ": " << fixed << setprecision(2) << revenue << endl;
+	    }
+	}
+
+	
+	void thongKeHoaDonBanTheoThang() {
+	    int year;
+	    cout << "Nhap nam muon thong ke:"; 
+	    cin >> year;
+	    
+	    map<pair<int, int>, double> monthlyRevenue = calculateMonthlyRevenue(dshdb, year);
+	    printMonthlyRevenue(monthlyRevenue);
+	}
+	
 	// chuc nang chi tiet hoa don ban
 	void hienThiDSChiTietHoaDonBan()
 	{
@@ -1599,8 +1649,9 @@ int main()
 				cout << "1. Hien thi danh sach hoa don ban\n";
 				cout << "2. Them hoa don ban vao danh sach\n";
 				cout << "3. Xoa hoa don ban khoi danh sach\n";
-				cout << "4. Sua thong tin hoa don ban\n";
+				cout << "4. Tinh tien hoa don ban\n";
 				cout << "5. Tim kiem hoa don ban theo ma hoa don ban\n";
+				cout << "6. Thong ke hoa don ban theo thang\n";
 				cout << "0. Tro lai Menu";
 				cout << "\n==========================END===========================\n";
 
@@ -1620,10 +1671,13 @@ int main()
 					qlcf.xoaHoaDonBan();
 					break;
 				case 4:
-					// qlcf.suaHoaDonBan();
+					qlcf.tinhTongTienHoaDonBan();
 					break;
 				case 5:
 					qlcf.timKiemHoaDonBan();
+					break;
+				case 6:
+					qlcf.thongKeHoaDonBanTheoThang();
 					break;
 				case 0:
 					break;

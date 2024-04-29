@@ -6,7 +6,10 @@
 #include "../QLNhanVien/NhanVien.h"
 #include "../QLKhachHang/KhachHang.h"
 #include "../QLBan/Ban.h"
+#include "../QLSanPham/SanPham.h"
+#include "../QLSanPham/DSSanPham.h"
 #include "../QLChiTietHoaDonBan/ChiTietHoaDonBan.h"
+#include "../QLChiTietHoaDonBan/DSChiTietHoaDonBan.h"
 
 class HoaDonBan
 {
