@@ -3,13 +3,8 @@
 
 #include <iostream>
 #include <fstream>
-#include <sstream>
-#include <algorithm>
 
-class DanhMucSanPham{
-private:
-	std::string MaDM;
-	std::string TenDM;
+class DanhMucSanPham : public DoiTuong{
 public:
 	DanhMucSanPham();
 	DanhMucSanPham(const std::string &MaDM, const std::string &TenDM);

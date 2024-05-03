@@ -1,34 +1,34 @@
 #include "ChiTietHoaDonBan.h"
 
-ChiTietHoaDonBan::ChiTietHoaDonBan() {}
+ChiTietHoaDonBan::ChiTietHoaDonBan() : ChiTietDoiTuong(){}
 
 ChiTietHoaDonBan::ChiTietHoaDonBan(const std::string &MaHDB, const std::string &MaSP, const int &soLuong)
-    : MaHDB(MaHDB), MaSP(MaSP), SoLuong(soLuong)
+    : ChiTietDoiTuong(MaHDB, MaSP), SoLuong(soLuong)
 {
 }
 
 ChiTietHoaDonBan::ChiTietHoaDonBan(const std::string &MaHDB, const std::string &MaSP, const int &soLuong, const SanPham &sp)
-    : MaHDB(MaHDB), MaSP(MaSP), SoLuong(soLuong), SP(sp)
+    : ChiTietDoiTuong(MaHDB, MaSP), SoLuong(soLuong), SP(sp)
 {
 }
 
 std::string ChiTietHoaDonBan::getMaHDB() const
 {
-    return MaHDB;
+    return ChiTietDoiTuong::getMa1();
 }
 
 void ChiTietHoaDonBan::setMaHDB(const std::string &MaHDB)
 {
-    this->MaHDB = MaHDB;
+    ChiTietDoiTuong::setMa1(MaHDB);
 }
 
 std::string ChiTietHoaDonBan::getMaSP() const
 {
-    return MaSP;
+    return ChiTietDoiTuong::getMa2();
 }
 void ChiTietHoaDonBan::setMaSP(const std::string &MaSP)
 {
-    this->MaSP = MaSP;
+    ChiTietDoiTuong::setMa2(MaSP);
 }
 
 SanPham ChiTietHoaDonBan::getSP() const
@@ -52,8 +52,8 @@ void ChiTietHoaDonBan::setSoLuong(int soLuong)
 
 void ChiTietHoaDonBan::xuat() const
 {
-    std::cout << "Ma HDB: " << MaHDB << std::endl;
-    std::cout << "Ma SP: " << MaSP << std::endl;
+    std::cout << "Ma HDB: " << ChiTietDoiTuong::getMa1() << std::endl;
+    std::cout << "Ma SP: " << ChiTietDoiTuong::getMa2() << std::endl;
     std::cout << "So Luong Ban: " << SoLuong << std::endl;
 }
 
@@ -64,7 +64,7 @@ void ChiTietHoaDonBan::luuVaoFile(const std::string &tenFile) const {
         return;
     }
 
-    file << MaHDB << ", " << MaSP << ", " << SoLuong << std::endl;
+    file << ChiTietDoiTuong::getMa1() << ", " << ChiTietDoiTuong::getMa2() << ", " << SoLuong << std::endl;
     file.close();
 }
 

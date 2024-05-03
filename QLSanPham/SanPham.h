@@ -4,10 +4,8 @@
 #include <iostream>
 #include <fstream>
 
-class SanPham {
+class SanPham : public DoiTuong {
 private:
-    std::string MaSP;
-    std::string TenSP;
     double Gia;
 
 public:

@@ -1,3 +1,12 @@
+#include "DoiTuong.h"
+#include "DoiTuong.cpp"
+#include "Nguoi.h"
+#include "Nguoi.cpp"
+#include "HoaDon.h"
+#include "HoaDon.cpp"
+#include "ChiTietDoiTuong.h"
+#include "ChiTietDoiTuong.cpp"
+
 #include "QLNhanVien/NhanVien.h"
 #include "QLNhanVien/DSNhanVien.h"
 #include "QLNhanVien/NhanVien.cpp"
@@ -73,7 +82,7 @@
 #include "QLChiTietLuong/ChiTietLuong.cpp"
 #include "QLChiTietLuong/DSChiTietLuong.cpp"
 
-#include <bits/stdc++.h>
+//#include <bits/stdc++.h>
 using namespace std;
 
 string trim(const string &str)
@@ -283,12 +292,14 @@ public:
 
 			// them vao ds chi tiet hoa don ban
 			ChiTietHoaDonBan cthd(billId, productId, quantity, p);
+			cthd.luuVaoFile(tenFileDSChiTietHoaDonBan);
 			ds.push_back(cthd);
 		}
 
 		cout << "\n======================================================\n";
 		cout << "Chi tiet hoa don mua hang:\n";
 		HoaDonBan hdb(billId, date, staffId, customerId, tableId, ds);
+		hdb.luuVaoFile(tenFileDSHoaDonBan);
 		hdb.hienThi();
 		cout << "\n======================================================\n";
 	}
@@ -435,8 +446,9 @@ public:
 				}
 			}
 			ChiTietLuong ctl(maNV, maCa, tongCa, thang, ca);
-
+			
 			dsctl.themChiTietLuong(ctl);
+			dsctl.ghiDuLieuVaoFile(tenFileDSChiTietLuong);
 		}
 	}
 
@@ -456,6 +468,7 @@ public:
 		{
 			dsnv.themNhanVien(nv);
 			cout << "Them thanh cong" << endl;
+			dsnv.luuVaoFile(tenFileDSNhanVien);
 		}
 		else 
 		{
@@ -476,6 +489,7 @@ public:
 			nv.nhap();
 			dsnv.suaNhanVien(id, nv);
 			cout << "Da sua thanh cong"<< endl;
+			dsnv.luuVaoFile(tenFileDSNhanVien);
 		}
 		else
 		{
@@ -493,6 +507,7 @@ public:
 		{
 			dsnv.xoaNhanVien(id);
 			cout << "Nhan vien co ma " << id << "da bi xoa ra khoi danh sach" << endl;
+			dsnv.luuVaoFile(tenFileDSNhanVien);
 		}
 		else
 		{
@@ -533,6 +548,7 @@ public:
 		{
 			dsclv.themCaLamViec(clv);
 			cout << "Them thanh cong" << endl;
+			dsclv.ghiDuLieuVaoFile(tenFileDSCaLamViec);
 		}
 		else 
 		{
@@ -552,6 +568,7 @@ public:
 			clv.nhap();
 			dsclv.suaCaLamViec(id, clv);
 			cout << "Da sua thanh cong" << endl;
+			dsclv.ghiDuLieuVaoFile(tenFileDSCaLamViec);
 		}
 		else
 		{
@@ -569,6 +586,7 @@ public:
 		{
 			dsclv.xoaCaLamViec(id);
 			cout << "Ca lam viec co ma" << id << "da bi xoa ra khoi danh sach" << endl;
+			dsclv.ghiDuLieuVaoFile(tenFileDSCaLamViec);
 		}
 		else
 		{
@@ -606,6 +624,7 @@ public:
 		cout << "Nhap thong tin chi tiet luong can them: \n";
 		ctl.nhap();
 		dsctl.themChiTietLuong(ctl);
+		dsctl.ghiDuLieuVaoFile(tenFileDSChiTietLuong);
 	}
 
 	void suaChiTietLuong()
@@ -620,6 +639,7 @@ public:
 		{
 			dsctl.suaChiTietLuong(maNV, maCa);
 			cout << "Chi tiet luong cua nhan vien co ma " << maNV << " va co ma ca la " << maCa << " da bi xoa khoi danh sach"<< endl;
+			dsctl.ghiDuLieuVaoFile(tenFileDSChiTietLuong);
 		}
 		else
 		{
@@ -635,6 +655,7 @@ public:
 		cout << "Nhap ma ca lam viec: ";
 		getline(cin, maCa);
 		dsctl.xoaChiTietLuongTheoMa(maNV, maCa);
+		dsctl.ghiDuLieuVaoFile(tenFileDSChiTietLuong);
 	}
 
 	void timKiemChiTietLuong()
@@ -683,6 +704,7 @@ public:
 		{
 			dskh.themKhachHang(kh);
 			cout << "Them thanh cong" << endl;
+			dskh.luuVaoFile(tenFileDSKhachHang);
 		}
 		else 
 		{
@@ -704,6 +726,7 @@ public:
 			kh.nhap();
 			dskh.suaKhachHang(id, kh);
 			cout << "Sua thanh cong" << endl;
+			dskh.luuVaoFile(tenFileDSKhachHang);
 		}
 		else
 		{
@@ -722,6 +745,7 @@ public:
 		{
 			dskh.xoaKhachHang(id);
 			cout << "Xoa thanh cong" << endl;
+			dskh.luuVaoFile(tenFileDSKhachHang);
 		}
 		else
 		{
@@ -763,6 +787,7 @@ public:
 		{
 			dsban.themBan(ban);
 			cout << "Them thanh cong" << endl;
+			dsban.luuVaoFile(tenFileDSBan);
 		}
 		else 
 		{
@@ -783,6 +808,7 @@ public:
 			ban.nhap();
 			dsban.suaBan(id, ban);
 			cout << "Sua thanh cong" << endl;
+			dsban.luuVaoFile(tenFileDSBan);
 		}
 		else
 		{
@@ -801,6 +827,7 @@ public:
 		{
 			dsban.xoaBan(id);
 			cout << "Xoa thanh cong" << endl;
+			dsban.luuVaoFile(tenFileDSBan);
 		}
 		else
 		{
@@ -841,6 +868,7 @@ public:
 		{
 			dssp.themSanPham(sp);
 			cout << "Them thanh cong" << endl;
+			dssp.luuVaoFile(tenFileDSSanPham);
 		}
 		else 
 		{
@@ -861,7 +889,7 @@ public:
 			sp.nhap();
 			dssp.suaSanPham(id, sp);
 			cout << "Sua thanh cong" << endl;
-			
+			dssp.luuVaoFile(tenFileDSSanPham);
 		}
 		else
 		{
@@ -879,6 +907,7 @@ public:
 		{
 			dssp.xoaSanPham(id);
 			cout << "Xoa thanh cong" << endl;
+			dssp.luuVaoFile(tenFileDSSanPham);
 		}
 		else
 		{
@@ -919,6 +948,7 @@ public:
 		{
 			dsctsp.themChiTiet(ctsp);
 			cout << "Them thanh cong" << endl;
+			dsctsp.ghiDuLieuVaoFile(tenFileDSChiTietSanPham);
 		}
 		else 
 		{
@@ -941,6 +971,7 @@ public:
 			ctsp.nhap();
 			dsctsp.suaChiTiet(maNL, maSP, ctsp);
 			cout << "Sua thanh cong" << endl;
+			dsctsp.ghiDuLieuVaoFile(tenFileDSChiTietSanPham);
 		}
 		else
 		{
@@ -960,6 +991,7 @@ public:
 		{
 			dsctsp.xoaChiTiet(maNL, maSP);
 			cout << "Xoa thanh cong" << endl;
+			dsctsp.ghiDuLieuVaoFile(tenFileDSChiTietSanPham);
 		}
 		else
 		{
@@ -1002,6 +1034,7 @@ public:
 		{
 			dsnl.themNguyenLieu(nl);
 			cout << "Them thanh cong" << endl;
+			dsnl.luuVaoFile(tenFileDSNguyenLieu);
 		}
 		else 
 		{
@@ -1022,6 +1055,7 @@ public:
 			nl.nhap();
 			dsnl.suaNguyenLieu(id, nl);
 			cout << "Sua thanh cong" << endl;
+			dsnl.luuVaoFile(tenFileDSNguyenLieu);
 		}
 		else
 		{
@@ -1039,6 +1073,7 @@ public:
 		{
 			dsnl.xoaNguyenLieu(id);
 			cout << "Xoa thanh cong" << endl;
+			dsnl.luuVaoFile(tenFileDSNguyenLieu);
 		}
 		else
 		{
@@ -1139,6 +1174,7 @@ public:
 		{
 			dsncc.themNhaCungCap(ncc);
 			cout << "Them thanh cong" << endl;
+			dsncc.luuVaoFile(tenFileDSNhaCungCap);
 		}
 		else 
 		{
@@ -1158,6 +1194,8 @@ public:
 			cout << "Nhap thong tin moi: \n";
 			ncc.nhap();
 			dsncc.suaNhaCungCap(id, ncc);
+			cout <<"Sua thanh cong\n";
+			dsncc.luuVaoFile(tenFileDSNhaCungCap);
 		}
 		else
 		{
@@ -1175,6 +1213,7 @@ public:
 		{
 			dsncc.xoaNhaCungCap(id);
 			cout << "Xoa thanh cong" << endl;
+			dsncc.luuVaoFile(tenFileDSNhaCungCap);
 		}
 		else
 		{
@@ -1214,6 +1253,7 @@ public:
 		{
 			dsdmsp.themDanhMuc(dmsp);
 			cout << "Them thanh cong" << endl;
+			dsdmsp.luuVaoFile(tenFileDSDanhMucSanPham);
 		}
 		else 
 		{
@@ -1233,6 +1273,8 @@ public:
 			cout << "Nhap thong tin moi: \n";
 			dmsp.nhap();
 			dsdmsp.suaDanhMuc(id, dmsp);
+			cout << "Sua thanh cong\n";
+			dsdmsp.luuVaoFile(tenFileDSDanhMucSanPham);
 		}
 		else
 		{
@@ -1250,6 +1292,7 @@ public:
 		{
 			dsdmsp.xoaDanhMuc(id);
 			cout << "Xoa thanh cong" << endl;
+			dsdmsp.luuVaoFile(tenFileDSDanhMucSanPham);
 		}
 		else
 		{
@@ -1289,6 +1332,7 @@ public:
 		{
 			dskv.themKhuVuc(kv);
 			cout << "Them thanh cong" << endl;
+			dskv.luuVaoFile(tenFileDSKhuVuc);
 		}
 		else 
 		{
@@ -1308,11 +1352,13 @@ public:
 			cout << "Nhap thong tin moi: \n";
 			kv.nhap();
 			dskv.suaKhuVuc(id, kv);
+			cout << "Sua thanh cong\n";
+			dskv.luuVaoFile(tenFileDSKhuVuc);
 		}
 		else
 		{
 			cout << "Khong tim thay khu vuc co ma " << id << endl;
-		}	
+		}
 	}
 
 	void xoaKhuVuc()
@@ -1325,6 +1371,7 @@ public:
 		{
 			dskv.xoaKhuVuc(id);
 			cout << "Xoa thanh cong" << endl;
+			dskv.luuVaoFile(tenFileDSKhuVuc);
 		}
 		else
 		{
@@ -1365,6 +1412,7 @@ public:
 		cout << "Nhap ma hoa don ban can xoa: ";
 		getline(cin, id);
 		dshdb.xoaHoaDon(id);
+		dshdb.ghiDuLieuVaoFile(tenFileDSHoaDonBan);
 	}
 
 	void timKiemHoaDonBan()
@@ -1396,7 +1444,6 @@ public:
 	    for (const auto& hoadon : dshdb.getDSHDB()) {
 	        int month, hoaDonYear; 
 	        tie(month, hoaDonYear) = extractMonthAndYear(hoadon.getNgayBan()); 
-	        cout << month << "," << year;
 	        if (hoaDonYear == year) {
 	            double totalRevenue = hoadon.tinhTongTien();
 	            monthlyRevenue[make_pair(month, year)] += totalRevenue;
@@ -1438,6 +1485,7 @@ public:
 		cout << "Nhap ma hoa don ban can xoa: ";
 		getline(cin, id);
 		dscthdb.xoaChiTiet(id);
+		dscthdb.ghiDuLieuVaoFile(tenFileDSChiTietHoaDonBan);
 	}
 	
 	void timKiemChiTietHoaDonBan()
@@ -1466,6 +1514,7 @@ public:
 	void themHoaDonNhap()
 	{
 		taoHoaDonNhap();
+		dshdn.ghiDuLieuVaoFile(tenFileDSHoaDonNhap);
 	}
 
 	void xoaHoaDonNhap()
@@ -1474,6 +1523,7 @@ public:
 		cout << "Nhap ma hoa don nhap can xoa: ";
 		getline(cin, id);
 		dshdn.xoaHoaDon(id);
+		dshdn.ghiDuLieuVaoFile(tenFileDSHoaDonNhap);
 	}
 
 	void timKiemHoaDonNhap()
@@ -1492,6 +1542,42 @@ public:
 			cout << "Khong tim thay hoa don ban co ma " << id << endl;
 		}
 	}
+	
+	map<pair<int, int>, double> calculateMonthlyRevenue_HDN(const DSHoaDonNhap& dshdn, int year) {
+	    map<pair<int, int>, double> monthlyRevenue; 
+	    
+	    for (const auto& hoadon : dshdn.getDSHDN()) {
+	        int month, hoaDonYear; 
+	        tie(month, hoaDonYear) = extractMonthAndYear(hoadon.getNgayNhap()); 
+	        if (hoaDonYear == year) {
+	            double totalRevenue = hoadon.tinhTongTien();
+	            monthlyRevenue[make_pair(month, year)] += totalRevenue;
+	        }
+	    }
+	    
+	    return monthlyRevenue;
+	}
+	
+	void printMonthlyRevenue_HDN(const map<pair<int, int>, double>& monthlyRevenue) {
+	    cout << "So tien nhap theo tung thang cua nam:" << endl;
+	    for (const auto& entry : monthlyRevenue) {
+	        int month, year; 
+	        tie(month, year) = entry.first; 
+	        double revenue = entry.second;
+	        cout << "Thang " << setw(2) << setfill('0') << month << "/" << year << ": " << fixed << setprecision(2) << revenue << endl;
+	    }
+	}
+
+	
+	void thongKeHoaDonNhapTheoThang() {
+	    int year;
+	    cout << "Nhap nam muon thong ke:"; 
+	    cin >> year;
+	    
+	    map<pair<int, int>, double> monthlyRevenue = calculateMonthlyRevenue_HDN(dshdn, year);
+	    printMonthlyRevenue_HDN(monthlyRevenue);
+	}
+	
 	//chuc nang chi tiet hoa don nhap
 	void hienThiDSChiTietHoaDonNhap()
 	{
@@ -1504,6 +1590,7 @@ public:
 		cout << "Nhap ma hoa don nhap can xoa: ";
 		getline(cin, id);
 		dscthdn.xoaChiTiet(id);
+		dscthdn.ghiDuLieuVaoFile(tenFileDSChiTietHoaDonNhap);
 	}
 	
 	void timKiemChiTietHoaDonNhap()
@@ -1724,6 +1811,7 @@ int main()
 				cout << "2. Xoa hoa don nhap khoi danh sach\n";
 				cout << "3. Tim kiem hoa don nhap\n";
 				cout << "4. Tao hoa don nhap\n";
+				cout << "5. Thong ke hoa don nhap theo thang\n";
 				cout << "0. Tro lai Menu";
 				cout << "\n==========================END===========================\n";
 
@@ -1744,6 +1832,9 @@ int main()
 					break;
 				case 4:
 					qlcf.themHoaDonNhap();
+					break;
+				case 5:
+					qlcf.thongKeHoaDonNhapTheoThang();
 					break;
 				case 0:
 					break;

@@ -1,24 +1,24 @@
 #include "NhaCungCap.h"
 
-NhaCungCap::NhaCungCap() {}
+NhaCungCap::NhaCungCap() : DoiTuong() {}
 
 NhaCungCap::NhaCungCap(const std::string &MaNCC, const std::string &TenNCC, const std::string &DiaChi, const std::string &SDT)
-    : MaNCC(MaNCC), TenNCC(TenNCC), DiaChi(DiaChi), SDT(SDT) {}
+    : DoiTuong(MaNCC, TenNCC), DiaChi(DiaChi), SDT(SDT) {}
 
 std::string NhaCungCap::getMaNCC() const {
-    return MaNCC;
+    return DoiTuong::getMa();
 }
 
 void NhaCungCap::setMaNCC(const std::string &maNCC) {
-    MaNCC = maNCC;
+    DoiTuong::setMa(maNCC);
 }
 
 std::string NhaCungCap::getTenNCC() const {
-    return TenNCC;
+    return DoiTuong::getTen();
 }
 
 void NhaCungCap::setTenNCC(const std::string &tenNCC) {
-    TenNCC = tenNCC;
+    DoiTuong::setTen(tenNCC);
 }
 
 std::string NhaCungCap::getDiaChi() const {
@@ -38,10 +38,7 @@ void NhaCungCap::setSDT(const std::string &sdt) {
 }
 
 void NhaCungCap::nhap() {
-    std::cout << "Nhap Ma NCC: ";
-    std::getline(std::cin, MaNCC);
-    std::cout << "Nhap Ten NCC: ";
-    std::getline(std::cin, TenNCC);
+    DoiTuong::nhap();
     std::cout << "Nhap Dia Chi: ";
     std::getline(std::cin, DiaChi);
     std::cout << "Nhap SDT: ";
@@ -49,8 +46,7 @@ void NhaCungCap::nhap() {
 }
 
 void NhaCungCap::xuat() const {
-    std::cout << "Ma NCC: " << MaNCC << std::endl;
-    std::cout << "Ten NCC: " << TenNCC << std::endl;
+    DoiTuong::xuat();
     std::cout << "Dia Chi: " << DiaChi << std::endl;
     std::cout << "SDT: " << SDT << std::endl;
 }
@@ -62,7 +58,7 @@ void NhaCungCap::luuVaoFile(const std::string &tenFile) const {
         return;
     }
 
-    file << MaNCC << ", " << TenNCC << ", " << DiaChi << ", " << SDT << std::endl;
+    file << getMa() << ", " << getTen() << ", " << DiaChi << ", " << SDT << std::endl;
     file.close();
     
 }

@@ -4,10 +4,8 @@
 #include <iostream>
 #include <fstream>
 
-class Ban {
+class Ban : public DoiTuong {
 private:
-    std::string MaBan;
-    std::string TenBan;
     std::string TrangThai;
 
 public:

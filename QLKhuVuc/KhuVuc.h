@@ -3,13 +3,8 @@
 
 #include <iostream>
 #include <fstream>
-#include <sstream>
 
-class KhuVuc {
-private:
-    std::string MaKV;
-    std::string TenKV;
-
+class KhuVuc : public DoiTuong {
 public:
     KhuVuc();
     KhuVuc(const std::string &MaKV, const std::string &TenKV);

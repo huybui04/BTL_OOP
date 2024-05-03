@@ -4,11 +4,8 @@
 #include <iostream>
 #include <fstream>
 
-class CaLamViec
-{
+class CaLamViec : public DoiTuong {
 private:
-    std::string MaCa;
-    std::string TenCa;
     std::string GioBatDau;
     std::string GioKetThuc;
     double Luong;

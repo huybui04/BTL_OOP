@@ -4,12 +4,9 @@
 #include "../QLCaLamViec/CaLamViec.h"
 using namespace std;
 
-class ChiTietLuong
+class ChiTietLuong : public ChiTietDoiTuong
 {
 private:
-    string MaNV;
-    string MaCa;
-
     int tongSoCa;
     int thangLamViec;
     CaLamViec ca;

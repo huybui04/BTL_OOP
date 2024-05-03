@@ -1,38 +1,38 @@
 #include "HoaDonNhap.h"
 
-HoaDonNhap::HoaDonNhap() {}
+HoaDonNhap::HoaDonNhap() : HoaDon() {}
 
 HoaDonNhap::HoaDonNhap(const std::string &maHDN,const std::string &ngayNhap, const std::string &maNV, const std::string &maNCC)
-    : MaHDN(maHDN), NgayNhap(ngayNhap), MaNV(maNV), MaNCC(maNCC) 
+    : HoaDon(maHDN, ngayNhap), MaNV(maNV), MaNCC(maNCC) 
 {
 	
 }
 
 HoaDonNhap::HoaDonNhap(const std::string &maHDN,const std::string &ngayNhap, const std::string &maNV, const std::string &maNCC, const std::vector<ChiTietHoaDonNhap> &dscthdn)
-    : MaHDN(maHDN), NgayNhap(ngayNhap), MaNV(maNV), MaNCC(maNCC) 
+    : HoaDon(maHDN, ngayNhap), MaNV(maNV), MaNCC(maNCC) 
 {
     for (auto ct : dscthdn)
     {
-        if (ct.getMaHDN() == this->MaHDN)
+        if (ct.getMaHDN() == this->getMaHDN())
             dsCTHDN.push_back(ct);
     }	
 }
 
 
 void HoaDonNhap::setMaHDN(std::string maHDN) {
-    MaHDN = maHDN;
+	HoaDon::setMa(maHDN);
 }
 
 std::string HoaDonNhap::getMaHDN() const {
-    return MaHDN;
+    return HoaDon::getMa();
 }
 
 void HoaDonNhap::setNgayNhap(std::string ngayNhap) {
-    NgayNhap = ngayNhap;
+    HoaDon::setNgay(ngayNhap);
 }
 
 std::string HoaDonNhap::getNgayNhap() const {
-    return NgayNhap;
+    return HoaDon::getNgay();
 }
 
 void HoaDonNhap::setMaNV(const std::string &maNV) {
@@ -61,8 +61,7 @@ std::vector<ChiTietHoaDonNhap> HoaDonNhap::getDsCTHDN() const {
 
 void HoaDonNhap::xuat() const
 {
-    std::cout << "Ma HDN: " << MaHDN << std::endl;
-    std::cout << "Ngay nhap: " << NgayNhap << std::endl;
+    HoaDon::xuat();
     std::cout << "Ma NV: " << MaNV << std::endl;
     std::cout << "Ma NCC " << MaNCC << std::endl;
 }
@@ -78,28 +77,42 @@ void HoaDonNhap::luuVaoFile(const std::string &tenFile) const {
         return;
     }
 
-    file << MaHDN << ", " << NgayNhap << ", " << MaNV << ", " << MaNCC  << std::endl;
+    file << HoaDon::getMa() << ", " << HoaDon::getNgay() << ", " << MaNV << ", " << MaNCC  << std::endl;
     file.close();
 }
 
-double HoaDonNhap::tinhTongTien() const {
+double HoaDonNhap::tinhTongTien() const
+{
     double tongTien = 0.0;
-    for (auto ct : dsCTHDN) 
+    
+    DSNguyenLieu dsnl;
+    dsnl.docDuLieuTuFile("QLNguyenLieu/nguyenlieu.txt");
+    
+    DSChiTietHoaDonNhap dscthdn;
+    dscthdn.docDuLieuTuFile("QLChiTietHoaDonNhap/chitiethoadonnhap.txt");
+    
+    for(auto nl : dsnl.getDSNL()) 
 	{
-        if (ct.getMaHDN() == this->MaHDN)
+    	for(auto ct : dscthdn.getDSCTHDN())
+    	{
+    		if(trim_(nl.getMaNL()) == trim_(ct.getMaNL()))
+    		{
+    			ct.setNL(nl);
+			}
+			if (ct.getMaHDN() == this->getMaHDN())
             tongTien += ct.tinhThanhTien();
-    }
-    return tongTien;
+		}
+	}
+	return tongTien;
 }
 
 void HoaDonNhap::hienThi() const {
-    std::cout << "Ma Hoa Don: " << MaHDN << std::endl;
-    std::cout << "Ngay Nhap: " << NgayNhap << std::endl;
+	HoaDon::xuat();
     std::cout << "Ma Nhan Vien: " << MaNV << std::endl;
     std::cout << "Ma Nha Cung Cap: " << MaNCC << std::endl;
     std::cout << "Danh Sach Chi Tiet Hoa Don Nhap:" << std::endl;
     for (auto ct : dsCTHDN) {
-        if (ct.getMaHDN() == this->MaHDN)
+        if (ct.getMaHDN() == this->getMaHDN())
             std::cout << "   + " << ct.getMaHDN() << " - So Luong: " << ct.getSoLuongNhap() << " - Thanh Tien: " << ct.tinhThanhTien() << std::endl;
     }
     std::cout << "Tong Tien: " << tinhTongTien() << " VND" << std::endl;

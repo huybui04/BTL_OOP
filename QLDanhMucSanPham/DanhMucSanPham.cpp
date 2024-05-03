@@ -1,48 +1,35 @@
 #include "DanhMucSanPham.h"
 
-DanhMucSanPham::DanhMucSanPham(){}
+DanhMucSanPham::DanhMucSanPham() : DoiTuong() {}
 
 DanhMucSanPham::DanhMucSanPham(const std::string &MaDM, const std::string &TenDM)
-		: MaDM(MaDM), TenDM(TenDM) {}
+    : DoiTuong(MaDM, TenDM) {}
 		
 std::string DanhMucSanPham::getMaDM() const {
-	return MaDM;
+	return DoiTuong::getMa();
 }
 
 void DanhMucSanPham::setMaDM(const std::string &maDM) {
-    MaDM = maDM;
+	DoiTuong::setMa(maDM);
 }
 
 std::string DanhMucSanPham::getTenDM() const {
-    return TenDM;
+    return DoiTuong::getTen();
 }
 
 void DanhMucSanPham::setTenDM(const std::string &tenDM) {
-    TenDM = tenDM;
+    DoiTuong::setTen(tenDM);
 }
 
 void DanhMucSanPham::nhap() {
-    std::cout << "Nhap Ma DM: ";
-    std::cin >> MaDM;
-    std::cout << "Nhap Ten DM: ";
-    std::cin.ignore();
-    std::getline(std::cin, TenDM);
-    std::cin.clear();
+    DoiTuong::nhap();
 }
 
 void DanhMucSanPham::xuat() const {
-    std::cout << "Ma DM: " << MaDM << std::endl;
-    std::cout << "Ten DM: " << TenDM << std::endl;
+    DoiTuong::xuat();
 }
 
 void DanhMucSanPham::luuVaoFile(const std::string &tenTep) const {
-    std::ofstream file(tenTep, std::ios_base::app);
-    if (!file.is_open()) {
-        std::cout << "Khong mo duoc file " << tenTep << " de ghi" << std::endl;
-        return;
-    }
-
-    file << MaDM << ", " << TenDM << std::endl;
-    file.close();
+    DoiTuong::luuVaoFile(tenTep);
 }
 

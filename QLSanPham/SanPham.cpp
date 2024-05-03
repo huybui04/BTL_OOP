@@ -1,28 +1,28 @@
 #include "SanPham.h"
 
-SanPham::SanPham() : Gia(0.0) {}
+SanPham::SanPham() : DoiTuong() {}
 
 SanPham::SanPham(const std::string &MaSP, const std::string &TenSP, double Gia)
-    : MaSP(MaSP), TenSP(TenSP), Gia(Gia) {}
+    : DoiTuong(MaSP, TenSP), Gia(Gia) {}
 
 std::string SanPham::getMaSP() const
 {
-    return MaSP;
+    return DoiTuong::getMa();
 }
 
 void SanPham::setMaSP(const std::string &maSP)
 {
-    MaSP = maSP;
+    DoiTuong::setMa(maSP);
 }
 
 std::string SanPham::getTenSP() const
 {
-    return TenSP;
+    return DoiTuong::getTen();
 }
 
 void SanPham::setTenSP(const std::string &tenSP)
 {
-    TenSP = tenSP;
+    DoiTuong::setTen(tenSP);
 }
 
 double SanPham::getGia() const
@@ -37,19 +37,14 @@ void SanPham::setGia(double gia)
 
 void SanPham::nhap()
 {
-    std::cout << "Nhap Ma SP: ";
-    std::cin >> MaSP;
-    std::cout << "Nhap Ten SP: ";
-    std::cin.ignore();
-    std::getline(std::cin, TenSP);
+    DoiTuong::nhap();
     std::cout << "Nhap Gia: ";
     std::cin >> Gia;
 }
 
 void SanPham::xuat() const
 {
-    std::cout << "Ma SP: " << MaSP << std::endl;
-    std::cout << "Ten SP: " << TenSP << std::endl;
+    DoiTuong::xuat();
     std::cout << "Gia: " << Gia << " VND" << std::endl;
 }
 
@@ -61,7 +56,7 @@ void SanPham::luuVaoFile(const std::string &tenFile) const
         return;
     }
 
-    file << MaSP << ", " << TenSP << ", " << Gia << std::endl;
+    file << getMa() << ", " << getTen() << ", " << Gia << std::endl;
     file.close();
     
 }

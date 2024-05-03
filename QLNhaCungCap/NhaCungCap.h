@@ -4,9 +4,9 @@
 #include <iostream>
 #include <fstream>
 
-class NhaCungCap {
+class NhaCungCap : public DoiTuong{
 private:
-    std::string MaNCC, TenNCC, DiaChi, SDT;
+    std::string DiaChi, SDT;
 
 public:
     NhaCungCap();

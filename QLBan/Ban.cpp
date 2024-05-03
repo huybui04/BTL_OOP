@@ -1,24 +1,24 @@
 #include "Ban.h"
 
-Ban::Ban() {}
+Ban::Ban() : DoiTuong() {}
 
 Ban::Ban(const std::string &maBan, const std::string &tenBan, const std::string &trangThai)
-    : MaBan(maBan), TenBan(tenBan), TrangThai(trangThai) {}
+    : DoiTuong(maBan, tenBan), TrangThai(trangThai) {}
 
 std::string Ban::getMaBan() const {
-    return MaBan;
+    return DoiTuong::getMa();
 }
 
 void Ban::setMaBan(const std::string &maBan) {
-    MaBan = maBan;
+    DoiTuong::setMa(maBan);
 }
 
 std::string Ban::getTenBan() const {
-    return TenBan;
+    return DoiTuong::getTen();
 }
 
 void Ban::setTenBan(const std::string &tenBan) {
-    TenBan = tenBan;
+    DoiTuong::setTen(tenBan);
 }
 
 std::string Ban::getTrangThai() const {
@@ -30,17 +30,13 @@ void Ban::setTrangThai(const std::string &trangThai) {
 }
 
 void Ban::nhap() {
-    std::cout << "Nhap Ma Ban: ";
-    std::getline(std::cin, MaBan);
-    std::cout << "Nhap Ten Ban: ";
-    std::getline(std::cin, TenBan);
+    DoiTuong::nhap();
     std::cout << "Nhap Trang Thai: ";
     std::getline(std::cin, TrangThai);
 }
 
 void Ban::xuat() const {
-    std::cout << "Ma Ban: " << MaBan << std::endl;
-    std::cout << "Ten Ban: " << TenBan << std::endl;
+    DoiTuong::xuat();
     std::cout << "Trang Thai: " << TrangThai << std::endl;
 }
 
@@ -51,7 +47,7 @@ void Ban::luuVaoFile(const std::string &tenFile) const {
         return;
     }
 
-    file << MaBan << ", " << TenBan << ", " << TrangThai << std::endl;
+    file << getMa() << ", " << getTen() << ", " << TrangThai << std::endl;
     file.close();   
 }
 

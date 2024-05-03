@@ -1,59 +1,43 @@
 #include "KhachHang.h"
 
-KhachHang::KhachHang() {}
+KhachHang::KhachHang() : Nguoi() {}
 
-KhachHang::KhachHang(std::string MaKH, std::string TenKH, std::string SDT)
-    : MaKH(MaKH), TenKH(TenKH), SDT(SDT) {}
+KhachHang::KhachHang(const std::string &MaKH, const std::string &TenKH, const std::string &SDT)
+    : Nguoi(MaKH, TenKH, SDT) {}
 
 std::string KhachHang::getMaKH() const {
-    return MaKH;
+    return Nguoi::getMa();
 }
 
 void KhachHang::setMaKH(std::string maKH) {
-    MaKH = maKH;
+    Nguoi::setMa(maKH);
 }
 
 std::string KhachHang::getTenKH() const {
-    return TenKH;
+    return DoiTuong::getTen();
 }
 
 void KhachHang::setTenKH(std::string tenKH) {
-    TenKH = tenKH;
+    Nguoi::setTen(tenKH);
 }
 
 std::string KhachHang::getSDT() const {
-    return SDT;
+    return Nguoi::getSDT();
 }
 
 void KhachHang::setSDT(std::string sdt) {
-    SDT = sdt;
+    Nguoi::setSDT(sdt);
 }
 
 void KhachHang::nhap() {
-    std::cout << "Nhap Ma KH: ";
-    std::cin >> MaKH;
-    std::cout << "Nhap Ten KH: ";
-    std::cin.ignore();
-    std::getline(std::cin, TenKH);
-    std::cout << "Nhap SDT: ";
-    std::cin >> SDT;
+    Nguoi::nhap();
 }
 
 void KhachHang::xuat() const {
-    std::cout << "Ma KH: " << MaKH << std::endl;
-    std::cout << "Ten KH: " << TenKH << std::endl;
-    std::cout << "SDT: " << SDT << std::endl;
+    Nguoi::xuat();
 }
 
 void KhachHang::luuVaoFile(const std::string &tenFile) const {
-	std::ofstream file(tenFile, std::ios_base::app);
-    if (!file.is_open()) {
-        std::cout << "Khong mo duoc file " << tenFile << "de ghi" << std::endl;
-        return;
-    }
-
-     file << MaKH << ", " << TenKH << ", " << SDT << std::endl;
-    file.close();
-   
+	Nguoi::luuVaoFile(tenFile);	
 }
 

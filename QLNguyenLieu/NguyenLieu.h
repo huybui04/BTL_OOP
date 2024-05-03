@@ -4,10 +4,8 @@
 #include <iostream>
 #include <fstream>
 
-class NguyenLieu {
+class NguyenLieu : public DoiTuong {
 private:
-    std::string MaNL;
-    std::string TenNL;
     std::string NSX;
     std::string HSD;
     double Gia;

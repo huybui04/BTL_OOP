@@ -11,11 +11,10 @@
 #include "../QLChiTietHoaDonBan/ChiTietHoaDonBan.h"
 #include "../QLChiTietHoaDonBan/DSChiTietHoaDonBan.h"
 
-class HoaDonBan
+class HoaDonBan : public HoaDon
 {
 private:
-    std::string MaHDB, MaNV, MaKH, MaBan;
-    std::string NgayBan;
+    std::string MaNV, MaKH, MaBan;
     std::vector<ChiTietHoaDonBan> dsCTHDB;
 
 public:

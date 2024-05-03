@@ -3,16 +3,15 @@
 
 #include <iostream>
 #include <fstream>
-#include <sstream>
-#include <string>
 
-class NhanVien {
+class NhanVien : public Nguoi {
 private:
-    std::string MaNV, TenNV, SDT, GioiTinh, DiaChi, ChucVu, NgaySinh;
+    std::string GioiTinh, DiaChi, ChucVu, NgaySinh;
 
 public:
     NhanVien();
     NhanVien(std::string MaNV, std::string TenNV, std::string SDT, std::string GioiTinh, std::string DiaChi, std::string ChucVu, std::string NgaySinh);
+    
     std::string getMaNV() const;
     void setMaNV(std::string maNV);
     std::string getTenNV() const;
@@ -27,6 +26,7 @@ public:
     void setChucVu(std::string chucVu);
     std::string getNgaySinh() const;
     void setNgaySinh(std::string ngaySinh);
+    
     void nhap();
     void xuat() const;
     void luuVaoFile(const std::string &tenFile) const;

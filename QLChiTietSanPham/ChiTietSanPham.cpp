@@ -1,34 +1,34 @@
 #include "ChiTietSanPham.h"
 
-ChiTietSanPham::ChiTietSanPham() {}
+ChiTietSanPham::ChiTietSanPham() : ChiTietDoiTuong() {}
 
 ChiTietSanPham::ChiTietSanPham(const std::string &MaNL, const std::string &MaSP, const int &SoLuongSuDung)
-    : MaNL(MaNL), MaSP(MaSP), SoLuongSuDung(SoLuongSuDung)
+    : ChiTietDoiTuong(MaNL, MaSP), SoLuongSuDung(SoLuongSuDung)
 {
 }
 
 ChiTietSanPham::ChiTietSanPham(const std::string &MaNL, const std::string &MaSP, const int &SoLuongSuDung, const NguyenLieu &NL, const SanPham &SP)
-    : MaNL(MaNL), MaSP(MaSP), SoLuongSuDung(SoLuongSuDung), NL(NL), SP(SP)
+    : ChiTietDoiTuong(MaNL, MaSP), SoLuongSuDung(SoLuongSuDung), NL(NL), SP(SP)
 {
 }
 
 std::string ChiTietSanPham::getMaNL() const
 {
-    return MaNL;
+    return ChiTietDoiTuong::getMa1();
 }
 
 void ChiTietSanPham::setMaNL(const std::string &MaNL)
 {
-    this->MaNL = MaNL;
+    ChiTietDoiTuong::setMa1(MaNL);
 }
 
 std::string ChiTietSanPham::getMaSP() const
 {
-    return MaSP;
+    return ChiTietDoiTuong::getMa2();
 }
 void ChiTietSanPham::setMaSP(const std::string &MaSP)
 {
-    this->MaSP = MaSP;
+    ChiTietDoiTuong::setMa2(MaSP);
 }
 
 NguyenLieu ChiTietSanPham::getNL() const
@@ -61,8 +61,7 @@ void ChiTietSanPham::setSoLuongSuDung(int SoLuongSuDung)
 
 void ChiTietSanPham::xuat() const
 {
-    std::cout << "Ma NL: " << MaNL << std::endl;
-    std::cout << "Ma SP: " << MaSP << std::endl;
+    ChiTietDoiTuong::xuat();
     std::cout << "So Luong Su Dung: " << SoLuongSuDung << std::endl;
 }
 
@@ -74,6 +73,6 @@ void ChiTietSanPham::luuVaoFile(const std::string &tenFile) const {
         return;
     }
 
-    file << MaNL << ", " << MaSP << ", " << SoLuongSuDung << std::endl;
+    file << ChiTietDoiTuong::getMa1() << ", " << ChiTietDoiTuong::getMa2() << ", " << SoLuongSuDung << std::endl;
     file.close();
 }

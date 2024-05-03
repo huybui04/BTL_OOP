@@ -3,11 +3,9 @@
 
 #include <iostream>
 
-class ChiTietHoaDonBan
+class ChiTietHoaDonBan : public ChiTietDoiTuong
 {
 private:
-	std::string MaHDB;
-	std::string MaSP;
 	int SoLuong;
 	SanPham SP;
 

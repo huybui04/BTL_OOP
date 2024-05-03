@@ -5,12 +5,14 @@
 #include <vector>
 #include "../QLNhanVien/NhanVien.h"
 #include "../QLNhaCungCap/NhaCungCap.h"
+#include "../QLNguyenLieu/NguyenLieu.h"
+#include "../QLNguyenLieu/DSNguyenLieu.h"
 #include "../QLChiTietHoaDonNhap/ChiTietHoaDonNhap.h"
+#include "../QLChiTietHoaDonNhap/DSChiTietHoaDonNhap.h"
 
-class HoaDonNhap 
+class HoaDonNhap : public HoaDon
 {
 private:
-    std::string MaHDN, NgayNhap;
     std::string MaNV, MaNCC; 
     std::vector<ChiTietHoaDonNhap> dsCTHDN;
 

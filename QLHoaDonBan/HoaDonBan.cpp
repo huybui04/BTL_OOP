@@ -1,50 +1,50 @@
 #include "HoaDonBan.h"
 
-HoaDonBan::HoaDonBan(){};
+HoaDonBan::HoaDonBan() : HoaDon() {};
 
 HoaDonBan::HoaDonBan(const std::vector<ChiTietHoaDonBan> &dscthdb)
 {
     for (auto ct : dscthdb)
     {
-        if (ct.getMaHDB() == this->MaHDB)
+        if (ct.getMaHDB() == this->getMaHDB())
             dsCTHDB.push_back(ct);
     }
 }
 
 HoaDonBan::HoaDonBan(const std::string &maHDB, const std::string &ngayBan, const std::string &manv, const std::string &makh, const std::string &maban)
-    : MaHDB(maHDB), NgayBan(ngayBan), MaNV(manv), MaKH(makh), MaBan(maban)
+    : HoaDon(maHDB, ngayBan), MaNV(manv), MaKH(makh), MaBan(maban)
 {
 
 }
 
 HoaDonBan::HoaDonBan(const std::string &maHDB, const std::string &ngayBan, const std::string &manv, const std::string &makh, const std::string &maban, const std::vector<ChiTietHoaDonBan> &dscthdb)
-    : MaHDB(maHDB), NgayBan(ngayBan), MaNV(manv), MaKH(makh), MaBan(maban)
+    : HoaDon(maHDB, ngayBan), MaNV(manv), MaKH(makh), MaBan(maban)
 {
     for (auto ct : dscthdb)
     {
-        if (ct.getMaHDB() == this->MaHDB)
+        if (ct.getMaHDB() == this->getMaHDB())
             dsCTHDB.push_back(ct);
     }
 }
 
 void HoaDonBan::setMaHDB(const std::string &maHDB)
 {
-    MaHDB = maHDB;
+    HoaDon::setMa(maHDB);
 }
 
 std::string HoaDonBan::getMaHDB() const
 {
-    return MaHDB;
+    return HoaDon::getMa();
 }
 
 void HoaDonBan::setNgayBan(const std::string &ngayBan)
 {
-    NgayBan = ngayBan;
+	HoaDon::setNgay(ngayBan);
 }
 
 std::string HoaDonBan::getNgayBan() const
 {
-    return NgayBan;
+	return HoaDon::getNgay();
 }
 
 void HoaDonBan::setMaNV(const std::string manv)
@@ -89,8 +89,7 @@ std::vector<ChiTietHoaDonBan> HoaDonBan::getDsCTHDB() const
 
 void HoaDonBan::xuat() const
 {
-    std::cout << "Ma HDB: " << MaHDB << std::endl;
-    std::cout << "Ngay ban: " << NgayBan << std::endl;
+    HoaDon::xuat();
     std::cout << "Ma NV: " << MaNV << std::endl;
     std::cout << "Ma KH " << MaKH << std::endl;
     std::cout << "Ma Ban: " << MaBan << std::endl;
@@ -108,7 +107,7 @@ void HoaDonBan::luuVaoFile(const std::string &tenFile) const {
         return;
     }
 
-    file << MaHDB << ", " << NgayBan << ", " << MaNV << ", " << MaKH  << ", " << MaBan << std::endl;
+    file << HoaDon::getMa() << ", " << HoaDon::getNgay() << ", " << MaNV << ", " << MaKH  << ", " << MaBan << std::endl;
     file.close();
 }
 
@@ -139,7 +138,7 @@ double HoaDonBan::tinhTongTien() const
     		{
     			ct.setSP(sp);
 			}
-			if (ct.getMaHDB() == this->MaHDB)
+			if (ct.getMaHDB() == this->getMaHDB())
             tongTien += ct.tinhThanhTien();
 		}
 	}
@@ -147,8 +146,7 @@ double HoaDonBan::tinhTongTien() const
 }
 
 void HoaDonBan::hienThi() const {
-    std::cout << "Ma Hoa Don: " << MaHDB << std::endl;
-    std::cout << "Ngay Ban: " << NgayBan << std::endl;
+    HoaDon::xuat();
     std::cout << "Nhan Vien: " << MaNV << std::endl;
     std::cout << "Khach Hang: " << MaKH << std::endl;
     std::cout << "Ban: " << MaBan << std::endl;

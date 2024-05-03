@@ -5,11 +5,9 @@
 #include "../QLNguyenLieu/NguyenLieu.h"
 #include "../QLSanPham/SanPham.h"
 
-class ChiTietSanPham
+class ChiTietSanPham : public ChiTietDoiTuong
 {
 private:
-    std::string MaNL;
-    std::string MaSP;
     int SoLuongSuDung;
     NguyenLieu NL;
     SanPham SP;

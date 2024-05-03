@@ -3,10 +3,8 @@
 
 #include "../QLNguyenLieu/NguyenLieu.h"
 
-class ChiTietHoaDonNhap {
+class ChiTietHoaDonNhap : public ChiTietDoiTuong {
 private:
-    std::string MaHDN; 
-    std::string MaNL; 
     int SoLuongNhap;
 	NguyenLieu NL;
 public:
