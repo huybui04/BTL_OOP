@@ -82,10 +82,6 @@
 #include "QLChiTietLuong/ChiTietLuong.cpp"
 #include "QLChiTietLuong/DSChiTietLuong.cpp"
 
-<<<<<<< HEAD
-//#include <bits/stdc++.h>
-=======
->>>>>>> 2d530b792eb4b5fef622417ea41f38a1a9fe785f
 using namespace std;
 
 string trim(const string &str)
@@ -97,14 +93,14 @@ string trim(const string &str)
 	return str.substr(first, last - first + 1);
 }
 
-std::pair<int, int> extractMonthAndYear(const std::string &date)
-{
-	int day, month, year;
-	char slash;
-	std::stringstream ss(date);
-	ss >> day >> slash >> month >> slash >> year;
-	return std::make_pair(month, year);
+std::pair<int, int> extractMonthAndYear(const std::string& date) {
+    int day, month, year;
+    char slash; 
+    std::stringstream ss(date);
+    ss >> day >> slash >> month >> slash >> year;
+    return std::make_pair(month, year);
 }
+
 
 class QLQuanCafe
 {
@@ -135,7 +131,7 @@ private:
 	const string tenFileDSCaLamViec = "QLCaLamViec/calamviec.txt";
 	const string tenFileDSDanhMucSanPham = "QLDanhMucSanPham/danhmucsanpham.txt";
 	const string tenFileDSKhuVuc = "QLKhuVuc/khuvuc.txt";
-
+	
 	const string tenFileDSHoaDonBan = "QLHoaDonBan/hoadonban.txt";
 	const string tenFileDSChiTietHoaDonBan = "QLChiTietHoaDonBan/chitiethoadonban.txt";
 	const string tenFileDSHoaDonNhap = "QLHoaDonNhap/hoadonnhap.txt";
@@ -156,7 +152,7 @@ public:
 		dsclv.docDuLieuTuFile(tenFileDSCaLamViec);
 		dsdmsp.docDuLieuTuFile(tenFileDSDanhMucSanPham);
 		dskv.docDuLieuTuFile(tenFileDSKhuVuc);
-
+		
 		dscthdb.docDuLieuTuFile(tenFileDSChiTietHoaDonBan);
 		dshdb.docDuLieuTuFile(tenFileDSHoaDonBan);
 		dscthdn.docDuLieuTuFile(tenFileDSChiTietHoaDonNhap);
@@ -165,8 +161,7 @@ public:
 		dsctl.docDuLieuTuFile(tenFileDSChiTietLuong);
 	}
 
-	void taoHoaDonNhap()
-	{
+	void taoHoaDonNhap() {
 		int soLuongNhap;
 		std::string mhdn;
 		std::string mnv;
@@ -182,9 +177,8 @@ public:
 		int ok_1 = 0;
 		int ok_2 = 0;
 		int ok_3 = 0;
-
-		std::cout << "Nhap so loai nguyen lieu muon nhap: ";
-		std::cin >> soLuongNhap;
+		
+		std::cout << "Nhap so loai nguyen lieu muon nhap: "; std::cin >> soLuongNhap;
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "Nhap ma hoa don nhap: ";
 		std::getline(std::cin, mhdn);
@@ -194,8 +188,7 @@ public:
 		std::getline(std::cin, mncc);
 		std::cout << "Nhap ngay nhap: ";
 		std::getline(std::cin, ngaynhap);
-		for (int i = 0; i < soLuongNhap; i++)
-		{
+		for(int i = 0; i < soLuongNhap; i++) {
 			std::cout << "Nhap ma nguyen lieu thu " << i + 1 << ": ";
 			std::getline(std::cin, mnl);
 			std::cout << "Nhap ten nguyen lieu thu " << i + 1 << ": ";
@@ -209,61 +202,58 @@ public:
 			std::cout << "Nhap so luong thu " << i + 1 << ": ";
 			std::cin >> soluong;
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-			for (auto nv : this->dsnv.getDSNV())
-			{
-				if (mnv == trim(nv.getMaNV()))
+			
+			for(auto nv : this->dsnv.getDSNV()) {
+				if(mnv == trim(nv.getMaNV()))
 				{
 					ok_1 = 1;
 					break;
 				}
 			}
-
-			for (auto ncc : this->dsncc.getDSNCC())
-			{
-				if (mncc == trim(ncc.getMaNCC()))
+			
+			for(auto ncc : this->dsncc.getDSNCC()) {
+				if(mncc == trim(ncc.getMaNCC()))
 				{
 					ok_2 = 1;
 					break;
 				}
 			}
-
-			if (ok_1 == 0)
+			
+			if(ok_1 == 0) 
 			{
 				cout << "Khong co nhan vien nay trong danh sach!\n";
 				return;
 			}
-
-			if (ok_2 == 0)
+			
+			if(ok_2 == 0) 
 			{
 				cout << "Khong co nha cung cap nay trong danh sach!\n";
 				return;
 			}
-
-			for (auto nl : this->dsnl.getDSNL())
-			{
-				if (mnl == trim(nl.getMaNL()))
+			
+			for(auto nl : this->dsnl.getDSNL()) {
+				if(mnl == trim(nl.getMaNL()))
 				{
 					ok_3 = 1;
 					break;
 				}
 			}
-
+			
 			NguyenLieu cthdn_nl(mnl, tnl, ngsx, hsd, gia);
-			if (ok_3 == 0)
+			if(ok_3 == 0) 
 			{
-
-				cthdn_nl.luuVaoFile(tenFileDSNguyenLieu);
+				
+				cthdn_nl.luuVaoFile(tenFileDSNguyenLieu);				
 				dsnl.themNguyenLieu(cthdn_nl);
-			}
-
+			}		
+		
 			ChiTietHoaDonNhap cthd(mhdn, mnl, soluong, cthdn_nl);
 			cthd.luuVaoFile(tenFileDSChiTietHoaDonNhap);
 			dscthdn.themChiTiet(cthd);
-			ds.push_back(cthd);
-		}
-
-		HoaDonNhap hdn(mhdn, ngaynhap, mnv, mncc, ds);
+			ds.push_back(cthd);	
+		}		
+		
+		HoaDonNhap hdn(mhdn,ngaynhap,mnv,mncc,ds);
 		hdn.luuVaoFile(tenFileDSHoaDonNhap);
 		dshdn.themHoaDon(hdn);
 		hdn.hienThi();
@@ -473,13 +463,13 @@ public:
 		cout << "Nhap thong tin nhan vien can them: \n";
 		nv.nhap();
 		NhanVien *n_v = dsnv.timKiemTheoMa(nv.getMaNV());
-		if (!n_v)
+		if (!n_v) 
 		{
 			dsnv.themNhanVien(nv);
 			cout << "Them thanh cong" << endl;
 			dsnv.luuVaoFile(tenFileDSNhanVien);
 		}
-		else
+		else 
 		{
 			cout << "Da co nhan vien nay trong danh sach" << endl;
 		}
@@ -497,12 +487,8 @@ public:
 			cout << "Nhap thong tin moi: \n";
 			nv.nhap();
 			dsnv.suaNhanVien(id, nv);
-<<<<<<< HEAD
 			cout << "Da sua thanh cong"<< endl;
 			dsnv.luuVaoFile(tenFileDSNhanVien);
-=======
-			cout << "Da sua thanh cong" << endl;
->>>>>>> 2d530b792eb4b5fef622417ea41f38a1a9fe785f
 		}
 		else
 		{
@@ -557,13 +543,13 @@ public:
 		cout << "Nhap thong tin ca lam viec can them: \n";
 		clv.nhap();
 		CaLamViec *c_l_v = dsclv.timKiemTheoMa(clv.getMaCa());
-		if (!c_l_v)
+		if (!c_l_v) 
 		{
 			dsclv.themCaLamViec(clv);
 			cout << "Them thanh cong" << endl;
 			dsclv.ghiDuLieuVaoFile(tenFileDSCaLamViec);
 		}
-		else
+		else 
 		{
 			cout << "Da co ca lam viec nay trong danh sach" << endl;
 		}
@@ -605,6 +591,7 @@ public:
 		{
 			cout << "Khong tim thay ca lam viec co ma " << id << endl;
 		}
+		
 	}
 
 	void timCaLamViec()
@@ -650,12 +637,8 @@ public:
 		if (ctl)
 		{
 			dsctl.suaChiTietLuong(maNV, maCa);
-<<<<<<< HEAD
 			cout << "Chi tiet luong cua nhan vien co ma " << maNV << " va co ma ca la " << maCa << " da bi xoa khoi danh sach"<< endl;
 			dsctl.ghiDuLieuVaoFile(tenFileDSChiTietLuong);
-=======
-			cout << "Chi tiet luong cua nhan vien co ma " << maNV << " va co ma ca la " << maCa << " da bi xoa khoi danh sach" << endl;
->>>>>>> 2d530b792eb4b5fef622417ea41f38a1a9fe785f
 		}
 		else
 		{
@@ -698,12 +681,12 @@ public:
 	{
 		dsctl.tinhLuongTungThangCuaMoiNhanVien();
 	}
-
+		
 	void hienThiChiTietLuongTheoThang()
 	{
 		dsctl.hienThiDanhSachLuongTheoThang();
 	}
-
+	
 	// chuc nang khach hang
 	void hienThiDSKH()
 	{
@@ -716,16 +699,16 @@ public:
 		cout << "Nhap thong tin khach hang can them: \n";
 		kh.nhap();
 		KhachHang *k_h = dskh.timKiemTheoMa(kh.getMaKH());
-		if (k_h == nullptr)
+		if (k_h == nullptr)  
 		{
 			dskh.themKhachHang(kh);
 			cout << "Them thanh cong" << endl;
 			dskh.luuVaoFile(tenFileDSKhachHang);
 		}
-		else
+		else 
 		{
 			cout << "Da co khach hang nay trong danh sach" << endl;
-		}
+		}	
 	}
 
 	void suaKhachHang()
@@ -799,13 +782,13 @@ public:
 		cout << "Nhap thong tin ban can them:\n";
 		ban.nhap();
 		Ban *ban_ = dsban.timKiemTheoMa(ban.getMaBan());
-		if (!ban_)
+		if (!ban_) 
 		{
 			dsban.themBan(ban);
 			cout << "Them thanh cong" << endl;
 			dsban.luuVaoFile(tenFileDSBan);
 		}
-		else
+		else 
 		{
 			cout << "Da co ban nay trong danh sach" << endl;
 		}
@@ -829,7 +812,8 @@ public:
 		else
 		{
 			cout << "Khong tim thay ban co ma " << id << endl;
-		}
+		}	
+		
 	}
 
 	void xoaBan()
@@ -847,7 +831,7 @@ public:
 		else
 		{
 			cout << "Khong tim thay ban co ma " << id << endl;
-		}
+		}	
 	}
 
 	void timKiemBanTheoMa()
@@ -879,16 +863,16 @@ public:
 		cout << "Nhap thong tin san pham can them: \n";
 		sp.nhap();
 		SanPham *s_p = dssp.timKiemSanPham(sp.getMaSP());
-		if (s_p == nullptr)
+		if (s_p == nullptr)  
 		{
 			dssp.themSanPham(sp);
 			cout << "Them thanh cong" << endl;
 			dssp.luuVaoFile(tenFileDSSanPham);
 		}
-		else
+		else 
 		{
 			cout << "Da co san pham nay trong danh sach" << endl;
-		}
+		}	
 	}
 
 	void suaSanPham()
@@ -904,15 +888,12 @@ public:
 			sp.nhap();
 			dssp.suaSanPham(id, sp);
 			cout << "Sua thanh cong" << endl;
-<<<<<<< HEAD
 			dssp.luuVaoFile(tenFileDSSanPham);
-=======
->>>>>>> 2d530b792eb4b5fef622417ea41f38a1a9fe785f
 		}
 		else
 		{
 			cout << "Khong tim thay san pham co ma " << id << endl;
-		}
+		}	
 	}
 
 	void xoaSanPham()
@@ -962,18 +943,18 @@ public:
 		cout << "Nhap thong tin chi tiet san pham can them: \n";
 		ctsp.nhap();
 		ChiTietSanPham *ctsp_ = dsctsp.timKiemChiTietTheoMa(ctsp.getMaNL(), ctsp.getMaSP());
-		if (ctsp_ == nullptr)
+		if (ctsp_ == nullptr)  
 		{
 			dsctsp.themChiTiet(ctsp);
 			cout << "Them thanh cong" << endl;
 			dsctsp.ghiDuLieuVaoFile(tenFileDSChiTietSanPham);
 		}
-		else
+		else 
 		{
 			cout << "Da co chi tiet san pham nay trong danh sach" << endl;
-		}
+		}	
 	}
-
+	
 	void suaChiTietSanPham()
 	{
 		string maSP, maNL;
@@ -994,7 +975,7 @@ public:
 		else
 		{
 			cout << "Khong tim thay chi tiet san pham co ma san pham " << maSP << " va ma nguyen lieu " << maNL << endl;
-		}
+		}	
 	}
 
 	void xoaChiTietSanPham()
@@ -1014,7 +995,7 @@ public:
 		else
 		{
 			cout << "Khong tim thay chi tiet san pham co ma san pham " << maSP << " va ma nguyen lieu " << maNL << endl;
-		}
+		}	
 	}
 
 	void timKiemChiTietSanPham()
@@ -1043,21 +1024,21 @@ public:
 	}
 
 	void themNguyenLieu()
-	{
+	{	
 		NguyenLieu nl;
 		cout << "Nhap thong tin nguyen lieu can them: \n";
 		nl.nhap();
 		NguyenLieu *n_l = dsnl.timKiemNguyenLieu(nl.getMaNL());
-		if (n_l == nullptr)
+		if (n_l == nullptr)  
 		{
 			dsnl.themNguyenLieu(nl);
 			cout << "Them thanh cong" << endl;
 			dsnl.luuVaoFile(tenFileDSNguyenLieu);
 		}
-		else
+		else 
 		{
 			cout << "Da co nguyen lieu nay trong danh sach" << endl;
-		}
+		}	
 	}
 
 	void suaNguyenLieu()
@@ -1078,7 +1059,7 @@ public:
 		else
 		{
 			cout << "Khong tim thay nguyen lieu co ma " << id << endl;
-		}
+		}		
 	}
 
 	void xoaNguyenLieu()
@@ -1096,7 +1077,7 @@ public:
 		else
 		{
 			cout << "Khong tim thay nguyen lieu co ma " << id << endl;
-		}
+		}		
 	}
 
 	void timKiemNguyenLieu()
@@ -1115,7 +1096,7 @@ public:
 			cout << "Khong tim thay nguyen lieu co ma " << id << endl;
 		}
 	}
-
+	
 	int tinhTongSoNguyenLieuNhap(string manl)
 	{
 		int tongSLBD = 0;
@@ -1138,7 +1119,7 @@ public:
 		int tongSLSD = 0;
 
 		for (auto ctsp : this->dsctsp.getDSCTSP())
-		{
+		{	
 			if (trim(ctsp.getMaNL()) == manl)
 			{
 				ds_masp_soluong_lienquan.push_back({ctsp.getMaSP(), ctsp.getSoLuongSuDung()});
@@ -1161,12 +1142,11 @@ public:
 	{
 		cout << "Nhap ma nguyen lieu muon kiem tra ton kho:";
 		string manl;
-		cin >> manl;
+		cin>>manl;
 		int ok = 0;
-
-		for (auto nl : dsnl.getDSNL())
-		{
-			if (trim(nl.getMaNL()) == manl)
+		
+		for(auto nl : dsnl.getDSNL()) {
+			if(trim(nl.getMaNL()) == manl)
 			{
 				int TongNLBD = tinhTongSoNguyenLieuNhap(manl);
 				int TongNLSD = tinhTongSoNguyenLieuSuDung(manl);
@@ -1174,9 +1154,7 @@ public:
 				return TongNLBD - TongNLSD;
 			}
 		}
-		if (ok == 0)
-			cout << "Khong co ma nguyen lieu nay trong kho!\n";
-		return 0;
+		if(ok==0) cout << "Khong co ma nguyen lieu nay trong kho!\n";
 	}
 
 	// chuc nang nha cung cap
@@ -1191,13 +1169,13 @@ public:
 		cout << "Nhap thong tin nha cung cap can them: \n";
 		ncc.nhap();
 		NhaCungCap *ncc_ = dsncc.timKiemNhaCungCap(ncc.getMaNCC());
-		if (ncc_ == nullptr)
+		if (ncc_ == nullptr)  
 		{
 			dsncc.themNhaCungCap(ncc);
 			cout << "Them thanh cong" << endl;
 			dsncc.luuVaoFile(tenFileDSNhaCungCap);
 		}
-		else
+		else 
 		{
 			cout << "Da co nha cung cap nay trong danh sach" << endl;
 		}
@@ -1221,7 +1199,7 @@ public:
 		else
 		{
 			cout << "Khong tim thay nha cung cap co ma " << id << endl;
-		}
+		}	
 	}
 
 	void xoaNhaCungCap()
@@ -1258,7 +1236,7 @@ public:
 		}
 	}
 
-	// chuc nang dmsap
+	//chuc nang dmsap
 	void hienThiDSDanhMucSanPham()
 	{
 		dsdmsp.hienThiDanhSach();
@@ -1270,13 +1248,13 @@ public:
 		cout << "Nhap thong tin danh muc san pham can them: \n";
 		dmsp.nhap();
 		DanhMucSanPham *dmsp_ = dsdmsp.timKiemTheoMa(dmsp.getMaDM());
-		if (dmsp_ == nullptr)
+		if (dmsp_ == nullptr)  
 		{
 			dsdmsp.themDanhMuc(dmsp);
 			cout << "Them thanh cong" << endl;
 			dsdmsp.luuVaoFile(tenFileDSDanhMucSanPham);
 		}
-		else
+		else 
 		{
 			cout << "Da co danh muc nay trong danh sach" << endl;
 		}
@@ -1300,7 +1278,7 @@ public:
 		else
 		{
 			cout << "Khong tim thay danh muc co ma " << id << endl;
-		}
+		}	
 	}
 
 	void xoaDanhMucSanPham()
@@ -1337,7 +1315,7 @@ public:
 		}
 	}
 
-	// chuc nang khu vuc
+	//chuc nang khu vuc
 	void hienThiDSKhuVuc()
 	{
 		dskv.hienThiDanhSach();
@@ -1349,13 +1327,13 @@ public:
 		cout << "Nhap thong tin khu vuc can them: \n";
 		kv.nhap();
 		KhuVuc *k_v = dskv.timKiemTheoMa(kv.getMaKV());
-		if (k_v == nullptr)
+		if (k_v == nullptr)  
 		{
 			dskv.themKhuVuc(kv);
 			cout << "Them thanh cong" << endl;
 			dskv.luuVaoFile(tenFileDSKhuVuc);
 		}
-		else
+		else 
 		{
 			cout << "Da co khu vuc nay trong danh sach" << endl;
 		}
@@ -1453,14 +1431,11 @@ public:
 		}
 	}
 
-	void tinhTongTienHoaDonBan()
-	{
-		for (auto hd : dshdb.getDSHDB())
-		{
+	void tinhTongTienHoaDonBan() {
+		for(auto hd : dshdb.getDSHDB()) {
 			cout << "HDB " << hd.getMaHDB() << ": " << hd.tinhTongTien() << endl;
 		}
 	}
-<<<<<<< HEAD
 	
 	map<pair<int, int>, double> calculateMonthlyRevenue(const DSHoaDonBan& dshdb, int year) {
 	    map<pair<int, int>, double> monthlyRevenue; 
@@ -1497,51 +1472,6 @@ public:
 	    printMonthlyRevenue(monthlyRevenue);
 	}
 	
-=======
-
-	map<pair<int, int>, double> calculateYearlyRevenue(const DSHoaDonBan &dshdb, int year)
-	{
-		map<pair<int, int>, double> monthlyRevenue;
-
-		for (const auto &hoadon : dshdb.getDSHDB())
-		{
-			int month, hoaDonYear;
-			tie(month, hoaDonYear) = extractMonthAndYear(hoadon.getNgayBan());
-
-			if (hoaDonYear == year)
-			{
-				cout << month << "," << hoaDonYear << endl;
-				double totalRevenue = hoadon.tinhTongTien();
-				monthlyRevenue[make_pair(month, year)] += totalRevenue;
-			}
-		}
-
-		return monthlyRevenue;
-	}
-
-	void printMonthlyRevenue(const map<pair<int, int>, double> &monthlyRevenue)
-	{
-		cout << "\nDoanh thu theo tung thang cua nam:" << endl;
-		for (const auto &entry : monthlyRevenue)
-		{
-			int month, year;
-			tie(month, year) = entry.first;
-			double revenue = entry.second;
-			cout << "Thang " << setw(2) << setfill('0') << month << "/" << year << ": " << fixed << setprecision(2) << revenue << endl;
-		}
-	}
-
-	void thongKeHoaDonBanTheoThang()
-	{
-		int year;
-		cout << "Nhap nam muon thong ke:";
-		cin >> year;
-
-		map<pair<int, int>, double> monthlyRevenue = calculateYearlyRevenue(dshdb, year);
-		printMonthlyRevenue(monthlyRevenue);
-	}
-
->>>>>>> 2d530b792eb4b5fef622417ea41f38a1a9fe785f
 	// chuc nang chi tiet hoa don ban
 	void hienThiDSChiTietHoaDonBan()
 	{
@@ -1556,7 +1486,7 @@ public:
 		dscthdb.xoaChiTiet(id);
 		dscthdb.ghiDuLieuVaoFile(tenFileDSChiTietHoaDonBan);
 	}
-
+	
 	void timKiemChiTietHoaDonBan()
 	{
 		string id;
@@ -1611,7 +1541,6 @@ public:
 			cout << "Khong tim thay hoa don ban co ma " << id << endl;
 		}
 	}
-<<<<<<< HEAD
 	
 	map<pair<int, int>, double> calculateMonthlyRevenue_HDN(const DSHoaDonNhap& dshdn, int year) {
 	    map<pair<int, int>, double> monthlyRevenue; 
@@ -1649,49 +1578,6 @@ public:
 	}
 	
 	//chuc nang chi tiet hoa don nhap
-=======
-
-	map<pair<int, int>, double> calculateMonthlyRevenue_HDN(const DSHoaDonNhap &dshdn, int year)
-	{
-		map<pair<int, int>, double> monthlyRevenue;
-
-		for (const auto &hoadon : dshdn.getDSHDN())
-		{
-			int month, hoaDonYear;
-			tie(month, hoaDonYear) = extractMonthAndYear(hoadon.getNgayNhap());
-			if (hoaDonYear == year)
-			{
-				double totalRevenue = hoadon.tinhTongTien();
-				monthlyRevenue[make_pair(month, year)] += totalRevenue;
-			}
-		}
-
-		return monthlyRevenue;
-	}
-
-	void printMonthlyRevenue_HDN(const map<pair<int, int>, double> &monthlyRevenue)
-	{
-		cout << "So tien nhap theo tung thang cua nam:" << endl;
-		for (const auto &entry : monthlyRevenue)
-		{
-			int month, year;
-			tie(month, year) = entry.first;
-			double revenue = entry.second;
-			cout << "Thang " << setw(2) << setfill('0') << month << "/" << year << ": " << fixed << setprecision(2) << revenue << endl;
-		}
-	}
-
-	void thongKeHoaDonNhapTheoThang()
-	{
-		int year;
-		cout << "Nhap nam muon thong ke:";
-		cin >> year;
-
-		map<pair<int, int>, double> monthlyRevenue = calculateMonthlyRevenue_HDN(dshdn, year);
-		printMonthlyRevenue_HDN(monthlyRevenue);
-	}
-	// chuc nang chi tiet hoa don nhap
->>>>>>> 2d530b792eb4b5fef622417ea41f38a1a9fe785f
 	void hienThiDSChiTietHoaDonNhap()
 	{
 		dscthdn.hienThiDanhSach();
@@ -1705,7 +1591,7 @@ public:
 		dscthdn.xoaChiTiet(id);
 		dscthdn.ghiDuLieuVaoFile(tenFileDSChiTietHoaDonNhap);
 	}
-
+	
 	void timKiemChiTietHoaDonNhap()
 	{
 		string id;
@@ -1851,7 +1737,7 @@ int main()
 				cout << "3. Xoa hoa don ban khoi danh sach\n";
 				cout << "4. Tinh tien hoa don ban\n";
 				cout << "5. Tim kiem hoa don ban theo ma hoa don ban\n";
-				cout << "6. Thong ke hoa don ban theo nam\n";
+				cout << "6. Thong ke hoa don ban theo thang\n";
 				cout << "0. Tro lai Menu";
 				cout << "\n==========================END===========================\n";
 
@@ -1948,10 +1834,7 @@ int main()
 					break;
 				case 5:
 					qlcf.thongKeHoaDonNhapTheoThang();
-<<<<<<< HEAD
 					break;
-=======
->>>>>>> 2d530b792eb4b5fef622417ea41f38a1a9fe785f
 				case 0:
 					break;
 				}
@@ -2143,7 +2026,7 @@ int main()
 					qlcf.timKiemNguyenLieu();
 					break;
 				case 6:
-					cout << qlcf.tinhTongSoNguyenLieuTonKho() << endl;
+					cout << "So nguyen lieu ton kho la: " << qlcf.tinhTongSoNguyenLieuTonKho() << endl;
 					break;
 				case 0:
 					break;
