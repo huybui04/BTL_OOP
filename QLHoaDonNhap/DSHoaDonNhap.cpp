@@ -11,7 +11,6 @@ void DSHoaDonNhap::themHoaDon(const HoaDonNhap &hoaDon)
     danhSachHoaDon.push_back(hoaDon);
 }
 
-
 void DSHoaDonNhap::xoaHoaDon(const std::string &maHDN)
 {
     for (auto it = danhSachHoaDon.begin(); it != danhSachHoaDon.end(); ++it)
@@ -78,7 +77,7 @@ void DSHoaDonNhap::docDuLieuTuFile(const std::string &tenFile)
         std::getline(ss, ngaynhap, ',');
         std::getline(ss, manv, ',');
         std::getline(ss, mancc);
-        
+
         HoaDonNhap hdn(mahdn, ngaynhap, manv, mancc);
         themHoaDon(hdn);
     }
@@ -103,7 +102,7 @@ void DSHoaDonNhap::ghiDuLieuVaoFile(const std::string &tenFile)
     }
 }
 
-HoaDonNhap *DSHoaDonNhap::timKiemHoaDonTheoMa(const string &maHDN)
+HoaDonNhap *DSHoaDonNhap::timKiemHoaDonTheoMa(const std::string &maHDN)
 {
     for (auto &hdn : danhSachHoaDon)
     {
