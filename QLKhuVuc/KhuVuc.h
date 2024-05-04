@@ -3,8 +3,10 @@
 
 #include <iostream>
 #include <fstream>
+#include "../DoiTuong.h"
 
-class KhuVuc : public DoiTuong {
+class KhuVuc : public DoiTuong
+{
 public:
     KhuVuc();
     KhuVuc(const std::string &MaKV, const std::string &TenKV);
@@ -20,4 +22,3 @@ public:
 };
 
 #endif
-

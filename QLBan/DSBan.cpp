@@ -103,7 +103,7 @@ void DSBan::luuVaoFile(const std::string &tenTep)
     file.close();
 }
 
-Ban *DSBan::timKiemTheoMa(const string &maBan)
+Ban *DSBan::timKiemTheoMa(const std::string &maBan)
 {
     for (auto &ban : danhSachBan)
     {

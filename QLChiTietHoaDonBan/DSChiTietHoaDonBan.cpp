@@ -1,5 +1,6 @@
 #include "DSChiTietHoaDonBan.h"
 #include <fstream>
+#include <sstream>
 
 std::vector<ChiTietHoaDonBan> DSChiTietHoaDonBan::getDSCTHDB() const
 {
@@ -49,7 +50,7 @@ ChiTietHoaDonBan DSChiTietHoaDonBan::timKiemChiTiet(const std::string &MaHDB)
 
 void DSChiTietHoaDonBan::hienThiDanhSach() const
 {
-    cout << "\n\n\tDanh sach chi tiet hoa don ban\n\n";
+    std::cout << "\n\n\tDanh sach chi tiet hoa don ban\n\n";
     for (const auto &cthdb : danhSachChiTietHoaDonBan)
     {
         cthdb.xuat();
@@ -102,7 +103,7 @@ void DSChiTietHoaDonBan::ghiDuLieuVaoFile(const std::string &tenFile)
     }
 }
 
-ChiTietHoaDonBan *DSChiTietHoaDonBan::timKiemChiTietHoaDonTheoMa(const string &maHDB)
+ChiTietHoaDonBan *DSChiTietHoaDonBan::timKiemChiTietHoaDonTheoMa(const std::string &maHDB)
 {
     for (auto &cthdb : danhSachChiTietHoaDonBan)
     {

@@ -1,6 +1,7 @@
 #include "HoaDonBan.h"
+#include <string>
 
-HoaDonBan::HoaDonBan() : HoaDon() {};
+HoaDonBan::HoaDonBan() : HoaDon(){};
 
 HoaDonBan::HoaDonBan(const std::vector<ChiTietHoaDonBan> &dscthdb)
 {
@@ -14,7 +15,6 @@ HoaDonBan::HoaDonBan(const std::vector<ChiTietHoaDonBan> &dscthdb)
 HoaDonBan::HoaDonBan(const std::string &maHDB, const std::string &ngayBan, const std::string &manv, const std::string &makh, const std::string &maban)
     : HoaDon(maHDB, ngayBan), MaNV(manv), MaKH(makh), MaBan(maban)
 {
-
 }
 
 HoaDonBan::HoaDonBan(const std::string &maHDB, const std::string &ngayBan, const std::string &manv, const std::string &makh, const std::string &maban, const std::vector<ChiTietHoaDonBan> &dscthdb)
@@ -39,12 +39,12 @@ std::string HoaDonBan::getMaHDB() const
 
 void HoaDonBan::setNgayBan(const std::string &ngayBan)
 {
-	HoaDon::setNgay(ngayBan);
+    HoaDon::setNgay(ngayBan);
 }
 
 std::string HoaDonBan::getNgayBan() const
 {
-	return HoaDon::getNgay();
+    return HoaDon::getNgay();
 }
 
 void HoaDonBan::setMaNV(const std::string manv)
@@ -100,59 +100,63 @@ void HoaDonBan::themChiTietHoaDon(const ChiTietHoaDonBan &chiTiet)
     dsCTHDB.push_back(chiTiet);
 }
 
-void HoaDonBan::luuVaoFile(const std::string &tenFile) const {
-	std::ofstream file(tenFile, std::ios_base::app);
-    if (!file.is_open()) {
+void HoaDonBan::luuVaoFile(const std::string &tenFile) const
+{
+    std::ofstream file(tenFile, std::ios_base::app);
+    if (!file.is_open())
+    {
         std::cout << "Khong mo duoc file " << tenFile << "de ghi" << std::endl;
         return;
     }
 
-    file << HoaDon::getMa() << ", " << HoaDon::getNgay() << ", " << MaNV << ", " << MaKH  << ", " << MaBan << std::endl;
+    file << HoaDon::getMa() << ", " << HoaDon::getNgay() << ", " << MaNV << ", " << MaKH << ", " << MaBan << std::endl;
     file.close();
 }
 
-string trim_(const string &str)
+std::string trim_(const std::string &str)
 {
-	size_t first = str.find_first_not_of(" \t\n\r");
-	size_t last = str.find_last_not_of(" \t\n\r");
-	if (first == string::npos || last == string::npos)
-		return "";
-	return str.substr(first, last - first + 1);
+    size_t first = str.find_first_not_of(" \t\n\r");
+    size_t last = str.find_last_not_of(" \t\n\r");
+    if (first == std::string::npos || last == std::string::npos)
+        return "";
+    return str.substr(first, last - first + 1);
 }
 
 double HoaDonBan::tinhTongTien() const
 {
     double tongTien = 0.0;
-    
+
     DSSanPham dssp;
     dssp.docDuLieuTuFile("QLSanPham/sanpham.txt");
-    
+
     DSChiTietHoaDonBan dscthdb;
     dscthdb.docDuLieuTuFile("QLChiTietHoaDonBan/chitiethoadonban.txt");
-    
-    for(auto sp : dssp.getDSSP()) 
-	{
-    	for(auto ct : dscthdb.getDSCTHDB())
-    	{
-    		if(trim_(sp.getMaSP()) == trim_(ct.getMaSP()))
-    		{
-    			ct.setSP(sp);
-			}
-			if (ct.getMaHDB() == this->getMaHDB())
-            tongTien += ct.tinhThanhTien();
-		}
-	}
-	return tongTien;
+
+    for (auto sp : dssp.getDSSP())
+    {
+        for (auto ct : dscthdb.getDSCTHDB())
+        {
+            if (trim_(sp.getMaSP()) == trim_(ct.getMaSP()))
+            {
+                ct.setSP(sp);
+            }
+            if (ct.getMaHDB() == this->getMaHDB())
+                tongTien += ct.tinhThanhTien();
+        }
+    }
+    return tongTien;
 }
 
-void HoaDonBan::hienThi() const {
+void HoaDonBan::hienThi() const
+{
     HoaDon::xuat();
     std::cout << "Nhan Vien: " << MaNV << std::endl;
     std::cout << "Khach Hang: " << MaKH << std::endl;
     std::cout << "Ban: " << MaBan << std::endl;
     std::cout << "Danh Sach Chi Tiet Hoa Don Ban:" << std::endl;
-    for (auto ct : dsCTHDB) {
-            std::cout << "   + " << ct.getMaSP() << " - So Luong: " << ct.getSoLuong() << " - Thanh Tien: " << ct.tinhThanhTien() << std::endl;
+    for (auto ct : dsCTHDB)
+    {
+        std::cout << "   + " << ct.getMaSP() << " - So Luong: " << ct.getSoLuong() << " - Thanh Tien: " << ct.tinhThanhTien() << std::endl;
     }
     std::cout << "Tong Tien: " << tinhTongTien() << " VND" << std::endl;
 }

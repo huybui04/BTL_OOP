@@ -3,8 +3,11 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
+#include "../DoiTuong.h"
 
-class Ban : public DoiTuong {
+class Ban : public DoiTuong
+{
 private:
     std::string TrangThai;
 
@@ -25,4 +28,3 @@ public:
 };
 
 #endif /* BAN_H */
-

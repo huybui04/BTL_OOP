@@ -4,6 +4,7 @@
 #include <iostream>
 #include "../QLNguyenLieu/NguyenLieu.h"
 #include "../QLSanPham/SanPham.h"
+#include "../ChiTietDoiTuong.h"
 
 class ChiTietSanPham : public ChiTietDoiTuong
 {

@@ -3,8 +3,10 @@
 
 #include <iostream>
 #include <fstream>
+#include "../DoiTuong.h"
 
-class SanPham : public DoiTuong {
+class SanPham : public DoiTuong
+{
 private:
     double Gia;
 
@@ -25,4 +27,3 @@ public:
 };
 
 #endif /* SANPHAM_H */
-

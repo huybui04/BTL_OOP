@@ -1,5 +1,6 @@
 #include "DSHoaDonBan.h"
 #include <fstream>
+#include <sstream>
 
 std::vector<HoaDonBan> DSHoaDonBan::getDSHDB() const
 {
@@ -103,7 +104,7 @@ void DSHoaDonBan::ghiDuLieuVaoFile(const std::string &tenFile)
     }
 }
 
-HoaDonBan *DSHoaDonBan::timKiemHoaDonTheoMa(const string &maHDB)
+HoaDonBan *DSHoaDonBan::timKiemHoaDonTheoMa(const std::string &maHDB)
 {
     for (auto &hdb : danhSachHoaDon)
     {

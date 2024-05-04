@@ -72,9 +72,9 @@ void DSSanPham::suaSanPham(const std::string &maSP, const SanPham &sp)
 
 void DSSanPham::xoaSanPham(const std::string &maSP)
 {
-    auto it = std::find_if(danhSachSanPham.begin(), danhSachSanPham.end(),
-                           [maSP](const SanPham &sp)
-                           { return sp.getMaSP() == maSP; });
+    auto it = find_if(danhSachSanPham.begin(), danhSachSanPham.end(),
+                      [maSP](const SanPham &sp)
+                      { return sp.getMaSP() == maSP; });
 
     if (it != danhSachSanPham.end())
     {
@@ -104,7 +104,7 @@ void DSSanPham::luuVaoFile(const std::string &tenTep) const
     file.close();
 }
 
-SanPham *DSSanPham::timKiemSanPham(const string &maSP)
+SanPham *DSSanPham::timKiemSanPham(const std::string &maSP)
 {
     for (auto &sp : danhSachSanPham)
     {

@@ -1,5 +1,6 @@
 #include "DSChiTietHoaDonNhap.h"
 #include <fstream>
+#include <sstream>
 
 std::vector<ChiTietHoaDonNhap> DSChiTietHoaDonNhap::getDSCTHDN() const
 {
@@ -49,7 +50,7 @@ ChiTietHoaDonNhap DSChiTietHoaDonNhap::timKiemChiTiet(const std::string &maHDN)
 
 void DSChiTietHoaDonNhap::hienThiDanhSach() const
 {
-    cout << "\n\n\tDanh sach chi tiet hoa don nhap\n\n";
+    std::cout << "\n\n\tDanh sach chi tiet hoa don nhap\n\n";
     for (const auto &cthdn : danhSachChiTietHoaDonNhap)
     {
         cthdn.xuat();
@@ -102,7 +103,7 @@ void DSChiTietHoaDonNhap::ghiDuLieuVaoFile(const std::string &tenFile)
     }
 }
 
-ChiTietHoaDonNhap *DSChiTietHoaDonNhap::timKiemChiTietHoaDonTheoMa(const string &maHDN)
+ChiTietHoaDonNhap *DSChiTietHoaDonNhap::timKiemChiTietHoaDonTheoMa(const std::string &maHDN)
 {
     for (auto &cthdn : danhSachChiTietHoaDonNhap)
     {

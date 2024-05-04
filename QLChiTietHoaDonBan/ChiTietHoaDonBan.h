@@ -1,6 +1,8 @@
 #ifndef CHITIETHOADONBAN_H
 #define CHITIETHOADONBAN_H
 
+#include "../ChiTietDoiTuong.h"
+#include "../QLSanPham/SanPham.h"
 #include <iostream>
 
 class ChiTietHoaDonBan : public ChiTietDoiTuong
@@ -30,7 +32,7 @@ public:
 	void xuat() const;
 	void hienThi() const;
 	void luuVaoFile(const std::string &tenFile) const;
-	
+
 	double tinhThanhTien() const;
 };
 

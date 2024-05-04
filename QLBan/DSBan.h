@@ -3,8 +3,8 @@
 
 #include "Ban.h"
 #include <iostream>
-#include <fstream>
 #include <vector>
+#include <sstream>
 
 class DSBan
 {
@@ -19,7 +19,7 @@ public:
     void suaBan(const std::string &maBan, const Ban &ban);
     void xoaBan(const std::string &maBan);
     void luuVaoFile(const std::string &tenTep);
-    Ban *timKiemTheoMa(const string &maBan);
+    Ban *timKiemTheoMa(const std::string &maBan);
 };
 
 #endif /* DSBAN_H */

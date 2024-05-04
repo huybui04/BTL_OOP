@@ -1,4 +1,5 @@
 #include "DSNguyenLieu.h"
+#include <sstream>
 
 std::vector<NguyenLieu> DSNguyenLieu::getDSNL() const
 {
@@ -12,7 +13,7 @@ void DSNguyenLieu::themNguyenLieu(const NguyenLieu &nl)
 
 void DSNguyenLieu::hienThiDanhSach() const
 {
-    cout << "\n\n\tDanh sach nguyen lieu\n\n";
+    std::cout << "\n\n\tDanh sach nguyen lieu\n\n";
     for (auto nl : danhSachNguyenLieu)
     {
         nl.xuat();

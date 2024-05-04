@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 
 std::vector<NhaCungCap> DSNhaCungCap::getDSNCC() const
 {
@@ -43,7 +44,7 @@ void DSNhaCungCap::docDuLieuTuFile(const std::string &tenTep)
 
 void DSNhaCungCap::hienThiDanhSach() const
 {
-    cout << "\n\n\t Danh sach nha cung cap\n\n";
+    std::cout << "\n\n\t Danh sach nha cung cap\n\n";
     for (const auto &ncc : danhSachNhaCungCap)
     {
         std::cout << "MaNCC: " << ncc.getMaNCC() << std::endl;
@@ -75,9 +76,9 @@ void DSNhaCungCap::suaNhaCungCap(const std::string &maNCC, const NhaCungCap &ncc
 
 void DSNhaCungCap::xoaNhaCungCap(const std::string &maNCC)
 {
-    auto it = std::find_if(danhSachNhaCungCap.begin(), danhSachNhaCungCap.end(),
-                           [maNCC](const NhaCungCap &ncc)
-                           { return ncc.getMaNCC() == maNCC; });
+    auto it = find_if(danhSachNhaCungCap.begin(), danhSachNhaCungCap.end(),
+                      [maNCC](const NhaCungCap &ncc)
+                      { return ncc.getMaNCC() == maNCC; });
 
     if (it != danhSachNhaCungCap.end())
     {

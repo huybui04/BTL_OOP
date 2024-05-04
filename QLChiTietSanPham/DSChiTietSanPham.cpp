@@ -1,5 +1,6 @@
 #include "DSChiTietSanPham.h"
 #include <fstream>
+#include <sstream>
 
 std::vector<ChiTietSanPham> DSChiTietSanPham::getDSCTSP() const
 {

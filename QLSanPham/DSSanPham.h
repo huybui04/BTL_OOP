@@ -2,6 +2,7 @@
 #define DSSANPHAM_H
 
 #include "SanPham.h"
+#include <algorithm>
 #include <vector>
 
 class DSSanPham

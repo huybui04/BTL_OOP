@@ -3,8 +3,10 @@
 
 #include <iostream>
 #include <fstream>
+#include "../DoiTuong.h"
 
-class NguyenLieu : public DoiTuong {
+class NguyenLieu : public DoiTuong
+{
 private:
     std::string NSX;
     std::string HSD;
@@ -31,4 +33,3 @@ public:
 };
 
 #endif /* NGUYENLIEU_H */
-

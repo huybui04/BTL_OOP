@@ -58,7 +58,7 @@ CaLamViec DSCaLamViec::timKiemCaLamViec(const std::string &maCa)
     return CaLamViec();
 }
 
-CaLamViec *DSCaLamViec::timKiemTheoMa(const string &maCa)
+CaLamViec *DSCaLamViec::timKiemTheoMa(const std::string &maCa)
 {
     for (auto &ca : danhSachCaLamViec)
     {

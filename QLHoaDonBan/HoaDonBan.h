@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 #include "../QLNhanVien/NhanVien.h"
 #include "../QLKhachHang/KhachHang.h"
 #include "../QLBan/Ban.h"
@@ -10,6 +11,7 @@
 #include "../QLSanPham/DSSanPham.h"
 #include "../QLChiTietHoaDonBan/ChiTietHoaDonBan.h"
 #include "../QLChiTietHoaDonBan/DSChiTietHoaDonBan.h"
+#include "../HoaDon.h"
 
 class HoaDonBan : public HoaDon
 {
@@ -37,12 +39,12 @@ public:
     std::vector<ChiTietHoaDonBan> getDsCTHDB() const;
 
     void themChiTietHoaDon(const ChiTietHoaDonBan &chiTiet);
-    
+
     void nhap() const;
-	void xuat() const;
+    void xuat() const;
     void hienThi() const;
     void luuVaoFile(const std::string &tenFile) const;
-    
+
     double tinhTongTien() const;
 };
 

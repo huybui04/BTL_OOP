@@ -3,8 +3,10 @@
 
 #include <iostream>
 #include <fstream>
+#include "../DoiTuong.h"
 
-class NhaCungCap : public DoiTuong{
+class NhaCungCap : public DoiTuong
+{
 private:
     std::string DiaChi, SDT;
 
@@ -30,4 +32,3 @@ public:
 };
 
 #endif /* NHACUNGCAP_H */
-

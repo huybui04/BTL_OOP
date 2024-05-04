@@ -3,8 +3,10 @@
 
 #include <iostream>
 #include <fstream>
+#include "../DoiTuong.h"
 
-class CaLamViec : public DoiTuong {
+class CaLamViec : public DoiTuong
+{
 private:
     std::string GioBatDau;
     std::string GioKetThuc;

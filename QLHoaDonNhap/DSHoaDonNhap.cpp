@@ -1,5 +1,6 @@
 #include "DSHoaDonNhap.h"
 #include <fstream>
+#include <sstream>
 
 std::vector<HoaDonNhap> DSHoaDonNhap::getDSHDN() const
 {

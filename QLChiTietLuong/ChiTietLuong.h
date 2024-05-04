@@ -2,6 +2,7 @@
 #define CHITIETLUONG_H
 
 #include "../QLCaLamViec/CaLamViec.h"
+#include "../ChiTietDoiTuong.h"
 using namespace std;
 
 class ChiTietLuong : public ChiTietDoiTuong
