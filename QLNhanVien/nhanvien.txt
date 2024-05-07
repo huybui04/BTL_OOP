@@ -1,19 +1,9 @@
-NV01, Bui Quang Huy, 0988254667, Nam, Ha Noi, Nhan Vien, 27/11/2004
-NV02, Huy Quang Bui, 0988254668, Nam, Ha Noi, Nhan Vien, 28/11/2004
-NV03, Nguyen Minh Quan, 0989576836, Nam, Ha Noi, Nhan Vien, 19/06/2004
-NV04, Tran Thi Anh, 0987654321, Nu, Ho Chi Minh, Nhan Vien, 01/01/2000
-NV05, Le Van Tuan, 0976543210, Nam, Da Nang, Nhan Vien, 15/05/1995
-NV06, Pham Thi Mai, 0965432109, Nu, Hai Phong, Nhan Vien, 10/10/1998
-NV07, Nguyen Van An, 0987654321, Nam, Ho Chi Minh, Nhan Vien, 01/01/1990
-NV08, Tran Thi Dung, 0976543210, Nu, Da Nang, Nhan Vien, 15/05/1985
-NV09, Le Van Long, 0965432109, Nam, Hai Phong, Nhan Vien, 10/10/1988
-NV01,  Bui Quang Huy,  0988254667,  Nam,  Ha Noi,  Nhan Vien,  27/11/2004
-NV02,  Huy Quang Bui,  0988254668,  Nam,  Ha Noi,  Nhan Vien,  28/11/2004
-NV03,  Nguyen Minh Quan,  0989576836,  Nam,  Ha Noi,  Nhan Vien,  19/06/2004
-NV04,  Tran Thi Anh,  0987654321,  Nu,  Ho Chi Minh,  Nhan Vien,  01/01/2000
-NV05,  Le Van Tuan,  0976543210,  Nam,  Da Nang,  Nhan Vien,  15/05/1995
-NV06,  Pham Thi Mai,  0965432109,  Nu,  Hai Phong,  Nhan Vien,  10/10/1998
-NV07,  Nguyen Van An,  0987654321,  Nam,  Ho Chi Minh,  Nhan Vien,  01/01/1990
-NV08,  Tran Thi Dung,  0976543210,  Nu,  Da Nang,  Nhan Vien,  15/05/1985
-NV09,  Le Van Long,  0965432109,  Nam,  Hai Phong,  Nhan Vien,  10/10/1988
-NV10, Trang, 123213213, Nu, Ha Noi, Nhan Vien, 01/01/1990
+001231412049, Bui Quang Huy, 0988254667, Ha Noi, Nam, 27/11/2004, NV01, Nhan Vien
+001231412049, Huy Quang Bui, 0988254668, Ha Noi, Nam, 28/11/2004, NV02, Nhan Vien
+001231412049, Nguyen Minh Quan, 0989576836, Ha Noi, Nam, 19/06/2004, NV03, Nhan Vien
+001231412049, Tran Thi Anh, 0987654321, Ho Chi Minh, Nu, 01/01/2000, NV04, Nhan Vien
+001231412049, Le Van Tuan, 0976543210, Da Nang, Nam, 15/05/1995, NV05, Nhan Vien
+001231412049, Pham Thi Mai, 0965432109, Hai Phong, Nu, 10/10/1998, NV06, Nhan Vien
+001231412049, Nguyen Van An, 0987654321, Ho Chi Minh, Nam, 01/01/1990, NV07, Nhan Vien
+001231412049, Tran Thi Dung, 0976543210, Da Nang, Nu, 15/05/1985, NV08, Nhan Vien
+001231412049, Le Van Long, 0965432109, Hai Phong, Nam, 10/10/1988, NV09, Nhan Vien

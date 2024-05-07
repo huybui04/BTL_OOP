@@ -28,3 +28,4 @@ public:
 };
 
 #endif /* BAN_H */
+

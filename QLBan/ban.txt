@@ -1,4 +1,4 @@
-Ban01, Ban Mot, Trong
-Ban02, Ban Hai, Trong
-Ban03, Ban Ba, Trong
-Ban04, Ban Bon, Dang su dung
+Ban01, Ban Mot, Trong, KV01
+Ban02, Ban Hai, Trong, KV02
+Ban03, Ban Ba, Trong, KV02
+Ban04, Ban Bon, Dang su dung, KV01
