@@ -3,22 +3,30 @@
 
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include <map>
+#include "../QLSanPham/SanPham.h"
+#include "../QLSanPham/DSsanpham.h"
 #include "../DoiTuong.h"
 
+using namespace std;
 class DanhMucSanPham : public DoiTuong
 {
+private:
+	vector<SanPham> spTheoDanhMuc;
+
 public:
 	DanhMucSanPham();
-	DanhMucSanPham(const std::string &MaDM, const std::string &TenDM);
+	DanhMucSanPham(const string &MaDM, const string &TenDM);
 
-	std::string getMaDM() const;
-	void setMaDM(const std::string &MaDM);
-	std::string getTenDM() const;
-	void setTenDM(const std::string &TenDM);
+	string getMaDM() const;
+	void setMaDM(const string &MaDM);
+	string getTenDM() const;
+	void setTenDM(const string &TenDM);
 
 	void nhap();
 	void xuat() const;
-	void luuVaoFile(const std::string &tenTep) const;
+	void luuVaoFile(const string &tenTep) const;
 };
 
 #endif

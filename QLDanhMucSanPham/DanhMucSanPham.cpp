@@ -1,35 +1,58 @@
 #include "DanhMucSanPham.h"
 
-DanhMucSanPham::DanhMucSanPham() : DoiTuong() {}
+DanhMucSanPham::DanhMucSanPham() {}
 
-DanhMucSanPham::DanhMucSanPham(const std::string &MaDM, const std::string &TenDM)
-    : DoiTuong(MaDM, TenDM) {}
-		
-std::string DanhMucSanPham::getMaDM() const {
-	return DoiTuong::getMa();
+DanhMucSanPham::DanhMucSanPham(const string &MaDM, const string &TenDM) : DoiTuong(MaDM, TenDM)
+{
+    DSSanPham dssp;
+    dssp.docDuLieuTuFile("QLSanPham/sanpham.txt");
+
+    for (const auto &sp : dssp.getDSSP())
+    {
+        if (sp.getMaDanhMuc() == MaDM)
+        {
+            spTheoDanhMuc.push_back(sp);
+        }
+    }
 }
 
-void DanhMucSanPham::setMaDM(const std::string &maDM) {
-	DoiTuong::setMa(maDM);
+string DanhMucSanPham::getMaDM() const
+{
+    return DoiTuong::getMa();
 }
 
-std::string DanhMucSanPham::getTenDM() const {
+void DanhMucSanPham::setMaDM(const string &maDM)
+{
+    DoiTuong::setMa(maDM);
+}
+
+string DanhMucSanPham::getTenDM() const
+{
     return DoiTuong::getTen();
 }
 
-void DanhMucSanPham::setTenDM(const std::string &tenDM) {
+void DanhMucSanPham::setTenDM(const string &tenDM)
+{
     DoiTuong::setTen(tenDM);
 }
 
-void DanhMucSanPham::nhap() {
+void DanhMucSanPham::nhap()
+{
     DoiTuong::nhap();
 }
 
-void DanhMucSanPham::xuat() const {
+void DanhMucSanPham::xuat() const
+{
     DoiTuong::xuat();
+    cout << "\n\tDanh sach san pham thuoc danh muc" << getTenDM() << endl;
+    for (const auto &sp : spTheoDanhMuc)
+    {
+        sp.xuat();
+        cout << endl;
+    }
 }
 
-void DanhMucSanPham::luuVaoFile(const std::string &tenTep) const {
+void DanhMucSanPham::luuVaoFile(const string &tenTep) const
+{
     DoiTuong::luuVaoFile(tenTep);
 }
-

@@ -1,3 +1,5 @@
-DM01, Banh ngot
-DM02, Snack
-DM03, Tra sua
+DM01,Nuoc trai cay
+DM02,Ca phe
+DM03,Tra sua
+DM04,Banh ngot
+DM05,Tra

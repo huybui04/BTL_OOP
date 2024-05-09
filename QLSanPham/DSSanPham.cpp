@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 
-std::vector<SanPham> DSSanPham::getDSSP() const
+vector<SanPham> DSSanPham::getDSSP() const
 {
     return danhSachSanPham;
 }
@@ -13,28 +13,31 @@ void DSSanPham::themSanPham(SanPham &sp)
     danhSachSanPham.push_back(sp);
 }
 
-void DSSanPham::docDuLieuTuFile(const std::string &tenTep)
+void DSSanPham::docDuLieuTuFile(const string &tenTep)
 {
-    std::ifstream file(tenTep);
+    ifstream file(tenTep);
 
     if (!file.is_open())
     {
-        std::cout << "Khong mo duoc file " << tenTep << " de doc!" << std::endl;
+        cout << "Khong mo duoc file " << tenTep << " de doc!" << endl;
         return;
     }
 
-    std::string line;
-    while (std::getline(file, line))
+    string line;
+    while (getline(file, line))
     {
-        std::stringstream ss(line);
-        std::string maSP, tenSP;
+        stringstream ss(line);
+        string maSP, tenSP;
         double gia;
+        string maDanhMuc;
 
-        std::getline(ss, maSP, ',');
-        std::getline(ss, tenSP, ',');
+        getline(ss, maSP, ',');
+        getline(ss, tenSP, ',');
         ss >> gia;
+        ss.ignore();
+        getline(ss, maDanhMuc, ' ');
 
-        SanPham sp(maSP, tenSP, gia);
+        SanPham sp(maSP, tenSP, gia, maDanhMuc);
         danhSachSanPham.push_back(sp);
     }
 
@@ -43,15 +46,15 @@ void DSSanPham::docDuLieuTuFile(const std::string &tenTep)
 
 void DSSanPham::hienThiDanhSach() const
 {
-    std::cout << "\n\n\tDanh sach san pham\n\n";
+    cout << "\n\n\tDanh sach san pham\n\n";
     for (const auto &sp : danhSachSanPham)
     {
         sp.xuat();
-        std::cout << std::endl;
+        cout << endl;
     }
 }
 
-void DSSanPham::suaSanPham(const std::string &maSP, const SanPham &sp)
+void DSSanPham::suaSanPham(const string &maSP, const SanPham &sp)
 {
     bool timThay = false;
     for (auto &sanpham : danhSachSanPham)
@@ -66,11 +69,11 @@ void DSSanPham::suaSanPham(const std::string &maSP, const SanPham &sp)
 
     if (!timThay)
     {
-        std::cerr << "Khong tim thay san pham co MaSP: " << maSP << std::endl;
+        cerr << "Khong tim thay san pham co MaSP: " << maSP << endl;
     }
 }
 
-void DSSanPham::xoaSanPham(const std::string &maSP)
+void DSSanPham::xoaSanPham(const string &maSP)
 {
     auto it = find_if(danhSachSanPham.begin(), danhSachSanPham.end(),
                       [maSP](const SanPham &sp)
@@ -79,20 +82,20 @@ void DSSanPham::xoaSanPham(const std::string &maSP)
     if (it != danhSachSanPham.end())
     {
         danhSachSanPham.erase(it);
-        std::cout << "Da xoa san pham co MaSP: " << maSP << std::endl;
+        cout << "Da xoa san pham co MaSP: " << maSP << endl;
     }
     else
     {
-        std::cerr << "Khong tim thay san pham co MaSP: " << maSP << std::endl;
+        cerr << "Khong tim thay san pham co MaSP: " << maSP << endl;
     }
 }
 
-void DSSanPham::luuVaoFile(const std::string &tenTep) const
+void DSSanPham::luuVaoFile(const string &tenTep) const
 {
-    std::ofstream file(tenTep, std::ios_base::app);
+    ofstream file(tenTep, ios_base::app);
     if (!file.is_open())
     {
-        std::cout << "Khong mo duoc file " << tenTep << "de ghi" << std::endl;
+        cout << "Khong mo duoc file " << tenTep << "de ghi" << endl;
         return;
     }
 
@@ -104,7 +107,7 @@ void DSSanPham::luuVaoFile(const std::string &tenTep) const
     file.close();
 }
 
-SanPham *DSSanPham::timKiemSanPham(const std::string &maSP)
+SanPham *DSSanPham::timKiemSanPham(const string &maSP)
 {
     for (auto &sp : danhSachSanPham)
     {
@@ -114,4 +117,19 @@ SanPham *DSSanPham::timKiemSanPham(const std::string &maSP)
         }
     }
     return nullptr;
+}
+
+void DSSanPham::capNhatFile(const string &tenFile)
+{
+    ofstream file(tenFile);
+    if (!file.is_open())
+    {
+        cout << "Khong mo duoc file " << tenFile << "de ghi" << endl;
+        return;
+    }
+    for (const auto &sp : danhSachSanPham)
+    {
+        sp.luuVaoFile(tenFile);
+    }
+    file.close();
 }

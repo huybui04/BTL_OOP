@@ -3,22 +3,28 @@
 
 #include "DanhMucSanPham.h"
 #include <vector>
-
-class DSDanhMucSanPham {
+#include <map>
+using namespace std;
+class DSDanhMucSanPham
+{
 private:
-    std::vector<DanhMucSanPham> danhSachDanhMuc;
+    vector<DanhMucSanPham> danhSachDanhMuc;
+    map<string, vector<SanPham>> mapSanPham;
 
 public:
-    std::vector<DanhMucSanPham> getDSDM() const;
+    vector<DanhMucSanPham> getDSDM() const;
     void themDanhMuc(const DanhMucSanPham &danhMucSanPham);
-    void xoaDanhMuc(const std::string &maDM);
-    void suaDanhMuc(const std::string &maDM, const DanhMucSanPham &dm);
-    void hienThiDanhSach() const;
-    DanhMucSanPham timKiemDanhMuc(const std::string &maDM);
-    DanhMucSanPham *timKiemTheoMa(const std::string &maDM);
+    void xoaDanhMuc(const string &maDM);
+    void suaDanhMuc(const string &maDM, const DanhMucSanPham &dm);
+    void hienThiDanhSach();
+    DanhMucSanPham timKiemDanhMuc(const string &maDM);
+    DanhMucSanPham *timKiemTheoMa(const string &maDM);
+    // map<string, DanhMucSanPham> getMapDanhMuc();
+    // void xuatMapSanPham();
+    void getData();
 
-    void docDuLieuTuFile(const std::string &tenFile);
-    void luuVaoFile(const std::string &tenTep) const;
+    void docDuLieuTuFile(const string &tenFile);
+    void luuVaoFile(const string &tenTep) const;
 };
 
 #endif

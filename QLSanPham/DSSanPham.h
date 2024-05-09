@@ -5,20 +5,23 @@
 #include <algorithm>
 #include <vector>
 
+using namespace std;
 class DSSanPham
 {
 private:
-    std::vector<SanPham> danhSachSanPham;
+    vector<SanPham> danhSachSanPham;
 
 public:
-    std::vector<SanPham> getDSSP() const;
+    vector<SanPham> getDSSP() const;
     void themSanPham(SanPham &sp);
-    void docDuLieuTuFile(const std::string &tenTep);
+    void docDuLieuTuFile(const string &tenTep);
     void hienThiDanhSach() const;
-    void suaSanPham(const std::string &maSP, const SanPham &sp);
-    void xoaSanPham(const std::string &maSP);
-    void luuVaoFile(const std::string &tenTep) const;
-    SanPham *timKiemSanPham(const std::string &maSP);
+    void suaSanPham(const string &maSP, const SanPham &sp);
+    void xoaSanPham(const string &maSP);
+    void luuVaoFile(const string &tenTep) const;
+    SanPham *timKiemSanPham(const string &maSP);
+
+    void capNhatFile(const string &tenFile);
 };
 
 #endif /* DSSANPHAM_H */

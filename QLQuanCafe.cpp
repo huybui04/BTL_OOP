@@ -871,7 +871,7 @@ public:
 		{
 			dssp.themSanPham(sp);
 			cout << "Them thanh cong" << endl;
-			dssp.luuVaoFile(tenFileDSSanPham);
+			sp.luuVaoFile(tenFileDSSanPham);
 		}
 		else
 		{
@@ -892,7 +892,7 @@ public:
 			sp.nhap();
 			dssp.suaSanPham(id, sp);
 			cout << "Sua thanh cong" << endl;
-			dssp.luuVaoFile(tenFileDSSanPham);
+			dssp.capNhatFile(tenFileDSSanPham);
 		}
 		else
 		{
@@ -910,7 +910,7 @@ public:
 		{
 			dssp.xoaSanPham(id);
 			cout << "Xoa thanh cong" << endl;
-			dssp.luuVaoFile(tenFileDSSanPham);
+			dssp.capNhatFile(tenFileDSSanPham);
 		}
 		else
 		{
@@ -1632,7 +1632,7 @@ public:
 int main()
 {
 
-	cout << fixed << setprecision(2);
+	cout << fixed << setprecision(0);
 	QLQuanCafe qlcf;
 	qlcf.tao(); // Doc du lieu tu file
 
