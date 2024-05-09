@@ -19,12 +19,10 @@ public:
     void hienThiDanhSach();
     DanhMucSanPham timKiemDanhMuc(const string &maDM);
     DanhMucSanPham *timKiemTheoMa(const string &maDM);
-    // map<string, DanhMucSanPham> getMapDanhMuc();
-    // void xuatMapSanPham();
+
     void getData();
 
     void docDuLieuTuFile(const string &tenFile);
     void luuVaoFile(const string &tenTep) const;
 };
-
 #endif

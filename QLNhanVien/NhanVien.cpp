@@ -5,12 +5,14 @@ NhanVien::NhanVien() : Nguoi() {}
 NhanVien::NhanVien(std::string CCCD, std::string TenNV, std::string SDT, std::string DiaChi, std::string GioiTinh, std::string NgaySinh, std::string MaNV, std::string ChucVu)
     : Nguoi(CCCD, TenNV, SDT, DiaChi, GioiTinh, NgaySinh), MaNV(MaNV), ChucVu(ChucVu) {}
 
-std::string NhanVien::getCCCD() const {
-	return Nguoi::getCCCD();
+std::string NhanVien::getCCCD() const
+{
+    return Nguoi::getCCCD();
 }
 
-void NhanVien::setCCCD(std::string cccd) {
-	Nguoi::setCCCD(cccd);
+void NhanVien::setCCCD(std::string cccd)
+{
+    Nguoi::setCCCD(cccd);
 }
 
 std::string NhanVien::getTenNV() const
@@ -108,6 +110,6 @@ void NhanVien::luuVaoFile(const std::string &tenFile) const
         return;
     }
 
-    file << Nguoi::getCCCD() << ", " << Nguoi::getTen() << ", " << Nguoi::getSDT() << ", " << Nguoi::getDiaChi() << ", " << Nguoi::getGioiTinh() << ", " << Nguoi::getNgaySinh() << ", " << MaNV << ", " << ChucVu << std::endl;
+    file << Nguoi::getCCCD() << "," << Nguoi::getTen() << "," << Nguoi::getSDT() << "," << Nguoi::getDiaChi() << "," << Nguoi::getGioiTinh() << "," << Nguoi::getNgaySinh() << "," << MaNV << "," << ChucVu << std::endl;
     file.close();
 }

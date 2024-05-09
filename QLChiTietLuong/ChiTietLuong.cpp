@@ -4,11 +4,11 @@
 
 ChiTietLuong::ChiTietLuong() : ChiTietDoiTuong() {}
 
-ChiTietLuong::ChiTietLuong(const string &MaNV, const string &MaCa, const int &tongSoCa, const int &thangLamViec) 
-: ChiTietDoiTuong(MaNV, MaCa), tongSoCa(tongSoCa), thangLamViec(thangLamViec) {}
+ChiTietLuong::ChiTietLuong(const string &MaNV, const string &MaCa, const int &tongSoCa, const int &thangLamViec)
+    : ChiTietDoiTuong(MaNV, MaCa), tongSoCa(tongSoCa), thangLamViec(thangLamViec) {}
 
-ChiTietLuong::ChiTietLuong(const string &MaNV, const string &MaCa, const int &tongSoCa, const int &thangLamViec, const CaLamViec &ca) 
-: ChiTietDoiTuong(MaNV, MaCa), tongSoCa(tongSoCa), thangLamViec(thangLamViec), ca(ca) {}
+ChiTietLuong::ChiTietLuong(const string &MaNV, const string &MaCa, const int &tongSoCa, const int &thangLamViec, const CaLamViec &ca)
+    : ChiTietDoiTuong(MaNV, MaCa), tongSoCa(tongSoCa), thangLamViec(thangLamViec), ca(ca) {}
 
 string ChiTietLuong::getMaNV() const { return ChiTietDoiTuong::getMa1(); }
 string ChiTietLuong::getMaCa() const { return ChiTietDoiTuong::getMa2(); }
@@ -36,13 +36,12 @@ void ChiTietLuong::nhap()
     cout << "Nhap ma ca: ";
     string MaCa;
     cin >> MaCa;
-    setMa2(MaCa); 
+    setMa2(MaCa);
     cout << "Nhap tong so ca: ";
     cin >> tongSoCa;
     cout << "Nhap thang lam viec: ";
     cin >> thangLamViec;
 }
-
 
 void ChiTietLuong::xuat() const
 {
@@ -61,6 +60,6 @@ void ChiTietLuong::luuDuLieuVaoFile(const string &tenFile)
         return;
     }
 
-    file << ChiTietDoiTuong::getMa1() << ", " << ChiTietDoiTuong::getMa2() << ", " << tongSoCa << ", " << thangLamViec << endl;
+    file << ChiTietDoiTuong::getMa1() << "," << ChiTietDoiTuong::getMa2() << "," << tongSoCa << "," << thangLamViec << endl;
     file.close();
 }

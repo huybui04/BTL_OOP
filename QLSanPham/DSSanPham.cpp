@@ -34,8 +34,7 @@ void DSSanPham::docDuLieuTuFile(const string &tenTep)
         getline(ss, maSP, ',');
         getline(ss, tenSP, ',');
         ss >> gia;
-        ss.ignore();
-        getline(ss, maDanhMuc, ' ');
+        getline(ss, maDanhMuc);
 
         SanPham sp(maSP, tenSP, gia, maDanhMuc);
         danhSachSanPham.push_back(sp);

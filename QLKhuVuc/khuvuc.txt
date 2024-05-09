@@ -1,2 +1,2 @@
-KV01, Khu vuc hut thuoc
-KV02, Khu vuc khong duoc hut thuoc
+KV01,Khu vuc hut thuoc
+KV02,Khu vuc khong duoc hut thuoc

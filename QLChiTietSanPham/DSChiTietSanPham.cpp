@@ -93,7 +93,7 @@ void DSChiTietSanPham::ghiDuLieuVaoFile(const std::string &tenFile)
     {
         for (auto ctsp : danhSachChiTietSanPham)
         {
-            file << ctsp.getMaNL() << ", " << ctsp.getMaSP() << ", " << ctsp.getSoLuongSuDung() << std::endl;
+            file << ctsp.getMaNL() << "," << ctsp.getMaSP() << "," << ctsp.getSoLuongSuDung() << std::endl;
         }
         file.close();
     }

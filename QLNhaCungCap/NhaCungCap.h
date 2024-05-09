@@ -3,13 +3,13 @@
 
 #include <iostream>
 #include <fstream>
-#include "../Nguoi.h"
+#include "DoiTuong.h"
 
 class NhaCungCap : public DoiTuong
 {
 private:
-    std::string DiaChi, SDT
-	;
+    std::string DiaChi, SDT;
+
 public:
     NhaCungCap();
     NhaCungCap(const std::string &MaNCC, const std::string &TenNCC, const std::string &DiaChi, const std::string &SDT);
@@ -22,7 +22,7 @@ public:
     void setDiaChi(const std::string &diaChi);
     std::string getSDT() const;
     void setSDT(const std::string &sdt);
-	
+
     void nhap();
     void xuat() const;
     void luuVaoFile(const std::string &tenFile) const;

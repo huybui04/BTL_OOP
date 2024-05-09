@@ -4,7 +4,7 @@ NguyenLieu::NguyenLieu() : DoiTuong() {}
 
 NguyenLieu::NguyenLieu(const std::string &MaNL, const std::string &TenNL, const std::string &NSX, const std::string &HSD, double Gia)
     : DoiTuong(MaNL, TenNL), NSX(NSX), HSD(HSD), Gia(Gia) {}
-    
+
 std::string NguyenLieu::getMaNL() const
 {
     return DoiTuong::getMa();
@@ -77,13 +77,13 @@ void NguyenLieu::xuat() const
 
 void NguyenLieu::luuVaoFile(const std::string &tenFile) const
 {
-	std::ofstream file(tenFile, std::ios_base::app);
-    if (!file.is_open()) {
+    std::ofstream file(tenFile, std::ios_base::app);
+    if (!file.is_open())
+    {
         std::cout << "Khong mo duoc file " << tenFile << "de ghi" << std::endl;
         return;
     }
 
-    file << getMa() << ", " << getTen() << ", " << NSX << ", " << HSD << ", " << Gia << std::endl;
+    file << getMa() << "," << getTen() << "," << NSX << "," << HSD << "," << Gia << std::endl;
     file.close();
-    
 }

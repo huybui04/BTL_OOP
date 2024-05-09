@@ -106,7 +106,7 @@ double HoaDonNhap::tinhTongTien() const
     {
         for (auto ct : dscthdn.getDSCTHDN())
         {
-            if (trim_(nl.getMaNL()) == trim_(ct.getMaNL()))
+            if (nl.getMaNL() == ct.getMaNL())
             {
                 ct.setNL(nl);
             }

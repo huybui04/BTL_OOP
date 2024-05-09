@@ -1,6 +1,6 @@
 #include "ChiTietHoaDonBan.h"
 
-ChiTietHoaDonBan::ChiTietHoaDonBan() : ChiTietDoiTuong(){}
+ChiTietHoaDonBan::ChiTietHoaDonBan() : ChiTietDoiTuong() {}
 
 ChiTietHoaDonBan::ChiTietHoaDonBan(const std::string &MaHDB, const std::string &MaSP, const int &soLuong)
     : ChiTietDoiTuong(MaHDB, MaSP), SoLuong(soLuong)
@@ -57,14 +57,16 @@ void ChiTietHoaDonBan::xuat() const
     std::cout << "So Luong Ban: " << SoLuong << std::endl;
 }
 
-void ChiTietHoaDonBan::luuVaoFile(const std::string &tenFile) const {
-	std::ofstream file(tenFile, std::ios_base::app);
-    if (!file.is_open()) {
+void ChiTietHoaDonBan::luuVaoFile(const std::string &tenFile) const
+{
+    std::ofstream file(tenFile, std::ios_base::app);
+    if (!file.is_open())
+    {
         std::cout << "Khong mo duoc file " << tenFile << "de ghi" << std::endl;
         return;
     }
 
-    file << ChiTietDoiTuong::getMa1() << ", " << ChiTietDoiTuong::getMa2() << ", " << SoLuong << std::endl;
+    file << ChiTietDoiTuong::getMa1() << "," << ChiTietDoiTuong::getMa2() << "," << SoLuong << std::endl;
     file.close();
 }
 
