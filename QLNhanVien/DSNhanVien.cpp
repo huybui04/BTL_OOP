@@ -106,7 +106,7 @@ NhanVien DSNhanVien::timKiemNhanVien(const std::string &maNV) const
 
 void DSNhanVien::luuVaoFile(const std::string &tenTep) const
 {
-    std::ofstream file(tenTep, std::ios_base::app);
+    std::ofstream file(tenTep);
     if (!file.is_open())
     {
         std::cout << "Khong mo duoc file " << tenTep << "de ghi" << std::endl;

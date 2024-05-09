@@ -34,13 +34,14 @@ void DSBan::docDuLieuTuFile(const std::string &tenTep)
     while (std::getline(file, line))
     {
         std::stringstream ss(line);
-        std::string maBan, tenBan, trangThai;
+        std::string maBan, tenBan, trangThai, maKV;
 
         std::getline(ss, maBan, ',');
         std::getline(ss, tenBan, ',');
-        std::getline(ss, trangThai);
-
-        Ban ban(maBan, tenBan, trangThai);
+        std::getline(ss, trangThai, ',');
+		std::getline(ss, maKV);
+		
+        Ban ban(maBan, tenBan, trangThai, maKV);
         themBan(ban);
     }
 
@@ -88,7 +89,7 @@ void DSBan::xoaBan(const std::string &maBan)
 
 void DSBan::luuVaoFile(const std::string &tenTep)
 {
-    std::ofstream file(tenTep, std::ios_base::app);
+    std::ofstream file(tenTep);
     if (!file.is_open())
     {
         std::cout << "Khong mo duoc file " << tenTep << "de ghi" << std::endl;
@@ -102,6 +103,7 @@ void DSBan::luuVaoFile(const std::string &tenTep)
 
     file.close();
 }
+
 
 Ban *DSBan::timKiemTheoMa(const std::string &maBan)
 {

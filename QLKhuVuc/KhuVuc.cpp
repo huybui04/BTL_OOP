@@ -1,9 +1,20 @@
 #include "KhuVuc.h"
 
-KhuVuc::KhuVuc() : DoiTuong() {}
+KhuVuc::KhuVuc() {}
 
-KhuVuc::KhuVuc(const std::string &MaKV, const std::string &TenKV)
-    : DoiTuong(MaKV, TenKV) {}
+KhuVuc::KhuVuc(const std::string &MaKV, const std::string &TenKV) : DoiTuong(MaKV, TenKV) 
+{
+	DSBan dsb;
+	dsb.docDuLieuTuFile("QLBan/ban.txt");
+	
+	for (const auto &ban : dsb.getDSBan())
+    {
+        if (ban.getMaKV() == MaKV)
+        {
+            banTheoKhuVuc.push_back(ban);
+        }
+    }	
+}
 
 std::string KhuVuc::getMaKV() const {
     return DoiTuong::getMa();
@@ -28,6 +39,12 @@ void KhuVuc::nhap() {
 
 void KhuVuc::xuat() const {
     DoiTuong::xuat();
+    cout << "\n\tDanh sach ban thuoc khu vuc " << getTenKV() << endl;
+    for (const auto &ban : banTheoKhuVuc)
+    {
+        ban.xuat();
+        cout << endl;
+    }
 }
 
 void KhuVuc::luuVaoFile(const std::string &tenTep) const {

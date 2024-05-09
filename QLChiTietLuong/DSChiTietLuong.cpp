@@ -173,7 +173,7 @@ void DSChiTietLuong::docDuLieuTuFile(const string &tenFile)
 
 void DSChiTietLuong::ghiDuLieuVaoFile(const string &tenFile)
 {
-    ofstream fileOut(tenFile, ios_base::app);
+    ofstream fileOut(tenFile);
     if (!fileOut.is_open())
     {
         cout << "Khong mo duoc file " << tenFile << " de ghi" << endl;

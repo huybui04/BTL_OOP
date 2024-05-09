@@ -44,7 +44,7 @@ void DanhMucSanPham::nhap()
 void DanhMucSanPham::xuat() const
 {
     DoiTuong::xuat();
-    cout << "\n\tDanh sach san pham thuoc danh muc" << getTenDM() << endl;
+    cout << "\n\tDanh sach san pham thuoc danh muc " << getTenDM() << endl;
     for (const auto &sp : spTheoDanhMuc)
     {
         sp.xuat();

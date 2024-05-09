@@ -88,8 +88,8 @@ void NhanVien::setChucVu(std::string chucVu)
 void NhanVien::nhap()
 {
     Nguoi::nhap();
-    std::cout << "Nhap CCCD: ";
-    std::getline(std::cin, CCCD);
+    std::cout << "Nhap MaNV: ";
+    std::getline(std::cin, MaNV);
     std::cout << "Nhap Chuc Vu: ";
     std::getline(std::cin, ChucVu);
 }
@@ -101,12 +101,11 @@ void NhanVien::xuat() const
     std::cout << "Chuc Vu: " << ChucVu << std::endl;
 }
 
-void NhanVien::luuVaoFile(const std::string &tenFile) const
-{
-    std::ofstream file(tenFile, std::ios_base::app);
+void NhanVien::luuVaoFile(const std::string &tenFile) const {
+	std::ofstream file(tenFile, std::ios_base::app);
     if (!file.is_open())
     {
-        std::cout << "Khong mo duoc file " << tenFile << "de ghi" << std::endl;
+        std::cout << "Khong mo duoc file " << tenFile << " de ghi" << std::endl;
         return;
     }
 

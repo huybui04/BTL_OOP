@@ -336,30 +336,16 @@ public:
 		if (dskh.timKiemTheoMa(customerId) == nullptr)
 		{
 			KhachHang kh;
-			string tenKhach;
-			kh.setMaKH(customerId);
-			cout << "Nhap ten khach hang: ";
-			getline(cin, tenKhach);
-			kh.setTenKH(tenKhach);
+			kh.nhap();
 			dskh.themKhachHang(kh);
-
-			//(check)
-			for (auto kh : dskh.getDanhSachKhachHang())
-			{
-				if (kh.getMaKH() == customerId)
-				{
-					cout << "Khach hang da duoc them" << endl;
-					kh.xuat();
-				}
-				else
-					cout << "Khong tim thay khach hang" << endl;
-			}
+			dskh.luuVaoFile(tenFileDSKhachHang);
 		}
 		if (dsban.timKiemTheoMa(tableId) == nullptr)
 		{
 			cout << "Ban khong ton tai" << endl;
 			return;
 		}
+		
 		// check hoa don ban
 		for (auto ct : dscthdb.getDSCTHDB())
 		{
@@ -586,11 +572,11 @@ public:
 		string id;
 		cout << "Nhap ma ca lam viec can xoa: ";
 		getline(cin, id);
-		NhanVien *nv = dsnv.timKiemTheoMa(id);
-		if (nv)
+		CaLamViec *clv = dsclv.timKiemTheoMa(id);
+		if (clv)
 		{
 			dsclv.xoaCaLamViec(id);
-			cout << "Ca lam viec co ma" << id << "da bi xoa ra khoi danh sach" << endl;
+			cout << "Ca lam viec co ma " << id << " da bi xoa ra khoi danh sach" << endl;
 			dsclv.ghiDuLieuVaoFile(tenFileDSCaLamViec);
 		}
 		else
@@ -1418,7 +1404,9 @@ public:
 		cout << "Nhap ma hoa don ban can xoa: ";
 		getline(cin, id);
 		dshdb.xoaHoaDon(id);
+		dscthdb.xoaChiTiet(id);
 		dshdb.ghiDuLieuVaoFile(tenFileDSHoaDonBan);
+		dscthdb.ghiDuLieuVaoFile(tenFileDSChiTietHoaDonBan);
 	}
 
 	void timKiemHoaDonBan()
@@ -1993,13 +1981,13 @@ int main()
 					qlcf.hienThiDSChiTietSanPham();
 					break;
 				case 2:
-					// qlcf.themChiTietSanPham();
+					 qlcf.themChiTietSanPham();
 					break;
 				case 3:
 					qlcf.xoaChiTietSanPham();
 					break;
 				case 4:
-					// qlcf.suaChiTietSanPham();
+					 qlcf.suaChiTietSanPham();
 					break;
 				case 5:
 					qlcf.timKiemChiTietSanPham();

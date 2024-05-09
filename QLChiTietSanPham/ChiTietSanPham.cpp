@@ -59,6 +59,13 @@ void ChiTietSanPham::setSoLuongSuDung(int SoLuongSuDung)
     this->SoLuongSuDung = SoLuongSuDung;
 }
 
+void ChiTietSanPham::nhap()
+{
+    ChiTietDoiTuong::nhap();
+    std::cout << "Nhap so luong su dung: ";
+    std::cin >> SoLuongSuDung;
+}
+
 void ChiTietSanPham::xuat() const
 {
     ChiTietDoiTuong::xuat();
@@ -73,6 +80,6 @@ void ChiTietSanPham::luuVaoFile(const std::string &tenFile) const {
         return;
     }
 
-    file << ChiTietDoiTuong::getMa1() << ", " << ChiTietDoiTuong::getMa2() << ", " << SoLuongSuDung << std::endl;
+    file << ChiTietDoiTuong::getMa1() << "," << ChiTietDoiTuong::getMa2() << "," << SoLuongSuDung << std::endl;
     file.close();
 }

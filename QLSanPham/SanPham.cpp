@@ -71,7 +71,6 @@ void SanPham::luuVaoFile(const string &tenFile) const
         return;
     }
 
-    file << "\n"
-         << getMa() << "," << getTen() << "," << Gia << "," << MaDanhMuc;
+    file << getMa() << "," << getTen() << "," << Gia << "," << MaDanhMuc << endl;
     file.close();
 }
