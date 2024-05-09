@@ -39,7 +39,7 @@ void NhaCungCap::setSDT(const std::string &sdt) {
 
 void NhaCungCap::nhap() {
     DoiTuong::nhap();
-    std::cout << "Nhap Dia Chi: ";
+    std::cout << "Nhap Dia chi: ";
     std::getline(std::cin, DiaChi);
     std::cout << "Nhap SDT: ";
     std::getline(std::cin, SDT);
@@ -48,7 +48,7 @@ void NhaCungCap::nhap() {
 void NhaCungCap::xuat() const {
     DoiTuong::xuat();
     std::cout << "Dia Chi: " << DiaChi << std::endl;
-    std::cout << "SDT: " << SDT << std::endl;
+	std::cout << "SDT: " << SDT << std::endl;
 }
 
 void NhaCungCap::luuVaoFile(const std::string &tenFile) const {
@@ -58,8 +58,7 @@ void NhaCungCap::luuVaoFile(const std::string &tenFile) const {
         return;
     }
 
-    file << getMa() << ", " << getTen() << ", " << DiaChi << ", " << SDT << std::endl;
+    file << DoiTuong::getMa() << ", " << DoiTuong::getTen() << ", " << DiaChi << ", " << SDT << ", " << std::endl;
     file.close();
-    
 }
 

@@ -16,12 +16,16 @@ void DSKhachHang::docTuFile(const std::string &tenFile)
         while (std::getline(file, line))
         {
             std::stringstream ss(line);
-            std::string maKH, tenKH, sdt;
-            std::getline(ss, maKH, ',');
+            std::string maKH, cccd, tenKH, sdt, diachi, gioitinh, ngaysinh;
+            std::getline(ss, cccd, ',');
             std::getline(ss, tenKH, ',');
-            std::getline(ss, sdt);
-
-            KhachHang kh(maKH, tenKH, sdt);
+            std::getline(ss, sdt, ',');
+			std::getline(ss, diachi, ',');
+			std::getline(ss, gioitinh, ',');	
+			std::getline(ss, ngaysinh, ',');
+			std::getline(ss, maKH);
+			
+            KhachHang kh(cccd, tenKH, sdt, diachi, gioitinh, ngaysinh, maKH);
             themKhachHang(kh);
         }
         file.close();

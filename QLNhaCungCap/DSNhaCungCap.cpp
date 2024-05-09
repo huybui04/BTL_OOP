@@ -33,8 +33,8 @@ void DSNhaCungCap::docDuLieuTuFile(const std::string &tenTep)
         std::getline(ss, maNCC, ',');
         std::getline(ss, tenNCC, ',');
         std::getline(ss, diaChi, ',');
-        std::getline(ss, sdt);
-
+        std::getline(ss, sdt, ',');
+		
         NhaCungCap ncc(maNCC, tenNCC, diaChi, sdt);
         themNhaCungCap(ncc);
     }
@@ -47,10 +47,7 @@ void DSNhaCungCap::hienThiDanhSach() const
     std::cout << "\n\n\t Danh sach nha cung cap\n\n";
     for (const auto &ncc : danhSachNhaCungCap)
     {
-        std::cout << "MaNCC: " << ncc.getMaNCC() << std::endl;
-        std::cout << "TenNCC: " << ncc.getTenNCC() << std::endl;
-        std::cout << "DiaChi: " << ncc.getDiaChi() << std::endl;
-        std::cout << "SDT: " << ncc.getSDT() << std::endl;
+        ncc.xuat();
         std::cout << std::endl;
     }
 }

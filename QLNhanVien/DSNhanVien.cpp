@@ -28,17 +28,18 @@ void DSNhanVien::docDuLieuTuFile(const std::string &tenTep)
     while (std::getline(file, line))
     {
         std::stringstream ss(line);
-        std::string maNV, tenNV, sdt, gioiTinh, diaChi, chucVu, ngaySinh;
+        std::string maNV, tenNV, sdt, gioiTinh, diaChi, chucVu, ngaySinh, cccd;
 
-        std::getline(ss, maNV, ',');
+        std::getline(ss, cccd, ',');
         std::getline(ss, tenNV, ',');
         std::getline(ss, sdt, ',');
-        std::getline(ss, gioiTinh, ',');
         std::getline(ss, diaChi, ',');
-        std::getline(ss, chucVu, ',');
-        std::getline(ss, ngaySinh);
+        std::getline(ss, gioiTinh, ',');
+        std::getline(ss, ngaySinh, ',');
+        std::getline(ss, maNV, ',');
+        std::getline(ss, chucVu);
 
-        NhanVien nv(maNV, tenNV, sdt, gioiTinh, diaChi, chucVu, ngaySinh);
+        NhanVien nv(cccd, tenNV, sdt, diaChi, gioiTinh, ngaySinh, maNV, chucVu);
         danhSachNhanVien.push_back(nv);
     }
 
