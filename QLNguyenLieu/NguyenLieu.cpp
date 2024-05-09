@@ -83,7 +83,7 @@ void NguyenLieu::luuVaoFile(const std::string &tenFile) const
         return;
     }
 
-    file << getMa() << ", " << getTen() << ", " << NSX << ", " << HSD << ", " << Gia << std::endl;
+    file << getMa() << "," << getTen() << "," << NSX << "," << HSD << "," << Gia << std::endl;
     file.close();
     
 }

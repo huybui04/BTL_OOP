@@ -109,7 +109,7 @@ void HoaDonBan::luuVaoFile(const std::string &tenFile) const
         return;
     }
 
-    file << HoaDon::getMa() << ", " << HoaDon::getNgay() << ", " << MaNV << ", " << MaKH << ", " << MaBan << std::endl;
+    file << HoaDon::getMa() << "," << HoaDon::getNgay() << "," << MaNV << "," << MaKH << "," << MaBan << std::endl;
     file.close();
 }
 

@@ -33,7 +33,7 @@ public:
     int getSoLuongSuDung() const;
     void setSoLuongSuDung(int SoLuongSuDung);
 
-    void nhap() const;
+    void nhap();
     void xuat() const;
     void luuVaoFile(const std::string &tenFile) const;
 };

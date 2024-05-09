@@ -84,7 +84,7 @@ void Nguoi::luuVaoFile(const std::string &tenFile) const {
         return;
     }
 
-    file << CCCD << ", " << Ten << ", " << SDT << ", " << DiaChi << ", " << GioiTinh << ", " << NgaySinh << std::endl;
+    file << CCCD << "," << Ten << "," << SDT << "," << DiaChi << "," << GioiTinh << "," << NgaySinh << std::endl;
     file.close();   
 }
 

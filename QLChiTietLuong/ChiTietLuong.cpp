@@ -61,6 +61,6 @@ void ChiTietLuong::luuDuLieuVaoFile(const string &tenFile)
         return;
     }
 
-    file << ChiTietDoiTuong::getMa1() << ", " << ChiTietDoiTuong::getMa2() << ", " << tongSoCa << ", " << thangLamViec << endl;
+    file << ChiTietDoiTuong::getMa1() << "," << ChiTietDoiTuong::getMa2() << "," << tongSoCa << "," << thangLamViec << endl;
     file.close();
 }

@@ -3,10 +3,17 @@
 
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include <map>
+#include "../QLBan/Ban.h"
+#include "../QLBan/DSban.h"
 #include "../DoiTuong.h"
 
 class KhuVuc : public DoiTuong
 {
+private:
+	vector<Ban> banTheoKhuVuc;
+	
 public:
     KhuVuc();
     KhuVuc(const std::string &MaKV, const std::string &TenKV);

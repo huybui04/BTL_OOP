@@ -71,6 +71,6 @@ void CaLamViec::luuVaoFile(const std::string &tenFile) const {
         return;
     }
 
-    file << getMa() << ", " << getTen() << ", " << GioBatDau << ", " << GioKetThuc << ", " << Luong << std::endl;
+    file << getMa() << "," << getTen() << "," << GioBatDau << "," << GioKetThuc << "," << Luong << std::endl;
     file.close();
 }

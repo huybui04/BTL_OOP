@@ -92,7 +92,7 @@ void DSNguyenLieu::xoaNguyenLieu(const std::string &maNL)
 
 void DSNguyenLieu::luuVaoFile(const std::string &tenTep)
 {
-    std::ofstream file(tenTep, std::ios_base::app);
+    std::ofstream file(tenTep);
     if (!file.is_open())
     {
         std::cout << "Khong mo duoc file " << tenTep << "de ghi" << std::endl;

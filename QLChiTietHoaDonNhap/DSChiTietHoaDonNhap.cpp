@@ -88,7 +88,7 @@ void DSChiTietHoaDonNhap::docDuLieuTuFile(const std::string &tenFile)
 
 void DSChiTietHoaDonNhap::ghiDuLieuVaoFile(const std::string &tenFile)
 {
-    std::ofstream file(tenFile, std::ios_base::app);
+    std::ofstream file(tenFile);
     if (file.is_open())
     {
         for (auto cthdn : danhSachChiTietHoaDonNhap)

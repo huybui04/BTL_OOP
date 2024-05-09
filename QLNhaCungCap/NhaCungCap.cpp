@@ -58,7 +58,7 @@ void NhaCungCap::luuVaoFile(const std::string &tenFile) const {
         return;
     }
 
-    file << DoiTuong::getMa() << ", " << DoiTuong::getTen() << ", " << DiaChi << ", " << SDT << ", " << std::endl;
+    file << DoiTuong::getMa() << "," << DoiTuong::getTen() << "," << DiaChi << "," << SDT << std::endl;
     file.close();
 }
 

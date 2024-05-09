@@ -40,6 +40,6 @@ void ChiTietDoiTuong::luuVaoFile(const std::string &tenFile) const {
         return;
     }
 
-    file << Ma1 << ", " << Ma2 << std::endl;
+    file << Ma1 << "," << Ma2 << std::endl;
     file.close(); 
 }

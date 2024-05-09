@@ -83,7 +83,7 @@ void DSKhachHang::xoaKhachHang(const std::string &maKH)
 
 void DSKhachHang::luuVaoFile(const std::string &tenTep) const
 {
-    std::ofstream file(tenTep, std::ios_base::app);
+    std::ofstream file(tenTep);
     if (!file.is_open())
     {
         std::cout << "Khong mo duoc file " << tenTep << "de ghi" << std::endl;

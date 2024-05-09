@@ -64,7 +64,7 @@ void ChiTietHoaDonBan::luuVaoFile(const std::string &tenFile) const {
         return;
     }
 
-    file << ChiTietDoiTuong::getMa1() << ", " << ChiTietDoiTuong::getMa2() << ", " << SoLuong << std::endl;
+    file << ChiTietDoiTuong::getMa1() << "," << ChiTietDoiTuong::getMa2() << "," << SoLuong << std::endl;
     file.close();
 }
 

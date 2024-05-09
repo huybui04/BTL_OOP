@@ -35,13 +35,35 @@ void DSKhuVuc::suaKhuVuc(const std::string &maKV, const KhuVuc &kv)
     }
 }
 
-void DSKhuVuc::hienThiDanhSach() const
+void DSKhuVuc::hienThiDanhSach()
 {
     std::cout << "\n\n\tDanh sach khu vuc\n\n";
-    for (const auto &kv : danhSachKhuVuc)
+    getData();
+    for (auto &m : mapBan)
     {
-        kv.xuat();
-        std::cout << std::endl;
+        cout << "\n\tKhu vuc " << m.first << ":\n\n";
+        for (auto &ban : m.second)
+        {
+            ban.xuat();
+            cout << endl;
+        }
+    }
+}
+
+void DSKhuVuc::getData()
+{
+    DSBan dsb;
+    dsb.docDuLieuTuFile("QLBan/ban.txt");
+
+    for (auto &dm : danhSachKhuVuc)
+    {
+        for (auto &ban : dsb.getDSBan())
+        {
+            if (ban.getMaKV() == dm.getMaKV())
+            {
+                mapBan[dm.getMaKV()].push_back(ban);
+            }
+        }
     }
 }
 

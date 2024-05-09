@@ -40,7 +40,7 @@ void HoaDon::luuVaoFile(const std::string &tenFile) const {
         return;
     }
 
-    file << MaHoaDon << ", " << Ngay << std::endl;
+    file << MaHoaDon << "," << Ngay << std::endl;
     file.close();   
 }
 

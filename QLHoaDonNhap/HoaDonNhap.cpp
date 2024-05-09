@@ -88,7 +88,7 @@ void HoaDonNhap::luuVaoFile(const std::string &tenFile) const
         return;
     }
 
-    file << HoaDon::getMa() << ", " << HoaDon::getNgay() << ", " << MaNV << ", " << MaNCC << std::endl;
+    file << HoaDon::getMa() << "," << HoaDon::getNgay() << "," << MaNV << "," << MaNCC << std::endl;
     file.close();
 }
 

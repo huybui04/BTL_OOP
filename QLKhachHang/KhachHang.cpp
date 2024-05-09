@@ -72,7 +72,7 @@ void KhachHang::luuVaoFile(const std::string &tenFile) const {
         return;
     }
 
-    file << Nguoi::getCCCD() << ", " << Nguoi::getTen() << ", " << Nguoi::getSDT() << ", " << Nguoi::getDiaChi() << ", " << Nguoi::getGioiTinh() << ", " << Nguoi::getNgaySinh() << ", " << MaKH << std::endl;
+    file << Nguoi::getCCCD() << "," << Nguoi::getTen() << "," << Nguoi::getSDT() << "," << Nguoi::getDiaChi() << "," << Nguoi::getGioiTinh() << "," << Nguoi::getNgaySinh() << "," << MaKH << std::endl;
     file.close();
 }
 
